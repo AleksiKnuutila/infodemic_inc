@@ -1,0 +1,430 @@
+[
+  {
+    "id": "0",
+    "type": "choice",
+    "text": "¡Hola! ¿Cómo te va? ¡Bienvenido/a!",
+    "choices": [
+      {
+        "text": "Ah, hola",
+        "next": "1",
+        "profitChange": -10,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "Emm, ¿quién eres?",
+        "next": "2",
+        "profitChange": 0,
+        "legitimacyChange": 10
+      }
+    ]
+  },
+  {
+    "id": "1",
+    "type": "choice",
+    "text": "¡Encantado/a de conocerte! Estás aquí para empezar tu nuevo puesto como VP de Respuestas al Trastorno de la Información en Connectopia, la plataforma de redes sociales de más rápido crecimiento en Estados Unidos. Me llamo Jamie, trabajaré como tu asistente. ¡Estoy emocionado/a de tenerte a bordo!",
+    "choices": [
+      {
+        "text": "¡Gracias, estoy emocionado/a de estar aquí!",
+        "next": "3",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "Suena desafiante. ¿Qué se supone que debo hacer exactamente?",
+        "next": "3",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "type": "choice",
+    "text": "¡Oh, disculpa por no presentarme! Soy Jamie, el/la Estratega de Resiliencia Asistente con quien trabajarás. Estás aquí para comenzar tu nuevo puesto como VP de Gestión del Trastorno de la Información en Connectopia, la plataforma de redes sociales de más rápido crecimiento en Estados Unidos. ¡Te estábamos esperando!",
+    "choices": [
+      {
+        "text": "Ah, ya veo. Encantado/a de conocerte, Jamie.",
+        "next": "3",
+        "profitChange": 10,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "Bien, por supuesto. Empecemos entonces.",
+        "next": "3",
+        "profitChange": 0,
+        "legitimacyChange": 10
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "type": "choice",
+    "text": "¡Genial! Ahora, vayamos directo al grano. Acaba de llegar un memo a tu escritorio. Parece que Connectopia tiene un nuevo sistema de IA para combatir bots identificando comportamientos coordinados. El problema es: ¡Está marcando los selfies de turistas frente a lugares famosos como \"comportamiento repetitivo sospechoso\"! Los blogueros de viajes y las juntas de turismo están en pie de guerra. ¿Qué sugerirías que hiciéramos?",
+    "choices": [
+      {
+        "text": "¿Podríamos desactivarlo alrededor de los puntos turísticos?",
+        "next": "4",
+        "profitChange": -20,
+        "legitimacyChange": 10
+      },
+      {
+        "text": "Simplemente no hagamos nada y veamos qué pasa",
+        "next": "5",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "type": "choice",
+    "text": "Entonces, ajustamos la IA. Buenas noticias: los selfies de los turistas han vuelto. Malas noticias: ahora se cuela algo de spam. Los usuarios están más contentos, pero ¿la calidad de nuestro contenido? Digamos que ha visto días mejores. Estamos viendo una reducción de usuarios y nuestras ganancias se han visto afectadas. Recuerda, tu trabajo es mantener a flote tanto la legitimidad como las ganancias...",
+    "choices": [
+      {
+        "text": "Oh, genial",
+        "next": "20",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "Oh, no",
+        "next": "20",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "type": "choice",
+    "text": "Mantuvimos la IA como está. La plataforma está impecable ahora, pero ¿nuestros números del sector de viajes? Uf. Es como si nos hubiéramos convertido en la policía de la diversión del turismo. La calidad del contenido ha subido, pero tenemos mucha gente enfadada acusándonos de utilizar un sistema automatizado sesgado. Nuestra legitimidad se ha visto afectada. Recuerda, tu trabajo es mantener a flote tanto la legitimidad como las ganancias...",
+    "choices": [
+      {
+        "text": "Oh, genial",
+        "next": "20",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "Oh, no",
+        "next": "20",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "type": "intermediate",
+    "text": "Ese fue el final de la Sección 1. Tomemos un respiro y disfrutemos de esta hermosa pantalla. Haz clic en el botón para pasar a la siguiente sección.",
+    "mobileImage": "/images/info-lead-illustration1-mob-v1.png",
+    "desktopImage": "/images/info-lead-illustration2-web-v1.png",
+    "additionalText": [
+      {
+        "text": "Más información sobre las características de nuestra plataforma",
+        "link": "https://example.com/features"
+      },
+      {
+        "text": "Consulta nuestras normas de la comunidad"
+      },
+      {
+        "text": "Visita nuestro blog para ver las últimas novedades",
+        "link": "https://example.com/blog"
+      }
+    ],
+    "choices": [
+      {
+        "text": "Pasar a la siguiente sección",
+        "next": "21",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "type": "choice",
+    "text": "Bien, tenemos otra situación entre manos. Hay un poema coreano que está causando bastante revuelo en nuestra plataforma. ¿Cómo te gustaría enfocar esto?",
+    "choices": [
+      {
+        "text": "Cuéntame más sobre ello, Jamie",
+        "next": "22",
+        "profitChange": 0,
+        "legitimacyChange": 10
+      },
+      {
+        "text": "¿Por qué es controvertido un poema?",
+        "next": "22",
+        "profitChange": 10,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "22",
+    "type": "choice",
+    "text": "Bueno, el poema trata sobre la propuesta de reubicación de un busto del general Hong Beom-Do. Fue una figura importante en Corea a principios del siglo XX, liderando el Ejército de Independencia Coreano contra las fuerzas japonesas.",
+    "choices": [
+      {
+        "text": "¿Por qué está causando controversia?",
+        "next": "23",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "¿Podemos obtener algo de contexto histórico?",
+        "next": "23",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "23",
+    "type": "choice",
+    "text": "La controversia proviene del uso del término 'wae-nom' en el poema. Literalmente significa 'persona de Japón', pero a menudo se usa como término despectivo, especialmente en contextos históricos.",
+    "choices": [
+      {
+        "text": "¿Puedes informarme sobre nuestra política de contenidos?",
+        "next": "24",
+        "profitChange": 10,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "¿Qué pasó con la publicación?",
+        "next": "25",
+        "profitChange": 0,
+        "legitimacyChange": 10
+      }
+    ]
+  },
+  {
+    "id": "24",
+    "type": "choice",
+    "text": "Nuestra política de contenidos deja bastante claro que no se permite el discurso de odio. Pero se vuelve complicado cuando tenemos que determinar qué palabras son realmente despectivas sobre grupos y cuáles no. Es un delicado equilibrio entre la libertad de expresión y la prevención de daños.",
+    "choices": [
+      {
+        "text": "¿Qué pasó con esta publicación en particular?",
+        "next": "30",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "¿Hemos tratado algo como esto antes?",
+        "next": "25",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "25",
+    "type": "choice",
+    "text": "Inicialmente, retiramos el contenido por violar nuestra política de discurso de odio. Pero esa decisión causó bastante escándalo, y ahora más usuarios están publicando el poema en protesta.",
+    "choices": [
+      {
+        "text": "¿Hemos tenido casos similares antes?",
+        "next": "30",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "¿Qué crees que deberíamos hacer ahora?",
+        "next": "30",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "30",
+    "type": "intermediate",
+    "text": "Ese fue el final de la Sección 2. Disfrutemos de otra imagen maravillosa mientras nos preparamos para el siguiente desafío. Haz clic en el botón para pasar a la siguiente sección.",
+    "mobileImage": "/images/info-lead-illustration2-mob-v1.png",
+    "desktopImage": "/images/info-lead-illustration3-web-v1.png",
+    "additionalText": [
+      {
+        "text": "Más información sobre las características de nuestra plataforma",
+        "link": "https://example.com/features"
+      },
+      {
+        "text": "Consulta nuestras normas de la comunidad"
+      },
+      {
+        "text": "Visita nuestro blog para ver las últimas novedades",
+        "link": "https://example.com/blog"
+      }
+    ],
+    "choices": [
+      {
+        "text": "Pasar a la siguiente sección",
+        "next": "31",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "31",
+    "type": "choice",
+    "text": "Sí, hemos tenido algunos casos similares. ¿Recuerdas el caso del poema ruso? Inicialmente, retiramos una publicación que insultaba a los rusos y comparaba a su ejército con los nazis. La Junta revocó esa decisión, enfatizando la importancia del contexto.",
+    "choices": [
+      {
+        "text": "Cuéntame más",
+        "next": "32",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "¿Qué deberíamos hacer ahora?",
+        "next": "32",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "32",
+    "type": "choice",
+    "text": "También hemos visto casos como 'Reclamación de palabras árabes' donde los malentendidos culturales y lingüísticos llevaron a una aplicación incorrecta de nuestras políticas. Es un tema complejo.",
+    "choices": [
+      {
+        "text": "¿Qué deberíamos hacer ahora?",
+        "next": "40",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "¿Por qué se me ha escalado esto a mí?",
+        "next": "40",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "40",
+    "type": "intermediate",
+    "text": "Ese fue el final de la Sección 3. Otra imagen, otro desafío por delante. Haz clic en el botón para pasar a la siguiente sección.",
+    "mobileImage": "/images/info-lead-illustration3-mob-v1.png",
+    "desktopImage": "/images/info-lead-illustration4-web-v1.png",
+    "choices": [
+      {
+        "text": "Pasar a la siguiente sección",
+        "next": "41",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "41",
+    "type": "choice",
+    "text": "Bien, aquí está la cosa. Nuestra Junta de Supervisión de Connectopia ha revisado la situación y se ha pronunciado en contra de nuestra decisión anterior de retirar las publicaciones que contenían el poema. Tenemos que decidir cómo abordar esto.",
+    "choices": [
+      {
+        "text": "¿Qué es la Junta de Supervisión?",
+        "next": "42",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "¿Cuáles son nuestras opciones?",
+        "next": "42",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "42",
+    "type": "choice",
+    "text": "Este caso se te ha escalado porque nuestra Junta de Supervisión de Connectopia lo ha revisado y se ha pronunciado en contra de nuestra decisión anterior de retirar el contenido. Es algo importante.",
+    "choices": [
+      {
+        "text": "¿Qué es la Junta de Supervisión?",
+        "next": "50",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "¿Cuáles son nuestras opciones?",
+        "next": "50",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "50",
+    "type": "intermediate",
+    "text": "¡Ese fue el final de la Sección 4! ¡Adelante!",
+    "mobileImage": "/images/info-lead-illustration4-mob-v1.png",
+    "desktopImage": "/images/info-lead-illustration3-web-v1.png",
+    "choices": [
+      {
+        "text": "Pasar a la siguiente sección",
+        "next": "51",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "51",
+    "type": "choice",
+    "text": "La Junta de Supervisión de Connectopia es un organismo independiente que revisa nuestras decisiones de moderación de contenidos. Hacen recomendaciones sobre, por ejemplo, si un contenido específico debe permitirse o retirarse. Las recomendaciones son vinculantes, al menos en principio...",
+    "choices": [
+      {
+        "text": "¿Cuáles son nuestras opciones?",
+        "next": "52",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "Tomemos una decisión",
+        "next": "52",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "52",
+    "type": "choice",
+    "text": "Tenemos dos opciones principales aquí. Podemos mantener nuestra política original o revisarla para tener en cuenta el contexto cultural. ¿Qué te parece?",
+    "choices": [
+      {
+        "text": "Mantengamos nuestra política original",
+        "next": "53",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "¿Qué podríamos hacer para mejorar la moderación?",
+        "next": "53",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  },
+  {
+    "id": "53",
+    "type": "choice",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "choices": [
+      {
+        "text": "Lorem ipsum dolor?",
+        "next": "31",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      },
+      {
+        "text": "Dolor sit amet?",
+        "next": "32",
+        "profitChange": 0,
+        "legitimacyChange": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Social Media Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    />
+  </head>
+
+  <body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" style="display: none">
+      <h1>Loading...</h1>
+      <div class="circular-loader"></div>
+      <span id="loadingPercent">0%</span>
+    </div>
+
+    <!-- Language Selector -->
+    <div id="languageSelector" style="display: block">
+      <button id="languageDropdownButton">
+        Language <i class="fa-solid fa-caret-down"></i>
+      </button>
+      <div id="languageDropdownMenu" style="display: none">
+        <ul>
+          <li><a href="#" onclick="changeLanguage('en')">English</a></li>
+          <li><a href="#" onclick="changeLanguage('es')">Spanish</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Home Page Container -->
+    <div id="homeContainer" style="display: block">
+      <div id="initialMessage">
+        <p>
+          Welcome to social media middle management! Can you steer your platform
+          without getting into crisis?
+        </p>
+        <button id="startButton">Hello, Start the Game!</button>
+        <div id="homeOptions">
+          <button id="aboutButton">About</button>
+          <button id="shareButton">Share</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="gameContainer" style="display: none">
+      <div id="scores">
+        <!-- Profit Section -->
+        <div id="profitContainer">
+          <p id="profitScore">
+            <span class="profit-label">Profit</span>
+            <span class="profit-value">0</span>
+          </p>
+          <div class="indicator-container" id="profitIndicator">
+            <div class="indicator-box" style="background-color: #e8505b"></div>
+            <div class="indicator-box" style="background-color: #ef7858"></div>
+            <div class="indicator-box" style="background-color: #f5a055"></div>
+            <div class="indicator-box" style="background-color: #f5a055"></div>
+            <div class="indicator-box" style="background-color: #ead364"></div>
+            <div class="indicator-box" style="background-color: #d9df76"></div>
+            <div class="indicator-box" style="background-color: #d9df76"></div>
+          </div>
+        </div>
+
+        <!-- Legitimacy Section -->
+        <div id="legitimacyContainer">
+          <p id="legitimacyScore">
+            <span class="legitimacy-label">Legitimacy</span>
+            <span class="legitimacy-value">0</span>
+          </p>
+          <div class="indicator-container" id="legitimacyIndicator">
+            <div class="indicator-box" style="background-color: #e8505b"></div>
+            <div class="indicator-box" style="background-color: #ef7858"></div>
+            <div class="indicator-box" style="background-color: #f5a055"></div>
+            <div class="indicator-box" style="background-color: #f5a055"></div>
+            <div class="indicator-box" style="background-color: #ead364"></div>
+            <div class="indicator-box" style="background-color: #d9df76"></div>
+            <div class="indicator-box" style="background-color: #d9df76"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Content -->
+      <div id="gameContent">
+        <div id="conversationContainer">
+          <!-- All conversation of the game will be displayed here -->
+        </div>
+        <div id="choicesContainer">
+          <div id="choice1Container" class="choiceContainer">
+            <button id="choice1" class="choiceButton"></button>
+          </div>
+          <div id="choice2Container" class="choiceContainer">
+            <button id="choice2" class="choiceButton"></button>
+          </div>
+        </div>
+        <div id="timerDisplay"></div>
+      </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="aboutPage" style="display: none">
+      <div id="aboutHeader">
+        <span id="closeAboutPage">&times;</span>
+      </div>
+      <div id="aboutContent"></div>
+    </div>
+
+    <!-- Share Page -->
+    <div id="sharePage" style="display: none">
+      <div id="shareHeader">
+        <span id="closeSharePage">&times;</span>
+      </div>
+      <div id="shareContent"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
