@@ -9,7 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("/images/info-lead-illustration2-web-v1.png");
+  background-image: url("images/info-lead-illustration2-web-v1.png");
 }
 #homeContainer {
   position: absolute;
@@ -867,7 +867,7 @@ button {
   body {
     flex-direction: column;
     align-items: stretch;
-    background-image: url("/images/info-lead-illustration4-mob-v1.png");
+    background-image: url("images/info-lead-illustration4-mob-v1.png");
   }
 
   .intermediate-game-container {
@@ -884,7 +884,7 @@ button {
     border-radius: 0;
     max-width: 100%;
     background-size: cover;
-    background-image: url(/images/info-lead-illustration1-mob-v1.png);
+    background-image: url(images/info-lead-illustration1-mob-v1.png);
     background-size: cover;
     background-position: left;
     border: none;
