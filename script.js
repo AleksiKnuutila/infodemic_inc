@@ -82,7 +82,7 @@ function startGame() {
         document.getElementById("gameContainer").style.backgroundImage = "none";
       } else {
         document.body.style.backgroundImage =
-          "url('/images/info-lead-illustration3-web-v1.png')";
+          "url('images/info-lead-illustration3-web-v1.png')";
       }
 
       currentSection = "beginning"; // Start from the beginning
@@ -145,7 +145,7 @@ function displayCurrentSection() {
 
   // Add system icon below the text
   const systemIconElement = document.createElement("img");
-  systemIconElement.src = "/images/frame-89.png";
+  systemIconElement.src = "images/frame-89.png";
   systemIconElement.className = "chat-icon";
   messageContainer.appendChild(systemIconElement);
 
@@ -236,7 +236,7 @@ function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
 
   // Add user icon
   const userIcon = document.createElement("img");
-  userIcon.src = "/images/frame-90.png";
+  userIcon.src = "images/frame-90.png";
   userIcon.className = "chat-icon";
   userContainer.appendChild(userIcon);
 
@@ -453,10 +453,10 @@ function displayGameOver() {
     // Set home page background image
     if (window.matchMedia("(max-width: 768px)").matches) {
       document.getElementById("gameContainer").style.backgroundImage =
-        "url('/images/info-lead-illustration2-mob-v1.png')";
+        "url('images/info-lead-illustration2-mob-v1.png')";
     } else {
       document.body.style.backgroundImage =
-        "url('/images/info-lead-illustration2-web-v1.png')";
+        "url('images/info-lead-illustration2-web-v1.png')";
     }
 
     // Reload data and update UI
