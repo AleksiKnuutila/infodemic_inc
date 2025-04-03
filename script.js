@@ -40,7 +40,7 @@ function loadGameData() {
     .then((response) => response.json())
     .then((data) => {
       gameData = data;
-      currentSection = "0"; // Starting the game with the ID "0"
+      currentSection = "beginning"; // Starting the game with the ID "beginning"
       profitScore = 50;
       legitimacyScore = 50;
 
@@ -85,10 +85,10 @@ function startGame() {
           "url('/images/info-lead-illustration3-web-v1.png')";
       }
 
-      currentSection = "0"; // Start from the beginning
+      currentSection = "beginning"; // Start from the beginning
       displayCurrentSection();
     }
-  }, 50); // Update every 50ms for smoother animation
+  }, 25); // Update every 50ms for smoother animation
 }
 
 // Function to display current text and choices
@@ -104,10 +104,34 @@ function displayCurrentSection() {
 
   const section = gameData.find((item) => item.id === currentSection);
 
+  // Add debug logging
+  console.log("Current section:", section);
+  console.log("Current scores:", { profitScore, legitimacyScore });
+
   if (!section) {
     console.error("Section with ID", currentSection, "not found");
     return;
   }
+
+  // Process template variables
+  const variables = {
+    score: profitScore + legitimacyScore,
+    profit: profitScore,
+    reputation: legitimacyScore
+  };
+  
+  // Add debug logging
+  console.log("Variables for replacement:", variables);
+  console.log("Original text:", section.text);
+
+  const processedText = section.text.replace(/{{(\w+)}}/g, (match, variable) => {
+    // Add debug logging
+    console.log(`Replacing ${match} with ${variables[variable]}`);
+    return variables[variable] !== undefined ? variables[variable] : match;
+  });
+
+  // Add debug logging
+  console.log("Processed text:", processedText);
 
   // Create message container
   const messageContainer = document.createElement("div");
@@ -116,7 +140,7 @@ function displayCurrentSection() {
   // Create message content
   const textCard = document.createElement("div");
   textCard.className = "systemResponse";
-  textCard.innerHTML = `<p>${section.text}</p>`;
+  textCard.innerHTML = `<p>${processedText}</p>`;
   messageContainer.appendChild(textCard);
 
   // Add system icon below the text
@@ -236,32 +260,37 @@ function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
   setTimeout(() => {
     typingIndicator.remove();
 
+    // Special handling for "share" target
+    if (nextId === "share") {
+      document.getElementById("sharePage").style.display = "flex";
+      updateShareContent();
+      return;
+    }
+
     // Process next section
     const targetSection = gameData.find((item) => item.id === nextId);
 
     // Error handling for invalid/missing next IDs
     if (!targetSection) {
-      // Handle missing section
-      const errorMessage =
-        currentLanguage === "en"
-          ? "Error: Next section not found. Returning to start."
-          : "Error: Sección siguiente no encontrada. Volviendo al inicio.";
+      const errorMessage = currentLanguage === "en"
+        ? "Error: Next section not found. Returning to start."
+        : "Error: Sección siguiente no encontrada. Volviendo al inicio.";
 
       const errorContainer = document.createElement("div");
       errorContainer.className = "systemResponse error";
       errorContainer.innerHTML = `<p>${errorMessage}</p>`;
       conversationContainer.appendChild(errorContainer);
 
-      // Reset game after 3 seconds
       setTimeout(() => {
         displayGameOver();
       }, 3000);
       return;
     }
 
-    if (targetSection?.type === "intermediate") {
+    // Handle intermediate pages and game over conditions
+    if (targetSection.type === "intermediate") {
       displayIntermediatePage(targetSection);
-    } else if (targetSection?.id === "53") {
+    } else if (targetSection.id === "53") {
       displayGameOver();
     } else {
       currentSection = nextId;
@@ -274,43 +303,83 @@ function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
 }
 
 function displayIntermediatePage(section) {
-  const conversationContainer = document.getElementById(
-    "conversationContainer"
-  );
+  const conversationContainer = document.getElementById("conversationContainer");
   conversationContainer.innerHTML = "";
 
   // Add class for intermediate page styles
   conversationContainer.classList.add("intermediate-page");
-  document
-    .getElementById("gameContainer")
-    .classList.add("intermediate-game-container");
+  document.getElementById("gameContainer").classList.add("intermediate-game-container");
   document.getElementById("scores").classList.add("hide-on-mobile-desktop");
+
+  // Process template variables
+  const variables = {
+    score: profitScore + legitimacyScore,
+    profit: profitScore,
+    reputation: legitimacyScore
+  };
+  
+  const processedText = section.text.replace(/{{(\w+)}}/g, (match, variable) => 
+    variables[variable] !== undefined ? variables[variable] : match
+  );
 
   const sessionEndMessage = document.createElement("div");
   sessionEndMessage.className = "session-end-message";
   const messageElement = document.createElement("p");
-  messageElement.innerText = section.text;
+  messageElement.innerText = processedText;
   sessionEndMessage.appendChild(messageElement);
 
-  // Adding additional text (links) in a bullet list for intermediate page
-  if (section.additionalText) {
-    const additionalTextElement = document.createElement("ul");
-    additionalTextElement.className = "additional-text-list";
-    section.additionalText.forEach((item) => {
-      const listItem = document.createElement("li");
-      if (item.link) {
-        const linkElement = document.createElement("a");
-        linkElement.href = item.link;
-        linkElement.target = "_blank";
-        linkElement.innerText = item.text;
-        listItem.appendChild(linkElement);
-      } else {
-        listItem.innerText = item.text;
+  // Create buttons container
+  const buttonsContainer = document.createElement("div");
+  buttonsContainer.style.display = "flex";
+  buttonsContainer.style.flexDirection = "column";
+  buttonsContainer.style.alignItems = "center";
+  buttonsContainer.style.gap = "10px";
+  buttonsContainer.style.marginTop = "20px";
+
+  // Create buttons for each choice
+  section.choices.forEach(choice => {
+    const button = document.createElement("button");
+    button.className = "proceed-button";
+    button.innerText = choice.text;
+    button.onclick = () => {
+      // Handle next section
+      const nextSection = gameData.find(item => item.id === choice.next);
+
+      if (choice.next === "share") {
+        document.getElementById("sharePage").style.display = "flex";
+        updateShareContent();
+        return;
       }
-      additionalTextElement.appendChild(listItem);
-    });
-    sessionEndMessage.appendChild(additionalTextElement);
-  }
+
+      // Reset scores if going to "beginning" node
+      if (choice.next === "beginning") {
+        profitScore = 50;
+        legitimacyScore = 50;
+        updateScores();
+      }
+
+      if (nextSection?.type === "intermediate") {
+        // If next section is also intermediate, display it directly
+        displayIntermediatePage(nextSection);
+      } else {
+        // Reset conversation container for normal sections
+        conversationContainer.innerHTML = "";
+        conversationContainer.classList.remove("intermediate-page");
+        document.getElementById("gameContainer").classList.remove("intermediate-game-container");
+        document.getElementById("scores").classList.remove("hide-on-mobile-desktop");
+
+        if (window.matchMedia("(max-width: 768px").matches) {
+          document.getElementById("gameContainer").style.backgroundImage = "none";
+        }
+
+        currentSection = choice.next;
+        displayCurrentSection();
+      }
+    };
+    buttonsContainer.appendChild(button);
+  });
+
+  sessionEndMessage.appendChild(buttonsContainer);
 
   let imageSrc;
   if (window.matchMedia("(max-width: 768px").matches) {
@@ -333,34 +402,6 @@ function displayIntermediatePage(section) {
       "initial";
   }
 
-  const proceedButton = document.createElement("button");
-  proceedButton.className = "proceed-button";
-  proceedButton.innerText = section.choices[0].text;
-  proceedButton.onclick = () => {
-    // Reset conversation container
-    document.getElementById("conversationContainer").innerHTML = "";
-
-    // Remove class for intermediate page styles
-    document
-      .getElementById("conversationContainer")
-      .classList.remove("intermediate-page");
-    document
-      .getElementById("gameContainer")
-      .classList.remove("intermediate-game-container");
-    document
-      .getElementById("scores")
-      .classList.remove("hide-on-mobile-desktop");
-
-    // Remove background image from game container for mobile
-    if (window.matchMedia("(max-width: 768px").matches) {
-      document.getElementById("gameContainer").style.backgroundImage = "none";
-    }
-
-    // Proceed to next section
-    currentSection = section.choices[0].next;
-    displayCurrentSection();
-  };
-  sessionEndMessage.appendChild(proceedButton);
   document
     .getElementById("conversationContainer")
     .appendChild(sessionEndMessage);
@@ -392,10 +433,10 @@ function displayGameOver() {
 
   restartButton.onclick = () => {
     // Reset scores and section
-    profitScore = 0;
-    legitimacyScore = 0;
+    profitScore = 50;
+    legitimacyScore = 50;
     updateScores();
-    currentSection = "0";
+    currentSection = "beginning";
 
     // Clear conversation
     conversationContainer.innerHTML = "";
@@ -412,10 +453,10 @@ function displayGameOver() {
     // Set home page background image
     if (window.matchMedia("(max-width: 768px)").matches) {
       document.getElementById("gameContainer").style.backgroundImage =
-        "url('/images/info-lead-illustration1-mob-v1.png')";
+        "url('/images/info-lead-illustration2-mob-v1.png')";
     } else {
       document.body.style.backgroundImage =
-        "url('/images/info-lead-illustration1-web-v1.png')";
+        "url('/images/info-lead-illustration2-web-v1.png')";
     }
 
     // Reload data and update UI
@@ -453,7 +494,7 @@ function updateScores() {
 
   if (legitimacyScoreEl) {
     legitimacyScoreEl.innerHTML = `
-      <span class="legitimacy-label">Legitimacy</span> 
+      <span class="legitimacy-label">Reputation</span> 
       <span class="legitimacy-value">${legitimacyScore}</span>
     `;
   } else {
@@ -508,7 +549,7 @@ function updateScoresText() {
   document.querySelector("#profitScore .profit-value").innerText = profitScore;
 
   document.querySelector("#legitimacyScore .legitimacy-label").innerText =
-    currentLanguage === "en" ? "Legitimacy" : "Legitimidad";
+    currentLanguage === "en" ? "Reputation" : "Legitimidad";
   document.querySelector("#legitimacyScore .legitimacy-value").innerText =
     legitimacyScore;
 }
@@ -518,8 +559,8 @@ function updateInitialMessage() {
   if (currentLanguage === "en") {
     document.getElementById("initialMessage").innerHTML = `
           <p class="welcome-text-div">
-          <span class="welcome-text">Welcome to social media middle management!</span> 
-          <span class="crisis-text">Can you steer your platform without getting into crisis?</span>
+          <span class="welcome-text">Infodemic Inc.</span> 
+          <span class="crisis-text">Can you lead your social media platform without getting into crisis?</span>
           </p>
           <button id="startButton">Start the game!</button>
           <div id="homeOptions">
@@ -568,9 +609,23 @@ function updateLanguageButtonText() {
 
 function updateAboutContent() {
   const aboutContentDiv = document.getElementById("aboutContent");
-  document.getElementById("aboutContent").innerText =
-    aboutText[currentLanguage];
-  aboutContentDiv.className = "about-text";
+  fetch('about-content.html')
+    .then(response => response.text())
+    .then(html => {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const content = doc.querySelector(`.about-content[data-lang="${currentLanguage}"]`);
+      if (content) {
+        aboutContentDiv.innerHTML = content.innerHTML;
+        aboutContentDiv.className = "about-text";
+      } else {
+        console.error(`No content found for language: ${currentLanguage}`);
+      }
+    })
+    .catch(error => {
+      console.error('Error loading about content:', error);
+      aboutContentDiv.innerHTML = '<p>Error loading content. Please try again later.</p>';
+    });
 }
 
 function updateShareContent() {

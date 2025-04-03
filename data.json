@@ -1,24 +1,5 @@
 [
     {
-        "id": "0",
-        "type": "choice",
-        "text": "Hey, how is it going? Welcome!",
-        "choices": [
-            {
-                "text": "Oh hey",
-                "next": "1",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            },
-            {
-                "text": "Uhh who are you?",
-                "next": "2",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
-    },
-    {
         "id": "1",
         "type": "choice",
         "text": "Great to meet you! You're here to start your new position as VP of Information Disorder Responses at Connectopia, America's fastest-growing social media platform. My name is Jamie, I will be working as your assistant. Excited to have you on board!",
@@ -268,7 +249,7 @@
                 "text": "Let's see how this plays out",
                 "next": "32",
                 "profitChange": -20,
-                "legitimacyChange": 0
+                "legitimacyChange": -20
             }
         ]
     },
@@ -286,15 +267,15 @@
             {
                 "text": "Let's just do nothing and see what happens",
                 "next": "5",
-                "profitChange": 0,
-                "legitimacyChange": 0
+                "profitChange": 10,
+                "legitimacyChange": -20
             }
         ]
     },
     {
         "id": "30b",
         "type": "choice",
-        "text": "Well, our moderation is outsourced. The moderators don't necessarily speak Korean; content is automatically translated. We use a list of derogatory terms for groups of people that was created two years ago.",
+        "text": "Well, our moderation is outsourced. The moderators don't necessarily speak Korean; content is automatically translated. We use a list of derogatory terms for groups of people that was created two years ago. ",
         "choices": [
             {
                 "text": "We need to move the moderation work to Korea!",
@@ -319,7 +300,7 @@
                 "text": "Let's see how this plays out",
                 "next": "30g",
                 "profitChange": 0,
-                "legitimacyChange": 0
+                "legitimacyChange": 10
             }
         ]
     },
@@ -332,7 +313,7 @@
                 "text": "Let's see how this plays out",
                 "next": "30h",
                 "profitChange": 0,
-                "legitimacyChange": 0
+                "legitimacyChange": -20
             }
         ]
     },
@@ -428,14 +409,31 @@
     },
     {
         "id": "beginning",
+        "type": "choice",
+        "text": "Hey, how is it going? Welcome!",
+        "choices": [
+            {
+                "text": "Oh hey",
+                "next": "1",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Uhh who are you?",
+                "next": "2",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "delme",
         "type": "intermediate",
         "text": "Welcome to social media middle management! Can you steer your platform without getting into a crisis?",
-    "mobileImage": "/images/info-lead-illustration2-mob-v1.png",
-    "desktopImage": "/images/info-lead-illustration2-web-v1.png",
         "choices": [
             {
                 "text": "Start the game",
-                "next": "0",
+                "next": "beginning",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -444,19 +442,17 @@
     {
         "id": "end",
         "type": "intermediate",
-    "mobileImage": "/images/info-lead-illustration2-mob-v1.png",
-    "desktopImage": "/images/info-lead-illustration2-web-v1.png",
-        "text": "You have reached the end of the game.\nYour score is 123 points! Share to see if your friends can could beat your score?",
+        "text": "Well done, you've reached the end! \n\nYour score is {{score}} points! \n\nCan your friend do better? Challenge them!",
         "choices": [
             {
-                "text": "Share with your friend!",
-                "next": "share",
+                "text": "Start again",
+                "next": "beginning",
                 "profitChange": 0,
                 "legitimacyChange": 0
             },
             {
-                "text": "Start again",
-                "next": "beginning",
+                "text": "Share with your friend!",
+                "next": "share",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -465,9 +461,7 @@
     {
         "id": "section2",
         "type": "intermediate",
-    "mobileImage": "/images/info-lead-illustration2-mob-v1.png",
-    "desktopImage": "/images/info-lead-illustration2-web-v1.png",
-        "text": "Congratulations, you have finished the section on content moderation!\nClick here to learn more about the topic. (link to InfoLead toolkit on the topic coming later)",
+        "text": "You have completed the section on content moderation!\n\nSocial media platforms have to come up with rules on what kind of messages are allowed. This is called \"content moderation\". Sometimes its up to interpretation what breaks the rules and what doesn't. Third parties, such as Meta's Oversight Board, can help handle disputes.",
         "choices": [
             {
                 "text": "Let's continue!",
@@ -475,7 +469,9 @@
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
-        ]
+        ],
+        "mobileImage": "/images/info-lead-illustration4-mob-v1.png",
+        "desktopImage": "/images/info-lead-illustration4-web-v1.png"
     },
     {
         "id": "section2_1",
@@ -537,13 +533,13 @@
                 "text": "Great! That should solve it.",
                 "next": "section2auto2",
                 "profitChange": 0,
-                "legitimacyChange": 0
+                "legitimacyChange": -20
             },
             {
                 "text": "I hope this works...",
                 "next": "section2auto2",
                 "profitChange": 0,
-                "legitimacyChange": 0
+                "legitimacyChange": -20
             }
         ]
     },
@@ -588,13 +584,13 @@
     {
         "id": "section2bancampaign",
         "type": "choice",
-        "text": "Alright, we're taking action. I'll go ahead and freeze the account of the political campaign in question. We'll cite a policy violation as the reason. It's a bold move, but sometimes you need to show you mean business.",
+        "text": "Alright, we're taking action. I'll go ahead and freeze the account of the political campaign in question. We'll cite a policy violation as the reason. It's a bold move, but sometimes you need to show you mean business. ",
         "choices": [
             {
                 "text": "Well that should do it!",
                 "next": "section2bancampaign2",
                 "profitChange": 0,
-                "legitimacyChange": 0
+                "legitimacyChange": -20
             }
         ]
     },
@@ -620,19 +616,19 @@
     {
         "id": "section2bandeepfake",
         "type": "choice",
-        "text": "Alright, we're going nuclear on this one. I'll put in a request to update our company policy, removing the parody and satire exception for deepfakes. We'll draft a press release explaining that this is a necessary step in our ongoing fight against misinformation. We'll frame it as us taking a stand for truth in the digital age.",
+        "text": "Alright, we're going nuclear on this one. I'll put in a request to update our company policy, removing the parody and satire exception for deepfakes. We'll draft a press release explaining that this is a necessary step in our ongoing fight against misinformation. We'll frame it as us taking a stand for truth in the digital age. ",
         "choices": [
             {
                 "text": "OK that should solve it!",
                 "next": "section2bandeepfake2",
                 "profitChange": 0,
-                "legitimacyChange": 0
+                "legitimacyChange": -20
             },
             {
                 "text": "I hope we're not overreacting...",
                 "next": "section2bandeepfake2",
                 "profitChange": 0,
-                "legitimacyChange": 0
+                "legitimacyChange": -20
             }
         ]
     },
@@ -747,7 +743,7 @@
     {
         "id": "section2genexp",
         "type": "choice",
-        "text": "Generative AI is a type of artificial intelligence that can create new content, including realistic audio and video. It can make it appear as if real people are saying or doing things they never actually said or did. For example, it could create a video of a politician giving a speech they never gave, or an audio clip of a celebrity endorsing a product they've never supported.",
+        "text": "Generative AI is a type of artificial intelligence that can create new content, including realistic audio and video. It can make it appear as if real people are saying or doing things they never actually said or did. For example, it could create a video of a politician giving a speech they never gave, or an audio clip of a celebrity endorsing a product they've never supported. ",
         "choices": [
             {
                 "text": "Oh yes I've heard of this",
@@ -811,9 +807,7 @@
     {
         "id": "section3",
         "type": "intermediate",
-    "mobileImage": "/images/info-lead-illustration2-mob-v1.png",
-    "desktopImage": "/images/info-lead-illustration2-web-v1.png",
-        "text": "Congratulations, you have finished the section on generative AI!\nClick here to learn more about the topic. (link to InfoLead toolkit on the topic coming later)",
+        "text": "You have completed the section on generative AI!\n\nAI-generated images and videos are becoming increasingly common on social media. Many worry that such media may be used to deceive or impersonate others. Yet frequently AI-generated images are also created for humour or entertainment, which is generally not forbidden.",
         "choices": [
             {
                 "text": "Hooray!",
@@ -821,13 +815,13 @@
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
-        ]
+        ],
+        "mobileImage": "/images/info-lead-illustration3-mob-v1.png",
+        "desktopImage": "/images/info-lead-illustration3-web-v1.png"
     },
     {
         "id": "share",
         "type": "intermediate",
-    "mobileImage": "/images/info-lead-illustration2-mob-v1.png",
-    "desktopImage": "/images/info-lead-illustration2-web-v1.png",
         "text": "",
         "choices": []
     }

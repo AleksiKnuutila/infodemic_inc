@@ -9,7 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("/images/info-lead-illustration1-web-v1.png");
+  background-image: url("/images/info-lead-illustration2-web-v1.png");
 }
 #homeContainer {
   position: absolute;
@@ -427,7 +427,7 @@ button {
 #aboutContent,
 #shareContent {
   padding: 20px;
-  text-align: center;
+  text-align: left;
 }
 
 #socialMediaLinks {
@@ -495,11 +495,79 @@ button {
 
 /* About and Share page styles */
 .about-text {
-  font-size: 22px;
-  line-height: 32px;
-  font-weight: 300;
-  margin: 20px;
-  padding: 0 500px !important;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 20px auto;
+  padding: 0 20px !important;
+  text-align: left;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  font-family: "DM Sans", sans-serif;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.about-text h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.about-text p {
+  margin-bottom: 16px;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.about-text a {
+  color: #4f79d8;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+.about-text a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile styles for about text */
+@media screen and (max-width: 768px) {
+  #aboutPage {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #aboutContent {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  .about-text {
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0 15px !important;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    word-wrap: break-word;
+  }
+
+  .about-text h2 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+  }
+
+  .about-text p {
+    margin-bottom: 12px;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
 }
 
 .share-title {
@@ -915,12 +983,6 @@ button {
     font-size: 18px;
     line-height: 24px;
     text-align: left;
-  }
-  .about-text {
-    font-size: 1em;
-    line-height: 1.5;
-    margin: 20px;
-    padding: 0 0 !important;
   }
   #languageDropdownMenu {
     border-radius: 12px;
