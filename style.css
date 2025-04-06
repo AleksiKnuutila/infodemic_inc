@@ -10,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("images/info-lead-illustration2-web-v1.png");
+  /* Background is now managed by JavaScript */
 }
 #homeContainer {
   position: absolute;

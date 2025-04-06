@@ -9,6 +9,194 @@ const shareText = {
   es: "Por favor, comparte el juego con...",
 };
 
+// Function to create rotating background with smooth transitions
+function setupRotatingBackground() {
+    // Create container for background halves
+    const bgContainer = document.createElement('div');
+    bgContainer.id = 'rotating-background';
+    bgContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        display: flex;
+    `;
+    
+    // Create left half container
+    const leftHalf = document.createElement('div');
+    leftHalf.id = 'bg-left';
+    leftHalf.style.cssText = `
+        width: 50%;
+        height: 100%;
+        background-image: url('images/split/illustration1-0.png');
+        background-size: cover;
+        background-position: right center;
+        transition: opacity 2s ease;
+    `;
+    
+    // Create right half container
+    const rightHalf = document.createElement('div');
+    rightHalf.id = 'bg-right';
+    rightHalf.style.cssText = `
+        width: 50%;
+        height: 100%;
+        background-image: url('images/split/illustration1-1.png');
+        background-size: cover;
+        background-position: left center;
+        transition: opacity 2s ease;
+    `;
+    
+    // Add to container
+    bgContainer.appendChild(leftHalf);
+    bgContainer.appendChild(rightHalf);
+    document.body.insertBefore(bgContainer, document.body.firstChild);
+    
+    // Preload images in custom order: illustration1, illustration3, illustration2
+    const leftSideImages = [
+        'images/split/illustration1-0.png',
+        'images/split/illustration3-0.png',
+        'images/split/illustration2-0.png'
+    ];
+    
+    const rightSideImages = [
+        'images/split/illustration1-1.png',
+        'images/split/illustration3-1.png',
+        'images/split/illustration2-1.png'
+    ];
+    
+    // Preload images
+    function preloadImages(imageArray) {
+        imageArray.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+    }
+    
+    preloadImages(leftSideImages);
+    preloadImages(rightSideImages);
+    
+    // Set up rotation
+    let currentLeftIndex = 0; // Starting with illustration1 (index 0)
+    let currentRightIndex = 0; // Starting with illustration1 (index 0)
+    
+    function rotateBackground() {
+        // Determine the next index for both halves
+        const nextLeftIndex = (currentLeftIndex + 1) % leftSideImages.length;
+        const nextRightIndex = (currentRightIndex + 1) % rightSideImages.length;
+        
+        // Left side transition
+        transitionHalfBackground(leftHalf, leftSideImages[currentLeftIndex], leftSideImages[nextLeftIndex], 'left');
+        
+        // Update current index for next rotation
+        currentLeftIndex = nextLeftIndex;
+        
+        // Change right side after 5 seconds
+        setTimeout(() => {
+            // Right side transition
+            transitionHalfBackground(rightHalf, rightSideImages[currentRightIndex], rightSideImages[nextRightIndex], 'right');
+            
+            // Update current index for next rotation
+            currentRightIndex = nextRightIndex;
+        }, 5000);
+    }
+    
+    // Helper function to handle the transition between images
+    function transitionHalfBackground(container, oldImageSrc, newImageSrc, side) {
+        // Clear any existing background from container itself
+        container.style.backgroundColor = 'transparent';
+        container.style.backgroundImage = 'none';
+        
+        // Create a background container that will hold both images
+        const transitionContainer = document.createElement('div');
+        transitionContainer.style.cssText = `
+            position: absolute;
+            top: 0;
+            ${side === 'left' ? 'left: 0;' : 'right: 0;'}
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        `;
+        
+        // Create solid background color layer (prevents any background from showing through)
+        const backgroundLayer = document.createElement('div');
+        backgroundLayer.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #F6F4F0;
+            z-index: 0;
+        `;
+        
+        // Create overlay with current (old) image
+        const oldImageOverlay = document.createElement('div');
+        oldImageOverlay.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('${oldImageSrc}');
+            background-size: cover;
+            background-position: ${side === 'left' ? 'right' : 'left'} center;
+            opacity: 1;
+            transition: opacity 3s ease;
+            z-index: 1;
+        `;
+        
+        // Create overlay with new image
+        const newImageOverlay = document.createElement('div');
+        newImageOverlay.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('${newImageSrc}');
+            background-size: cover;
+            background-position: ${side === 'left' ? 'right' : 'left'} center;
+            opacity: 0;
+            transition: opacity 3s ease;
+            z-index: 2;
+        `;
+        
+        // Build the transition container
+        transitionContainer.appendChild(backgroundLayer);
+        transitionContainer.appendChild(oldImageOverlay);
+        transitionContainer.appendChild(newImageOverlay);
+        
+        // Add transition container to main container
+        container.innerHTML = ''; // Clear any previous content
+        container.appendChild(transitionContainer);
+        
+        // Trigger fade in/out after a short delay to ensure DOM is updated
+        setTimeout(() => {
+            newImageOverlay.style.opacity = '1';
+            oldImageOverlay.style.opacity = '0';
+        }, 50);
+        
+        // Clean up after transition completes (increased timeout to match longer transition)
+        setTimeout(() => {
+            // Set the container's background to the new image
+            container.style.backgroundImage = `url('${newImageSrc}')`;
+            container.style.backgroundSize = 'cover';
+            container.style.backgroundPosition = `${side === 'left' ? 'right' : 'left'} center`;
+            // Remove the transition container
+            container.removeChild(transitionContainer);
+        }, 3150);
+    }
+    
+    // Returning the rotate function for initial call and
+    // starting the interval for subsequent rotations (every 10 seconds)
+    setInterval(rotateBackground, 10000);
+    
+    // Return the function so it can be called directly
+    return rotateBackground;
+}
+
 // Function to change language
 function changeLanguage(language) {
   currentLanguage = language;
@@ -450,14 +638,7 @@ function displayGameOver() {
     document.getElementById("languageSelector").style.display = "block";
     document.getElementById("scores").style.display = "none";
 
-    // Set home page background image
-    if (window.matchMedia("(max-width: 768px)").matches) {
-      document.getElementById("gameContainer").style.backgroundImage =
-        "url('images/info-lead-illustration2-mob-v1.png')";
-    } else {
-      document.body.style.backgroundImage =
-        "url('images/info-lead-illustration2-web-v1.png')";
-    }
+    // Background is now managed by setupRotatingBackground() function
 
     // Reload data and update UI
     loadGameData();
@@ -714,6 +895,14 @@ document.getElementById("languageDropdownButton").onclick = () => {
   dropdownMenu.style.display =
     dropdownMenu.style.display === "block" ? "none" : "block";
 };
+
+// Initialize background rotation on load and start transitions after 2 seconds
+window.addEventListener('load', function() {
+    const rotateFunction = setupRotatingBackground();
+    
+    // Start the first transition after 2 seconds
+    setTimeout(rotateFunction, 2000);
+});
 
 updateInitialMessage();
 updateScoresText();
