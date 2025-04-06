@@ -1,5 +1,6 @@
 let currentLanguage = "en"; // Default language is English
 const gameLink = "https://example.com/socialmediagame"; // This will be the Game Link
+let backgroundInterval = null; // To store the background rotation interval
 const aboutText = {
   en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et sodales sapien, sit amet pulvinar lectus. Sed pulvinar nulla nulla. Nulla vel lacus ac massa pellentesque tristique. Donec euismod nibh ante, nec porta felis pellentesque a. Quisque sed ex sagittis, tincidunt tortor nec, mattis magna. Nunc euismod libero ex, vitae elementum dolor ornare id. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse porttitor dui cursus laoreet lacinia. \n\nNunc sagittis sapien sit amet ipsum vehicula euismod eget eu ipsum. Vestibulum tempus velit et ante cursus, quis blandit mi lobortis. Morbi faucibus nunc eget risus ultricies feugiat. Praesent laoreet felis eu nulla sagittis venenatis. Cras malesuada lorem quis dolor lobortis convallis ut in dui.\n\nNunc sagittis sapien sit amet ipsum vehicula euismod eget eu ipsum. Vestibulum tempus velit et ante cursus, quis blandit mi lobortis. Morbi faucibus nunc eget risus ultricies feugiat. Praesent laoreet felis eu nulla sagittis venenatis. Cras malesuada lorem quis dolor lobortis convallis ut in dui.",
   es: "Este juego simula los desafíos de la gestión de redes sociales y la desinformación.  Tus decisiones impactan las ganancias y la legitimidad. ¿Puedes tener éxito?",
@@ -203,9 +204,8 @@ function setupRotatingBackground() {
         }, 3150);
     }
     
-    // Returning the rotate function for initial call and
-    // starting the interval for subsequent rotations (every 10 seconds)
-    setInterval(rotateBackground, 10000);
+    // Store interval in global variable so we can stop it when game starts
+    backgroundInterval = setInterval(rotateBackground, 10000);
     
     // Return the function so it can be called directly
     return rotateBackground;
@@ -259,6 +259,18 @@ let legitimacyScore;
 
 // Add loading screen functionality
 function startGame() {
+  // Stop background rotation when game starts
+  if (backgroundInterval) {
+    clearInterval(backgroundInterval);
+    backgroundInterval = null;
+    
+    // Remove rotating background if it exists
+    const rotatingBg = document.getElementById('rotating-background');
+    if (rotatingBg) {
+      document.body.removeChild(rotatingBg);
+    }
+  }
+  
   // Hide home page and show loading screen
   document.getElementById("homeContainer").style.display = "none";
   document.getElementById("loadingScreen").style.display = "flex";
@@ -652,7 +664,11 @@ function displayGameOver() {
     document.getElementById("languageSelector").style.display = "block";
     document.getElementById("scores").style.display = "none";
 
-    // Background is now managed by setupRotatingBackground() function
+    // Re-initialize the rotating background for the landing page
+    if (!window.matchMedia("(max-width: 768px)").matches && !backgroundInterval) {
+      const rotateFunction = setupRotatingBackground();
+      setTimeout(rotateFunction, 500);
+    }
 
     // Reload data and update UI
     loadGameData();
