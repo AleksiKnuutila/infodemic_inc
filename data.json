@@ -459,6 +459,12 @@
         ]
     },
     {
+        "id": "share",
+        "type": "intermediate",
+        "text": "",
+        "choices": []
+    },
+    {
         "id": "section2",
         "type": "intermediate",
         "text": "You have completed the section on content moderation!\n\nSocial media platforms have to come up with rules on what kind of messages are allowed. This is called \"content moderation\". Sometimes its up to interpretation what breaks the rules and what doesn't. Third parties, such as Meta's Oversight Board, can help handle disputes.",
@@ -810,8 +816,8 @@
         "text": "You have completed the section on generative AI!\n\nAI-generated images and videos are becoming increasingly common on social media. Many worry that such media may be used to deceive or impersonate others. Yet frequently AI-generated images are also created for humour or entertainment, which is generally not forbidden.",
         "choices": [
             {
-                "text": "Hooray!",
-                "next": "end",
+                "text": "Let's continue!",
+                "next": "section3_start",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -820,9 +826,451 @@
         "desktopImage": "/images/info-lead-illustration3-web-v1.png"
     },
     {
-        "id": "share",
-        "type": "intermediate",
-        "text": "",
-        "choices": []
+        "id": "section3_start",
+        "type": "choice",
+        "text": "Welcome back. There's something I need to flag.\n\nUser engagement is up. That’s usually good news. But the way it's happening... well, it’s raising some questions.",
+        "choices": [
+            {
+                "text": "What kind of questions?",
+                "next": "section3_dwelltime",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Why does this feel ominous?",
+                "next": "section3_dwelltime",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_dwelltime",
+        "type": "choice",
+        "text": "We’ve been testing new features: autoplay loops, micro-rewards, streaks.\n\nThey’re working. Especially on teen users. But so is something else — a metric called Dwell Time Distress.",
+        "choices": [
+            {
+                "text": "What is that?",
+                "next": "section3_distress",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Who’s worried?",
+                "next": "section3_legal",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_distress",
+        "type": "choice",
+        "text": "Dwell Time Distress tracks signs of compulsive use: late-night sessions, uninstall/reinstall loops, poor sleep signals.\n\nWe're seeing a steep rise.",
+        "choices": [
+            {
+                "text": "Do we have numbers?",
+                "next": "section3_data",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Internal reaction?",
+                "next": "section3_pmemail",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_legal",
+        "type": "choice",
+        "text": "Legal is already circling. There’s a leaked internal email where someone joked about “monetizing teen sleep cycles.”\n\nIf that goes public, it won’t look good.",
+        "choices": [
+            {
+                "text": "Any other reactions?",
+                "next": "section3_pmemail",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_data",
+        "type": "choice",
+        "text": "Time-on-platform for teens has doubled in eight weeks. A fifth of them tried to quit. Most came back within 48 hours.\n\nInternally, some people are uneasy. A few are comparing it to past scandals.",
+        "choices": [
+            {
+                "text": "What are they saying?",
+                "next": "section3_pmemail",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_pmemail",
+        "type": "choice",
+        "text": "Some people are comparing this to the Molly Russell case. There's anxiety that this could spiral — fast.",
+        "choices": [
+            {
+                "text": "Molly Russell?",
+                "next": "section3_molly",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "What are our options?",
+                "next": "section3_choices_intro",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_molly",
+        "type": "choice",
+        "text": "She was a UK teenager who died by suicide. A coroner said Instagram content contributed. The story made international headlines.\n\nIt triggered real changes to regulation in the UK.",
+        "choices": [
+            {
+                "text": "What are our options?",
+                "next": "section3_choices_intro",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_choices_intro",
+        "type": "choice",
+        "text": "So, what do we do?\n\nThere are three directions we could go. I’ll walk you through them.",
+        "choices": [
+            {
+                "text": "Okay, what’s the first one?",
+                "next": "section3_choices_1",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_choices_1",
+        "type": "choice",
+        "text": "We could launch a Digital Wellness initiative. Talk publicly about time well spent. Keep all the features, just frame them better.\n\nThe risk is that it looks like spin.",
+        "choices": [
+            {
+                "text": "Hmm… what else could we try?",
+                "next": "section3_choices_2",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "That actually sounds okay.",
+                "next": "section3_choice_wellness",
+                "profitChange": 10,
+                "legitimacyChange": -20
+            }
+        ]
+    },
+    {
+        "id": "section3_choices_2",
+        "type": "choice",
+        "text": "Or we roll back some of the most addictive features. Quietly. No big announcement.\n\nThat would mean a hit to growth — but a win for credibility.",
+        "choices": [
+            {
+                "text": "What’s the third option?",
+                "next": "section3_choices_3",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Yeah, that feels more responsible.",
+                "next": "section3_choice_rollback",
+                "profitChange": -15,
+                "legitimacyChange": 10
+            }
+        ]
+    },
+    {
+        "id": "section3_choices_3",
+        "type": "choice",
+        "text": "Or… we do nothing. Ride the numbers. Wait and see if this blows over.\n\nHigh risk, high return.",
+        "choices": [
+            {
+                "text": "I guess we could try that...",
+                "next": "section3_choice_nothing",
+                "profitChange": 15,
+                "legitimacyChange": -30
+            },
+            {
+                "text": "Actually, go back to the first one.",
+                "next": "section3_choices_1",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_choice_wellness",
+        "type": "choice",
+        "text": "We add break reminders, push a wellness dashboard, and publish a blog post.\n\nIt’s received as vague and cosmetic. Critics aren’t impressed.",
+        "choices": [
+            {
+                "text": "Hmm, okay. Let’s move on.",
+                "next": "section3_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_choice_rollback",
+        "type": "choice",
+        "text": "We de-prioritize autoplay and dampen the reward loops. Engagement drops. Revenue too.\n\nInternally, it sparks debate about “mission vs. metrics.”",
+        "choices": [
+            {
+                "text": "Alright, onto the next thing.",
+                "next": "section3_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_choice_nothing",
+        "type": "choice",
+        "text": "We do nothing. Engagement continues to climb. So does ad revenue.\n\nTwo weeks later, an internal chart leaks. There's a day of headlines — then it fades.",
+        "choices": [
+            {
+                "text": "Let’s just keep going.",
+                "next": "section3_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Next",
+                "next": "section3_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_break",
+        "type": "choice",
+        "text": "Whatever path we take — this won’t be the last time we face it.\n\nAddiction is becoming the next battleground in platform policy. Especially with teens.",
+        "choices": [
+            {
+                "text": "Let's continue",
+                "next": "section4_start",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_start",
+        "type": "choice",
+        "text": "Hey — I need your take on something. Fast.\n\nThe “Heat Off the Streets” protest campaign went viral this morning. It’s about air conditioning bans in low-income housing blocks.\n\nBut now it’s getting swarmed with angry replies. Thousands of comments saying:  \n**\"My dad fought in two wars so I could chill my feet.\"**",
+        "choices": [
+            {
+                "text": "Wait… what?",
+                "next": "section4_explain",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "That can’t be real.",
+                "next": "section4_explain",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_explain",
+        "type": "choice",
+        "text": "I know. It started as one comment. Then suddenly, there were *hundreds* of posts with the exact same wording.\n\nIt’s trending. People are screenshotting the replies and accusing us of letting bots hijack a grassroots campaign.",
+        "choices": [
+            {
+                "text": "Are they bots?",
+                "next": "section4_detection",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "What do the activists think?",
+                "next": "section4_activists",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_detection",
+        "type": "choice",
+        "text": "We checked. Signal's weak.\n\nSome accounts are old, some are new. Some use weird stock-photo avatars. But most are just… boring. They post chain emails and recipes.\n\nOne engineer said: “It’s boomers, not bots.”",
+        "choices": [
+            {
+                "text": "Okay, but what's our official position?",
+                "next": "section4_ambiguous",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "What do the activists think?",
+                "next": "section4_activists",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_ambiguous",
+        "type": "choice",
+        "text": "We can’t prove coordinated inauthentic behaviour. But the pattern is… weird.\n\nIf we remove these comments, we look biased. If we don’t, we look negligent.",
+        "choices": [
+            {
+                "text": "Not ideal. What are our options?",
+                "next": "section4_choices_intro",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_activists",
+        "type": "choice",
+        "text": "They’re furious.\n\nSome are calling for a boycott. Others are telling people to post everything on “real platforms only.”\n\nThey say we’re enabling astroturfing and chilling democratic speech.",
+        "choices": [
+            {
+                "text": "What are our options here?",
+                "next": "section4_choices_intro",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_choices_intro",
+        "type": "choice",
+        "text": "Alright, three directions we could take. Each with its own risks.\n\nWant to hear them?",
+        "choices": [
+            {
+                "text": "Yeah, let’s go.",
+                "next": "section4_choices_1",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_choices_1",
+        "type": "choice",
+        "text": "Option one: Hide near-identical comments. Quietly de-rank mass replies that match each other too closely.\n\nWe don’t say anything publicly. Just tune the visibility.",
+        "choices": [
+            {
+                "text": "What else is on the table?",
+                "next": "section4_choices_2",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Let’s do that.",
+                "next": "section4_choice_derank",
+                "profitChange": 5,
+                "legitimacyChange": -10
+            }
+        ]
+    },
+    {
+        "id": "section4_choices_2",
+        "type": "choice",
+        "text": "Option two: Launch a transparency panel. Let users view account credibility scores and see who’s amplifying what.\n\nMakes us look proactive — but exposes how little we actually catch.",
+        "choices": [
+            {
+                "text": "And the third?",
+                "next": "section4_choices_3",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Let’s try that.",
+                "next": "section4_choice_transparency",
+                "profitChange": -10,
+                "legitimacyChange": 15
+            }
+        ]
+    },
+    {
+        "id": "section4_choices_3",
+        "type": "choice",
+        "text": "Option three: Do nothing for now. Say we’re “monitoring the situation” and encourage both sides to report suspicious activity.\n\nFastest, safest — also most likely to backfire.",
+        "choices": [
+            {
+                "text": "Fine. Let’s just wait it out.",
+                "next": "section4_choice_nothing",
+                "profitChange": 10,
+                "legitimacyChange": -20
+            },
+            {
+                "text": "Actually, go back to the first one.",
+                "next": "section4_choices_1",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_choice_derank",
+        "type": "choice",
+        "text": "We implement soft suppression for repeated phrases. It helps a bit — though users still feel like we’re covering something up.\n\nActivists post side-by-side comparisons of hidden and visible threads.",
+        "choices": [
+            {
+                "text": "Let’s move on.",
+                "next": "section4_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_choice_transparency",
+        "type": "choice",
+        "text": "The “Credibility Lens” beta launches. Users love the idea. Policy teams panic — we weren’t ready for this level of scrutiny.\n\nStill, it gets good press.",
+        "choices": [
+            {
+                "text": "Let’s move on.",
+                "next": "section4_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_choice_nothing",
+        "type": "choice",
+        "text": "We put out a short statement. No action.\n\nCritics frame it as cowardice. And now *real* bots are jumping into the mess just to stir things up.",
+        "choices": [
+            {
+                "text": "Let’s move on.",
+                "next": "section4_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_break",
+        "type": "choice",
+        "text": "Whether it’s boomers or bots, it’s getting harder to tell the difference.\n\nAnd the activists won’t forget this one any time soon.",
+        "choices": [
+            {
+                "text": "Continue",
+                "next": "end",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
     }
 ]

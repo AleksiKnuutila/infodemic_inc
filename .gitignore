@@ -1,3 +1,7 @@
 *.swp
 *.swo
 mv data.json-* /tmp
+launch.json
+data.json-bigblue
+.DS_Store
+.vscode

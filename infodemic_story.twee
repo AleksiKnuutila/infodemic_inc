@@ -1,0 +1,576 @@
+:: StoryTitle
+Social Media Middle Management Game v6
+
+
+:: StoryData
+{
+  "ifid": "C23BFE4A-A576-474F-9687-9CCDCDA18B46",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "delme",
+  "zoom": 0.6
+}
+
+
+:: 1 {"position":"300,25","size":"100,100"}
+Great to meet you! You're here to start your new position as VP of Information Disorder Responses at Connectopia, America's fastest-growing social media platform. My name is Jamie, I will be working as your assistant. Excited to have you on board!
+
+[[Thanks, I'm excited to be here!|3]]
+[[Sounds challenging. What exactly am I supposed to do?|3]]
+
+
+:: 2 {"position":"300,300","size":"100,100"}
+Oh, I'm sorry for not introducing myself! I'm Jamie, I'm the Assistant Resilient Strategist you will be working with. You're here to start your new position as VP of Information Disorder Management at Connectopia, America's fastest-growing social media platform. We've been expecting you!
+
+[[Ah, I see. Nice to meet you, Jamie.|3]]
+[[Right, of course. Let's get started then.|3]]
+
+
+:: 20 {"position":"775,50","size":"100,100"}
+Alright, we've got another situation on our hands. There's a Korean poem causing quite a stir on our platform. How would you like to approach this?
+
+[[Tell me more about it, Jamie|21]] [[Why is a poem controversial?|21]]
+
+
+:: 21 {"position":"825,300","size":"100,100"}
+Well, the poem is about the proposed relocation of a bust of General Hong Beom-Do. He was a big deal in early 20th-century Korea, leading the Korean Independence Army against Japanese forces.
+
+[[Why is this causing controversy?|22]]
+
+
+:: 22 {"position":"925,100","size":"100,100"}
+The controversy stems from the use of the term 'wae-nom' in the poem. It literally means 'person from Japan,' but it's often used as a derogatory term, especially in historical contexts.
+
+[[Can you brief me on our content policy?|23]] [[What happened with the post?|24]]
+
+
+:: 23 {"position":"1050,0","size":"100,100"}
+ur content policy is pretty clear that hate speech isn't allowed. But it gets tricky when we have to determine which words are actually derogatory about groups and which aren't. It's a delicate balance between free expression and preventing harm.
+
+[[What happened with this particular post?|24]] [[Have we dealt with something like this before?|25]]
+
+
+:: 24 {"position":"1050,300","size":"100,100"}
+Initially, we removed the content for violating our Hate Speech policy. But that decision caused quite a scandal, and now more users are posting the poem in protest.
+
+[[Have we had similar cases before?|25]] [[What do you think we should do now?|26]]
+
+
+:: 25 {"position":"1200,25","size":"100,100"}
+Yes, we've had a few similar cases. Remember the Russian Poem case? We initially removed a post insulting Russians and comparing their army to Nazis. The Board overturned that decision, emphasizing the importance of context.
+
+[[Tell me more|25a]] [[What should we do now?|26]]
+
+
+:: 25a {"position":"1325,150","size":"100,100"}
+We've also seen cases like 'Reclaiming Arabic Words' where cultural and linguistic misunderstandings led to improper enforcement of our policies. It's a complex issue.
+
+[[What should we do now?|26]] [[Why is this escalated to me?|26a]]
+
+
+:: 26 {"position":"1425,0","size":"100,100"}
+Well, here's the thing. Our Connectopia Oversight Board has reviewed the situation and ruled against our earlier decision to remove posts containing the poem. We need to decide how to handle this.
+
+[[What's the Oversight Board?|27]] [[What are our options?|28]]
+
+
+:: 26a {"position":"1525,200","size":"100,100"}
+This case has been escalated to you because our Connectopia Oversight Board has reviewed it and ruled against our earlier decision to remove the content. It's a big deal.
+
+[[What's the Oversight Board?|27]] [[What are our options?|28]]
+
+
+:: 27 {"position":"1675,25","size":"100,100"}
+The Connectopia Oversight Board is an independent body that reviews our content moderation decisions. They make recommendations on, for instance, whether specific content should be allowed or removed. The recommendations are binding, at least in principle..
+
+[[What are our options?|28]] [[Let's make a decision|28]]
+
+
+:: 28 {"position":"1875,25","size":"100,100"}
+We have two main options here. We can either stand by our original policy or revise it to account for cultural context. What do you think?
+
+[[Let's stand by our original policy|29]] [[What could we do to improve moderation?|30b]]
+
+
+:: 29 {"position":"2025,150","size":"100,100"}
+Alright, you've decided to stand by the original policy. This might maintain consistency, but I should warn you, it could lead to more controversies and user dissatisfaction.
+
+[[Let's see how this plays out|32]]
+
+
+:: 3 {"position":"450,75","size":"100,100"}
+Great! Now, let's jump right in. A memo just arrived on your desk. It seems that Connectopia has a new AI system for fighting bots by identifying coordinated behaviour. The problem is: It is flagging tourists' selfies in front of famous landmarks as "suspicious repetitive behavior"! Travel bloggers and tourism boards are up in arms. What would you suggest we do?
+
+[[Could we turn it off around tourist hotspots?|4]] [[Let's just do nothing and see what happens|5]]
+
+
+:: 30b {"position":"2250,150","size":"100,100"}
+Well, our moderation is outsourced. The moderators don't necessarily speak Korean; content is automatically translated. We use a list of derogatory terms for groups of people that was created two years ago. 
+
+[[We need to move the moderation work to Korea!|30f]] [[Let's run a consultation improving the guidelines|30e]]
+
+
+:: 30e {"position":"2575,275","size":"100,100"}
+Alright, I'll prepare a press release about this. We'll announce that we'll consult representatives of different cultural groups in Korea. They will revise the instructions and provide guidance on what is culturally acceptable. This shows commitment to understanding, but it might raise expectations..
+
+[[Let's see how this plays out|30g]]
+
+
+:: 30f {"position":"2550,75","size":"100,100"}
+Alright, I'll prepare a press release about this. Korean content should be moderated by actual Korean people, and we are bringing back some of the outsourced operations..
+
+[[Let's see how this plays out|30h]]
+
+
+:: 30g {"position":"2825,525","size":"100,100"}
+(set: $legitimacy to it + 10)
+
+
+It looks like our press release on cultural sensitivity consultations didn't receive much attention.. But the controversy about the poem seems to have died down altogether! I think we dodged a bullet here.
+
+[[Great! Let's move on to the next challenge!|35]]
+
+
+:: 30h {"position":"2825,175","size":"100,100"}
+(set: $legitimacy to it - 20)
+
+Our press press release seems to be getting a lot of attention.. Many journalists only now realise that we had outsourced this work in the first place! I can see commentators penning columns about our disregard of labour standards, and how unfitting this work is for people. I have to call the PR department for a crisis response.
+
+[[Uh oh.. I think we're done for today|35]]
+
+
+:: 32 {"position":"1750,225","size":"100,100"}
+(set: $legitimacy to it - 20)
+(set: $profit to it - 20)
+
+Users start sharing AI-generated versions of the controversial poem, but with Connectopia's CEO inserted as the narrator. The sentiment seems to be that removing the poem is an overreach, especially since the Oversight Board recommended against it. The platform’s PR team scrambles to respond, only for the hashtag #PoeticJustice to trend worldwide.
+
+[[Uh oh.. I think we're done for today|35]]
+
+
+:: 35 {"position":"1575,475","size":"100,100"}
+Thanks for your hard work today! Let's call it a day and continue tomorrow.
+
+[[OK see you tomorrow|section2]]
+
+
+:: 4 {"position":"600,25","size":"100,100"}
+(set: $legitimacy to it + 10)
+(set: $profit to it - 20)
+
+So, we tweaked the AI. Good news: tourist selfies are back. Bad news: some spam's sneaking through now. Users are happier, but our content quality? Let's just say it's seen better days. We are seeing a reduction in users, and our profits took a hit. Please remember, your job is to keep both legitimacy and profit afloat..
+
+[[Oh great|20]] [[Oh no|20]]
+
+
+:: 5 {"position":"600,225","size":"100,100"}
+(set: $legitimacy to it - 20)
+(set: $profit to it + 10)
+
+We kept the AI as is. The platform's squeaky clean now, but our travel sector numbers? Yikes. It's like we've become the fun police of tourism. Content quality's up, but we have a lot of angry people accusing us of using biased automated system. Our legitimacy took a hit. Please remember, your job is to keep both legitimacy and profit afloat..
+
+[[Oh great|20]] [[Oh no|20]]
+
+
+:: beginning {"position":"150,0","size":"100,100"}
+(set: $legitimacy to 50)
+(set: $profit to 50)
+
+Hey, how is it going? Welcome!
+
+[[Oh hey|1]]
+[[Uhh who are you?|2]]
+
+
+:: delme {"position":"0,0","size":"100,100"}
+(set: $legitimacy to 50)
+(set: $profit to 50)
+
+<!--Section break-->
+
+Welcome to social media middle management! Can you steer your platform without getting into a crisis?
+
+[[Start the game|beginning]]
+
+
+:: end {"position":"550,2375","size":"100,100"}
+<!--Section break-->
+
+Well done, you've reached the end! 
+
+Your score is {{score}} points! 
+
+Can your friend do better? Challenge them!
+
+[[Start again|beginning]] [[Share with your friend!|share]] 
+
+:: share {"position":"550,2500","size":"100,100"}
+<!--Section break-->
+
+
+:: section2 {"position":"1200,700","size":"100,100"}
+<!--Section break-->
+(set: $mobileImage to "/images/info-lead-illustration4-mob-v1.png")
+(set: $desktopImage to "/images/info-lead-illustration4-web-v1.png")
+
+You have completed the section on content moderation!
+
+Social media platforms have to come up with rules on what kind of messages are allowed. This is called "content moderation". Sometimes its up to interpretation what breaks the rules and what doesn't. Third parties, such as Meta's Oversight Board, can help handle disputes.
+
+[[Let's continue!|section2_1]]
+
+
+:: section2_1 {"position":"1200,850","size":"100,100"}
+Good morning! Jamie here again. Ready to tackle some digital drama? I hope you've had your coffee because we've got a doozy waiting for you!
+
+[[Bring it on, Jamie! I'm caffeinated and ready to go!|section2_2]]
+
+
+:: section2_2 {"position":"1200,1000","size":"100,100"}
+There's an election in New Zealand. Two parties are neck and neck. One just created attack ads on our platform targeting the other party.
+
+[[How does this affect us?|section2_3]] [[What's the problem?|section2_3]]
+
+
+:: section2_3 {"position":"1200,1125","size":"100,100"}
+These attack ads? They're not your garden-variety mudslinging. They're using generative AI to create their content. That's right, we're talking deepfakes, voice cloning, the whole shebang.
+
+[[Generative whatnow? I feel like I need a tech dictionary just to keep up!|section2genexp]] [[Please tell me we have a rule against fake political media?|section2rules]]
+
+
+:: section2auto {"position":"900,1975","size":"100,100"}
+We're on it! I've reassigned our top engineers to this task. They're working around the clock to develop an algorithm that can detect AI-generated content more effectively. It's a big undertaking, but if anyone can do it, it's our team.
+
+[[Great! That should solve it.|section2auto2]] [[I hope this works...|section2auto2]]
+
+
+:: section2auto2 {"position":"900,2100","size":"100,100"}
+(set: $legitimacy to it - 20)
+
+Well, our engineering team delivered, but it seems we've hit a snag. Users have started trying to outsmart our new algorithm. They're deliberately creating content that triggers our AI detection, even when it's actually real. On top of that, they're making a spectacle of every genuine piece of media that gets incorrectly flagged as fake. It's turning into a game of "catch the AI" out there, and we're not exactly winning.
+
+[[Well, that backfired spectacularly.|section3]] [[Back to the drawing board, I guess.|section3]]
+
+
+:: section2ban {"position":"1475,1825","size":"100,100"}
+What do you suggest?
+
+[[Make an example of this political campaign, ban it|section2bancampaign]] [[Ban all deepfake content across the platform|section2bandeepfake]]
+
+
+:: section2bancampaign {"position":"1375,1975","size":"100,100"}
+Alright, we're taking action. I'll go ahead and freeze the account of the political campaign in question. We'll cite a policy violation as the reason. It's a bold move, but sometimes you need to show you mean business. 
+
+[[Well that should do it!|section2bancampaign2]]
+
+
+:: section2bancampaign2 {"position":"1375,2100","size":"100,100"}
+(set: $legitimacy to it - 20)
+
+The campaign we banned has pulled a complete 180. They're now positioning themselves as free speech warriors, crusading against the "tyranny of foreign tech giants." Their new campaign slogan? "Defending Democracy from Digital Dictators." And get this - they've created these wild protest placards featuring your face... but they've given you a lizard makeover. Apparently, you're now the poster child for the "reptilian tech overlords."
+
+[[Great, I always wanted to be a dinosaur when I grew up.|section3]] [[Do you think the lizard me has better approval ratings?|section3]]
+
+
+:: section2bandeepfake {"position":"1650,1975","size":"100,100"}
+Alright, we're going nuclear on this one. I'll put in a request to update our company policy, removing the parody and satire exception for deepfakes. We'll draft a press release explaining that this is a necessary step in our ongoing fight against misinformation. We'll frame it as us taking a stand for truth in the digital age. 
+
+[[OK that should solve it!|section2bandeepfake2]] [[I hope we're not overreacting...|section2bandeepfake2]]
+
+
+:: section2bandeepfake2 {"position":"1650,2100","size":"100,100"}
+(set: $legitimacy to it - 20)
+
+Well, our ban on deepfakes has certainly made waves, but not quite the ones we expected. Turns out, we've accidentally outlawed half the internet's favorite memes. Our users are in an uproar because they can't post their favorite "Singing Biden" videos or "Shakespeare reads mean tweets" clips anymore. Oh, and remember that blockbuster movie franchise that uses de-aging tech? Yeah, we had to take down all their promotional content.
+
+[[Great, we've become the fun police.|section3]] [[Maybe we should've thought this through a bit more...|section3]]
+
+
+:: section2biggerflags {"position":"1200,1975","size":"100,100"}
+We've enhanced the visibility of our AI content flags. Now, every piece of AI-generated content is marked with a prominent banner that clearly states "AI-GENERATED CONTENT." We've increased the size of the warning text and added a distinct border around these posts. The flags are now much more noticeable, but we've tried to keep them from being too disruptive to the user experience.
+
+[[Glad I managed to solve that!|section2biggerflags2]]
+
+
+:: section2biggerflags2 {"position":"1200,2100","size":"100,100"}
+Well, the results are in, and they're... mixed. The good news is that engagement on deepfake ads has plummeted. Turns out, people aren't too keen on content that comes with a giant "AI-GENERATED" banner. The bad news? We're getting some pretty heated calls from the political campaigns. They're not thrilled that their carefully crafted (albeit AI-generated) messages are being ignored.
+
+[[Well, you can't make an omelet without breaking a few eggs.|section3]] [[Maybe we should've stuck to cat videos after all.|section3]]
+
+
+:: section2campaigns {"position":"1275,1425","size":"100,100"}
+Well guess what. The campaign is now claiming that all their AI-generated content is "obviously satire." According to them, they're well within our platform guidelines. We're in a bit of a pickle here - do we take their claim at face value, or do we risk being accused of selective enforcement?
+
+[[Ah! Well what about banning all deepfakes, also satire?|section2parody]]
+
+[[Is there any way to make the deepfakes more obvious to people?|section2flags]]
+
+
+:: section2flags {"position":"1125,1575","size":"100,100"}
+One solution we've committed to is placing "Made with AI" flags on all AI-generated content. This way, users should be able to easily identify when they're viewing synthetic content. The idea is to maintain transparency and help our users make informed decisions about the content they consume. It's not a perfect solution, but it's a step towards greater clarity on our platform.
+
+[[Well that will certainly solve it!|section2flags2]] [[Do we actually apply the flags|section2flags2]]
+
+
+:: section2flags2 {"position":"1125,1725","size":"100,100"}
+Some diligent researchers have been combing through our platform and their findings are... not great. They've discovered a significant amount of AI-generated content that isn't properly flagged. It seems our current flagging system isn't as effective as we hoped. This raises questions about the practicality and enforcement of our AI content policy.
+
+[[Could we just make the flags bigger|section2improveflags]] [[We better crack down on fake content|section2ban]]
+
+
+:: section2genexp {"position":"1075,1275","size":"100,100"}
+Generative AI is a type of artificial intelligence that can create new content, including realistic audio and video. It can make it appear as if real people are saying or doing things they never actually said or did. For example, it could create a video of a politician giving a speech they never gave, or an audio clip of a celebrity endorsing a product they've never supported. 
+
+[[Oh yes I've heard of this|section2rules]] [[Can't believe anything anymore these days!|section2rules]]
+
+
+:: section2improveflags {"position":"1050,1850","size":"100,100"}
+What exactly do you suggest?
+
+[[Hire people to improve automatic detection|section2auto]] [[Make the flags bigger and flashier|section2biggerflags]]
+
+
+:: section2parody {"position":"1475,1550","size":"100,100"}
+Well, here's the thing: parody and satire are actually widely used tools in political campaigns and by activist groups. They're often seen as protected forms of speech and can be powerful ways to make political points or criticize opponents. If we ban all deepfakes, including satirical ones, we might face backlash from users who see this as censorship of legitimate political discourse. It's a tricky balance between preventing misinformation and allowing free expression.
+
+[[Is there any way to make the deepfakes more obvious to people?|section2flags]]
+
+
+:: section2rules {"position":"1275,1300","size":"100,100"}
+Our platform rules are pretty clear on this: creating fake videos of people in a deceptive manner is not allowed. However, we do have an exception for satire and parody. The catch is, these satirical or parodic deepfakes need to be obvious in their intent and properly flagged as such. It's our way of trying to balance free expression with the prevention of harmful misinformation.
+
+[[Does that mean we can ban deepfake campaign ads?|section2campaigns]]
+
+
+:: section3 {"position":"875,2375","size":"100,100"}
+<!--Section break-->
+(set: $mobileImage to "/images/info-lead-illustration3-mob-v1.png")
+(set: $desktopImage to "/images/info-lead-illustration3-web-v1.png")
+
+You have completed the section on generative AI!
+
+AI-generated images and videos are becoming increasingly common on social media. Many worry that such media may be used to deceive or impersonate others. Yet frequently AI-generated images are also created for humour or entertainment, which is generally not forbidden.
+
+[[Let's continue!|section3_start]]
+
+:: section3_start {"position":"875,2375","size":"100,100"}
+Welcome back. There's something I need to flag.
+
+User engagement is up. That’s usually good news. But the way it's happening... well, it’s raising some questions.
+
+[[What kind of questions?|section3_dwelltime]] [[Why does this feel ominous?|section3_dwelltime]]
+
+:: section3_dwelltime {"position":"875,2500","size":"100,100"}
+We’ve been testing new features: autoplay loops, micro-rewards, streaks.
+
+They’re working. Especially on teen users. But so is something else — a metric called Dwell Time Distress.
+
+[[What is that?|section3_distress]] [[Who’s worried?|section3_legal]]
+
+:: section3_distress {"position":"1075,2500","size":"100,100"}
+Dwell Time Distress tracks signs of compulsive use: late-night sessions, uninstall/reinstall loops, poor sleep signals.
+
+We're seeing a steep rise.
+
+[[Do we have numbers?|section3_data]] [[Internal reaction?|section3_pmemail]]
+
+:: section3_legal {"position":"1075,2600","size":"100,100"}
+Legal is already circling. There’s a leaked internal email where someone joked about “monetizing teen sleep cycles.”
+
+If that goes public, it won’t look good.
+
+[[Any other reactions?|section3_pmemail]]
+
+:: section3_data {"position":"1275,2500","size":"100,100"}
+Time-on-platform for teens has doubled in eight weeks. A fifth of them tried to quit. Most came back within 48 hours.
+
+Internally, some people are uneasy. A few are comparing it to past scandals.
+
+[[What are they saying?|section3_pmemail]]
+
+:: section3_pmemail {"position":"875,2650","size":"100,100"}
+Some people are comparing this to the Molly Russell case. There's anxiety that this could spiral — fast.
+
+[[Molly Russell?|section3_molly]] [[What are our options?|section3_choices_intro]]
+
+:: section3_molly {"position":"1075,2650","size":"100,100"}
+She was a UK teenager who died by suicide. A coroner said Instagram content contributed. The story made international headlines.
+
+It triggered real changes to regulation in the UK.
+
+[[What are our options?|section3_choices_intro]]
+
+:: section3_choices_intro {"position":"875,2800","size":"100,100"}
+So, what do we do?
+
+There are three directions we could go. I’ll walk you through them.
+
+[[Okay, what’s the first one?|section3_choices_1]]
+
+:: section3_choices_1 {"position":"875,2925","size":"100,100"}
+We could launch a Digital Wellness initiative. Talk publicly about time well spent. Keep all the features, just frame them better.
+
+The risk is that it looks like spin.
+
+[[Hmm… what else could we try?|section3_choices_2]] [[That actually sounds okay.|section3_choice_wellness]]
+
+:: section3_choices_2 {"position":"1075,2925","size":"100,100"}
+Or we roll back some of the most addictive features. Quietly. No big announcement.
+
+That would mean a hit to growth — but a win for credibility.
+
+[[What’s the third option?|section3_choices_3]] [[Yeah, that feels more responsible.|section3_choice_rollback]]
+
+:: section3_choices_3 {"position":"1275,2925","size":"100,100"}
+Or… we do nothing. Ride the numbers. Wait and see if this blows over.
+
+High risk, high return.
+
+[[I guess we could try that...|section3_choice_nothing]] [[Actually, go back to the first one.|section3_choices_1]]
+
+:: section3_choice_wellness {"position":"875,3050","size":"100,100"}
+(set: $legitimacy to it - 20)
+(set: $profit to it + 10)
+
+We add break reminders, push a wellness dashboard, and publish a blog post.
+
+It’s received as vague and cosmetic. Critics aren’t impressed.
+
+[[Hmm, okay. Let’s move on.|section3_break]]
+
+:: section3_choice_rollback {"position":"1075,3050","size":"100,100"}
+(set: $legitimacy to it + 10)
+(set: $profit to it - 15)
+
+We de-prioritize autoplay and dampen the reward loops. Engagement drops. Revenue too.
+
+Internally, it sparks debate about “mission vs. metrics.”
+
+[[Alright, onto the next thing.|section3_break]]
+
+:: section3_choice_nothing {"position":"1275,3050","size":"100,100"}
+(set: $legitimacy to it - 30)
+(set: $profit to it + 15)
+
+We do nothing. Engagement continues to climb. So does ad revenue.
+
+Two weeks later, an internal chart leaks. There's a day of headlines — then it fades.
+
+[[Let’s just keep going.|section3_break]]
+
+[[Next|section3_break]]
+
+:: section3_break {"position":"875,3175","size":"100,100"}
+Whatever path we take — this won’t be the last time we face it.
+
+Addiction is becoming the next battleground in platform policy. Especially with teens.
+
+[[Let's continue|section4_start]]
+
+:: section4_start {"position":"875,3300","size":"100,100"}
+Hey — I need your take on something. Fast.
+
+The “Heat Off the Streets” protest campaign went viral this morning. It’s about air conditioning bans in low-income housing blocks.
+
+But now it’s getting swarmed with angry replies. Thousands of comments saying:  
+**"My dad fought in two wars so I could chill my feet."**
+
+[[Wait… what?|section4_explain]] [[That can’t be real.|section4_explain]]
+
+:: section4_explain {"position":"875,3425","size":"100,100"}
+I know. It started as one comment. Then suddenly, there were *hundreds* of posts with the exact same wording.
+
+It’s trending. People are screenshotting the replies and accusing us of letting bots hijack a grassroots campaign.
+
+[[Are they bots?|section4_detection]] [[What do the activists think?|section4_activists]]
+
+:: section4_detection {"position":"1075,3425","size":"100,100"}
+We checked. Signal's weak.
+
+Some accounts are old, some are new. Some use weird stock-photo avatars. But most are just… boring. They post chain emails and recipes.
+
+One engineer said: “It’s boomers, not bots.”
+
+[[Okay, but what's our official position?|section4_ambiguous]] [[What do the activists think?|section4_activists]]
+
+:: section4_ambiguous {"position":"1075,3550","size":"100,100"}
+We can’t prove coordinated inauthentic behaviour. But the pattern is… weird.
+
+If we remove these comments, we look biased. If we don’t, we look negligent.
+
+[[Not ideal. What are our options?|section4_choices_intro]]
+
+:: section4_activists {"position":"875,3550","size":"100,100"}
+They’re furious.
+
+Some are calling for a boycott. Others are telling people to post everything on “real platforms only.”
+
+They say we’re enabling astroturfing and chilling democratic speech.
+
+[[What are our options here?|section4_choices_intro]]
+
+:: section4_choices_intro {"position":"875,3675","size":"100,100"}
+Alright, three directions we could take. Each with its own risks.
+
+Want to hear them?
+
+[[Yeah, let’s go.|section4_choices_1]]
+
+:: section4_choices_1 {"position":"875,3800","size":"100,100"}
+Option one: Hide near-identical comments. Quietly de-rank mass replies that match each other too closely.
+
+We don’t say anything publicly. Just tune the visibility.
+
+[[What else is on the table?|section4_choices_2]] [[Let’s do that.|section4_choice_derank]]
+
+:: section4_choices_2 {"position":"1075,3800","size":"100,100"}
+Option two: Launch a transparency panel. Let users view account credibility scores and see who’s amplifying what.
+
+Makes us look proactive — but exposes how little we actually catch.
+
+[[And the third?|section4_choices_3]] [[Let’s try that.|section4_choice_transparency]]
+
+:: section4_choices_3 {"position":"1275,3800","size":"100,100"}
+Option three: Do nothing for now. Say we’re “monitoring the situation” and encourage both sides to report suspicious activity.
+
+Fastest, safest — also most likely to backfire.
+
+[[Fine. Let’s just wait it out.|section4_choice_nothing]] [[Actually, go back to the first one.|section4_choices_1]]
+
+:: section4_choice_derank {"position":"875,3925","size":"100,100"}
+(set: $legitimacy to it - 10)
+(set: $profit to it + 5)
+
+We implement soft suppression for repeated phrases. It helps a bit — though users still feel like we’re covering something up.
+
+Activists post side-by-side comparisons of hidden and visible threads.
+
+[[Let’s move on.|section4_break]]
+
+:: section4_choice_transparency {"position":"1075,3925","size":"100,100"}
+(set: $legitimacy to it + 15)
+(set: $profit to it - 10)
+
+The “Credibility Lens” beta launches. Users love the idea. Policy teams panic — we weren’t ready for this level of scrutiny.
+
+Still, it gets good press.
+
+[[Let’s move on.|section4_break]]
+
+:: section4_choice_nothing {"position":"1275,3925","size":"100,100"}
+(set: $legitimacy to it - 20)
+(set: $profit to it + 10)
+
+We put out a short statement. No action.
+
+Critics frame it as cowardice. And now *real* bots are jumping into the mess just to stir things up.
+
+[[Let’s move on.|section4_break]]
+
+:: section4_break {"position":"875,4050","size":"100,100"}
+Whether it’s boomers or bots, it’s getting harder to tell the difference.
+
+And the activists won’t forget this one any time soon.
+
+[[Continue|end]]
+

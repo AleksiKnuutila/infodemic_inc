@@ -556,10 +556,19 @@ function updateScoresText() {
 
 // Landing page text for different language
 function updateInitialMessage() {
+  // Set background color based on screen size
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    // On mobile, use the styles from CSS
+    document.getElementById("homeContainer").style.backgroundColor = "";
+  } else {
+    // On desktop, set to transparent
+    document.getElementById("homeContainer").style.backgroundColor = "transparent";
+  }
+  
   if (currentLanguage === "en") {
     document.getElementById("initialMessage").innerHTML = `
           <p class="welcome-text-div">
-          <span class="welcome-text">Infodemic Inc.</span> 
+          <img src="images/infodemic_logo.png" alt="Infodemic Inc." class="logo-image"> 
           <span class="crisis-text">Can you lead your social media platform without getting into crisis?</span>
           </p>
           <button id="startButton">Start the game!</button>
@@ -573,8 +582,10 @@ function updateInitialMessage() {
     ).innerHTML = `English <i class="fa-solid fa-caret-down"></i>`;
   } else if (currentLanguage === "es") {
     document.getElementById("initialMessage").innerHTML = `
-          <p>¡Bienvenido/a a la gestión de redes sociales! ¿Puedes dirigir <br />tu
-          plataforma sin meterte en crisis?</p>
+          <p class="welcome-text-div">
+          <img src="images/infodemic_logo.png" alt="Infodemic Inc." class="logo-image"> 
+          <span class="crisis-text">¡Bienvenido/a a la gestión de redes sociales! ¿Puedes dirigir tu plataforma sin meterte en crisis?</span>
+          </p>
           <button id="startButton">¡Hola, Empezar el Juego!</button>
            <div id="homeOptions">
             <button id="aboutButton">Acerca de</button>
@@ -709,12 +720,23 @@ updateScoresText();
 updateLanguageButtonText();
 
 // Adding event listeners for About and Share buttons
-document.getElementById("aboutButton").onclick = () => {
+document.getElementById("aboutButton").onclick = function() {
   document.getElementById("aboutPage").style.display = "flex";
   updateAboutContent();
 };
 
-document.getElementById("shareButton").onclick = () => {
+document.getElementById("shareButton").onclick = function() {
+  document.getElementById("sharePage").style.display = "flex";
+  updateShareContent();
+};
+
+// Adding event listeners for header About and Share buttons
+document.getElementById("aboutButtonHeader").onclick = function() {
+  document.getElementById("aboutPage").style.display = "flex";
+  updateAboutContent();
+};
+
+document.getElementById("shareButtonHeader").onclick = function() {
   document.getElementById("sharePage").style.display = "flex";
   updateShareContent();
 };

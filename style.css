@@ -3,6 +3,7 @@ body {
   font-family: Arial, sans-serif;
   background-size: cover;
   background-position: center;
+  background-color: #F6F4F0;
   height: 100vh;
   width: auto;
   margin: 0;
@@ -13,16 +14,18 @@ body {
 }
 #homeContainer {
   position: absolute;
-  width: 510px;
+  width: 600px;
   height: 462px;
-  top: 50%;
-  left: 50%;
+  top: 33%;
+  left: 54%;
   transform: translate(-50%, -50%);
-  background-color: #4f79d8;
+/*
+  background-color: #F6F4F0;
   border-radius: 12px;
   border: 2px solid #88aeff;
   box-shadow: 0px 4px 10.7px 0px #00000040;
   display: flex;
+*/
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -120,8 +123,14 @@ body {
   font-weight: 600;
 }
 
+.logo-image {
+  max-width: 600px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
 .crisis-text {
-  color: #fff;
+  color: #4f79d8;
   font-family: "DM Sans", sans-serif;
   font-size: 26px;
   line-height: 30px;
@@ -307,14 +316,7 @@ body {
 
 #aboutButton,
 #shareButton {
-  background-color: #fcc852;
-  color: #000000;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 20px;
-  letter-spacing: 0px;
-  border-radius: 25px;
-  padding: 10px 18px;
+  display: none; /* Hide original buttons */
 }
 
 button {
@@ -342,26 +344,55 @@ button {
   margin: 30px 0;
 }
 
-#languageSelector {
+#headerNav {
   position: absolute;
   top: 10px;
+  right: 60px; /* Moved more to the left to avoid X button overlap */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 100;
+}
+
+#languageSelector {
+  display: none !important; /* Completely hide language selector */
 }
 
 #languageDropdownButton {
-  border-radius: 20px;
-  background-color: #fcc852;
+  background: none;
+  border: none;
   color: #000000;
   font-weight: 700;
   font-family: "DM Sans";
   font-size: 15px;
+  cursor: pointer;
 }
 
 #languageDropdownMenu {
   position: absolute;
-  top: 40px;
-  right: 1px;
+  top: 25px;
+  right: 0;
   padding: 5px 16px;
-  border-radius: 0;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#headerOptions {
+  display: flex;
+  gap: 15px;
+}
+
+#aboutButtonHeader, 
+#shareButtonHeader {
+  background: none;
+  border: none;
+  color: #000000;
+  font-weight: 700;
+  font-family: "DM Sans";
+  font-size: 18px; /* Increased font size */
+  cursor: pointer;
+  padding: 0;
+  letter-spacing: 0.5px; /* Added letter spacing for better readability */
 }
 
 #languageDropdownMenu ul {
@@ -392,7 +423,7 @@ button {
 
 #homeOptions {
   width: 230px;
-  display: flex;
+  display: none; /* Hide the original buttons */
   margin-left: 20px;
   padding-bottom: 35px;
   justify-content: space-between;
@@ -420,8 +451,9 @@ button {
 
 #closeAboutPage,
 #closeSharePage {
-  font-size: 24px;
+  font-size: 32px; /* Made X bigger */
   cursor: pointer;
+  margin-right: 15px; /* Added some margin */
 }
 
 #aboutContent,
@@ -864,6 +896,19 @@ button {
 
 /* Mobile View CSS */
 @media screen and (max-width: 768px) {
+  #headerNav {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    gap: 15px;
+    z-index: 1000;
+  }
+  
+  #aboutButtonHeader, 
+  #shareButtonHeader {
+    font-size: 16px; /* Keep a readable size on mobile */
+  }
+  
   body {
     flex-direction: column;
     align-items: stretch;
@@ -894,11 +939,14 @@ button {
     width: 90%;
     height: 385px;
     min-height: 385px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 33%;
+    left: 53%;
     padding: 15px;
-    border-radius: 5px !important;
+    background-color: #F6F4F0;
+    border-radius: 12px;
+    border: 2px solid #88aeff;
+    box-shadow: 0px 4px 10.7px 0px #00000040;
+    display: flex;
   }
 
   #initialMessage {
@@ -919,6 +967,11 @@ button {
   .crisis-text {
     font-size: 25px;
     line-height: 28px;
+    color: #4f79d8;
+  }
+  .logo-image {
+    max-width: 220px;
+    margin-bottom: 10px;
   }
 
   #homeOptions {
