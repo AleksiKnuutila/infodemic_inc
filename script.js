@@ -11,6 +11,20 @@ const shareText = {
 
 // Function to create rotating background with smooth transitions
 function setupRotatingBackground() {
+    // Check if we're on a mobile-sized screen
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    
+    // If mobile, use a simpler static background
+    if (isMobile) {
+        // For mobile, just set the body background directly
+        document.body.style.backgroundImage = "url('images/info-lead-illustration1-mob-v1.png')";
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+        // Return an empty function since we don't need transitions on mobile
+        return function() {};
+    }
+    
+    // Desktop version with animations
     // Create container for background halves
     const bgContainer = document.createElement('div');
     bgContainer.id = 'rotating-background';
@@ -896,12 +910,16 @@ document.getElementById("languageDropdownButton").onclick = () => {
     dropdownMenu.style.display === "block" ? "none" : "block";
 };
 
-// Initialize background rotation on load and start transitions after 2 seconds
+// Initialize background rotation on load and start transitions after 2 seconds (desktop only)
 window.addEventListener('load', function() {
+    // setupRotatingBackground already checks for mobile and returns appropriate function
     const rotateFunction = setupRotatingBackground();
     
-    // Start the first transition after 2 seconds
-    setTimeout(rotateFunction, 2000);
+    // Only start transitions if we're not on mobile
+    if (!window.matchMedia("(max-width: 768px)").matches) {
+        // Start the first transition after 2 seconds
+        setTimeout(rotateFunction, 2000);
+    }
 });
 
 updateInitialMessage();
