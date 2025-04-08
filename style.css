@@ -472,9 +472,10 @@ button {
 
 #closeAboutPage,
 #closeSharePage {
-  font-size: 32px; /* Made X bigger */
+  font-size: 48px; /* Made X even bigger */
   cursor: pointer;
   margin-right: 15px; /* Added some margin */
+  font-weight: bold; /* Make it more visible */
 }
 
 #aboutContent,

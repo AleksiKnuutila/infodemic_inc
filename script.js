@@ -998,32 +998,38 @@ updateLanguageButtonText();
 // Adding event listeners for About and Share buttons
 document.getElementById("aboutButton").onclick = function() {
   document.getElementById("aboutPage").style.display = "flex";
+  document.getElementById("headerOptions").style.display = "none";
   updateAboutContent();
 };
 
 document.getElementById("shareButton").onclick = function() {
   document.getElementById("sharePage").style.display = "flex";
+  document.getElementById("headerOptions").style.display = "none";
   updateShareContent();
 };
 
 // Adding event listeners for header About and Share buttons
 document.getElementById("aboutButtonHeader").onclick = function() {
   document.getElementById("aboutPage").style.display = "flex";
+  document.getElementById("headerOptions").style.display = "none";
   updateAboutContent();
 };
 
 document.getElementById("shareButtonHeader").onclick = function() {
   document.getElementById("sharePage").style.display = "flex";
+  document.getElementById("headerOptions").style.display = "none";
   updateShareContent();
 };
 
 // Adding event listeners to close About and Share pages
 document.getElementById("closeAboutPage").onclick = () => {
   document.getElementById("aboutPage").style.display = "none";
+  document.getElementById("headerOptions").style.display = "block";
 };
 
 document.getElementById("closeSharePage").onclick = () => {
   document.getElementById("sharePage").style.display = "none";
+  document.getElementById("headerOptions").style.display = "block";
 };
 
 document.addEventListener("click", (event) => {
