@@ -274,6 +274,9 @@ function startGame() {
   // Hide home page and show loading screen
   document.getElementById("homeContainer").style.display = "none";
   document.getElementById("loadingScreen").style.display = "flex";
+  
+  // Hide the About and Share buttons in the header when game starts
+  document.getElementById("headerOptions").style.display = "none";
 
   let progress = 0;
   const loadingPercent = document.getElementById("loadingPercent");
@@ -669,6 +672,9 @@ function displayGameOver() {
     document.getElementById("homeContainer").style.display = "block";
     document.getElementById("languageSelector").style.display = "block";
     document.getElementById("scores").style.display = "none";
+    
+    // Show the About and Share buttons in the header when returning to landing page
+    document.getElementById("headerOptions").style.display = "block";
 
     // Re-initialize the rotating background for the landing page
     if (!window.matchMedia("(max-width: 768px)").matches && !backgroundInterval) {
@@ -972,6 +978,9 @@ document.getElementById("languageDropdownButton").onclick = () => {
 
 // Initialize background rotation on load and start transitions after 2 seconds (desktop only)
 window.addEventListener('load', function() {
+    // Make sure headerOptions are visible on landing page
+    document.getElementById("headerOptions").style.display = "block";
+    
     // setupRotatingBackground already checks for mobile and returns appropriate function
     const rotateFunction = setupRotatingBackground();
     
