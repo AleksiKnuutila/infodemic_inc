@@ -433,6 +433,7 @@ function displayCurrentSection() {
 function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
   // Immediately hide choices container
   document.getElementById("choicesContainer").style.display = "none";
+  // After three choices, fix the position of the choices container
 
   profitScore += profitChange;
   legitimacyScore += legitimacyChange;
@@ -514,6 +515,11 @@ function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
     // Final scroll after new content is added
     conversationContainer.scrollTop = conversationContainer.scrollHeight;
   }, 1500);
+  // Auto-scroll to bottom when new message appears
+  const conversation = document.getElementById("conversationContainer");
+  requestAnimationFrame(() => {
+    conversation.scrollTop = conversation.scrollHeight;
+  });
 }
 
 function displayIntermediatePage(section) {
@@ -689,6 +695,47 @@ function updateRestartButtonText(button) {
       currentLanguage === "en" ? "Restart the Game" : "Reiniciar el Juego";
   }
 }
+function updateIndicators(score, indicatorId) {
+  const indicators = document.querySelectorAll(
+    `#${indicatorId} .indicator-box`
+  );
+  const activeIndex = Math.min(Math.floor(score / 15), indicators.length - 1);
+
+  // Define color arrays
+  const profitColors = [
+    "#e8505b",
+    "#ef7858",
+    "#f5a055",
+    "#f5a055",
+    "#ead364",
+    "#d9df76",
+    "#d9df76",
+  ];
+  const legitimacyColors = [
+    "#e8505b",
+    "#ef7858",
+    "#f5a055",
+    "#f5a055",
+    "#ead364",
+    "#d9df76",
+    "#d9df76",
+  ];
+
+  indicators.forEach((box, index) => {
+    const colorArray =
+      indicatorId === "profitIndicator" ? profitColors : legitimacyColors;
+
+    if (index <= activeIndex) {
+      // Active or previous boxes: show color
+      box.style.backgroundColor = colorArray[index];
+      box.classList.toggle("active", index === activeIndex);
+    } else {
+      // Future boxes: grey and inactive
+      box.style.backgroundColor = "#CCCCCC";
+      box.classList.remove("active");
+    }
+  });
+}
 
 function updateScores() {
   const profitScoreEl = document.getElementById("profitScore");
@@ -712,12 +759,9 @@ function updateScores() {
     console.error("Error: #legitimacyScore element not found.");
   }
 
-  // Update Profit Indicator
-  updateColorIndicator("profit", profitScore);
-
-  // Update Legitimacy Indicator
-  updateColorIndicator("legitimacy", legitimacyScore);
-  updateScoresText();
+  // Update indicators dynamically
+  updateIndicators(profitScore, "profitIndicator");
+  updateIndicators(legitimacyScore, "legitimacyIndicator");
 }
 
 function updateColorIndicator(type, score) {
