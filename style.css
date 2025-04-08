@@ -407,10 +407,12 @@ button {
   color: #000000;
   font-weight: 700;
   font-family: "DM Sans";
-  font-size: 18px; /* Increased font size */
+  font-size: 22px; /* Increased font size */
+  margin-right: 21px;
   cursor: pointer;
   padding: 0;
   letter-spacing: 0.5px; /* Added letter spacing for better readability */
+  margin-top: 10px;
 }
 
 #languageDropdownMenu ul {
@@ -944,7 +946,8 @@ button {
   
   #aboutButtonHeader, 
   #shareButtonHeader {
-    font-size: 16px; /* Keep a readable size on mobile */
+    font-size: 18px;
+    margin-right: 23px;
   }
   
   body {
@@ -977,8 +980,8 @@ button {
     width: 90%;
     height: 385px;
     min-height: 385px;
-    top: 33%;
-    left: 53%;
+    top: 41%;
+    left: 50%;
     padding: 15px;
     background-color: #F6F4F0;
     border-radius: 12px;
@@ -1008,7 +1011,7 @@ button {
     color: #4f79d8;
   }
   .logo-image {
-    max-width: 220px;
+    max-width: 400px;
     margin-bottom: 10px;
   }
 
