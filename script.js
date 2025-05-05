@@ -12,24 +12,25 @@ const shareText = {
 
 // Function to create rotating background with smooth transitions
 function setupRotatingBackground() {
-    // Check if we're on a mobile-sized screen
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    
-    // If mobile, use a simpler static background
-    if (isMobile) {
-        // For mobile, just set the body background directly
-        document.body.style.backgroundImage = "url('images/info-lead-illustration1-mob-v1.png')";
-        document.body.style.backgroundSize = "cover";
-        document.body.style.backgroundPosition = "center";
-        // Return an empty function since we don't need transitions on mobile
-        return function() {};
-    }
-    
-    // Desktop version with animations
-    // Create container for background halves
-    const bgContainer = document.createElement('div');
-    bgContainer.id = 'rotating-background';
-    bgContainer.style.cssText = `
+  // Check if we're on a mobile-sized screen
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  // If mobile, use a simpler static background
+  if (isMobile) {
+    // For mobile, just set the body background directly
+    document.body.style.backgroundImage =
+      "url('images/info-lead-illustration1-mob-v1.png')";
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    // Return an empty function since we don't need transitions on mobile
+    return function () {};
+  }
+
+  // Desktop version with animations
+  // Create container for background halves
+  const bgContainer = document.createElement("div");
+  bgContainer.id = "rotating-background";
+  bgContainer.style.cssText = `
         position: fixed;
         top: 0;
         left: 0;
@@ -38,11 +39,11 @@ function setupRotatingBackground() {
         z-index: -1;
         display: flex;
     `;
-    
-    // Create left half container
-    const leftHalf = document.createElement('div');
-    leftHalf.id = 'bg-left';
-    leftHalf.style.cssText = `
+
+  // Create left half container
+  const leftHalf = document.createElement("div");
+  leftHalf.id = "bg-left";
+  leftHalf.style.cssText = `
         width: 50%;
         height: 100%;
         background-image: url('images/split/illustration1-0.png');
@@ -50,11 +51,11 @@ function setupRotatingBackground() {
         background-position: right center;
         transition: opacity 2s ease;
     `;
-    
-    // Create right half container
-    const rightHalf = document.createElement('div');
-    rightHalf.id = 'bg-right';
-    rightHalf.style.cssText = `
+
+  // Create right half container
+  const rightHalf = document.createElement("div");
+  rightHalf.id = "bg-right";
+  rightHalf.style.cssText = `
         width: 50%;
         height: 100%;
         background-image: url('images/split/illustration1-1.png');
@@ -62,81 +63,91 @@ function setupRotatingBackground() {
         background-position: left center;
         transition: opacity 2s ease;
     `;
-    
-    // Add to container
-    bgContainer.appendChild(leftHalf);
-    bgContainer.appendChild(rightHalf);
-    document.body.insertBefore(bgContainer, document.body.firstChild);
-    
-    // Preload images in custom order: illustration1, illustration3, illustration2
-    const leftSideImages = [
-        'images/split/illustration1-0.png',
-        'images/split/illustration3-0.png',
-        'images/split/illustration2-0.png'
-    ];
-    
-    const rightSideImages = [
-        'images/split/illustration1-1.png',
-        'images/split/illustration3-1.png',
-        'images/split/illustration2-1.png'
-    ];
-    
-    // Preload images
-    function preloadImages(imageArray) {
-        imageArray.forEach(src => {
-            const img = new Image();
-            img.src = src;
-        });
-    }
-    
-    preloadImages(leftSideImages);
-    preloadImages(rightSideImages);
-    
-    // Set up rotation
-    let currentLeftIndex = 0; // Starting with illustration1 (index 0)
-    let currentRightIndex = 0; // Starting with illustration1 (index 0)
-    
-    function rotateBackground() {
-        // Determine the next index for both halves
-        const nextLeftIndex = (currentLeftIndex + 1) % leftSideImages.length;
-        const nextRightIndex = (currentRightIndex + 1) % rightSideImages.length;
-        
-        // Left side transition
-        transitionHalfBackground(leftHalf, leftSideImages[currentLeftIndex], leftSideImages[nextLeftIndex], 'left');
-        
-        // Update current index for next rotation
-        currentLeftIndex = nextLeftIndex;
-        
-        // Change right side after 5 seconds
-        setTimeout(() => {
-            // Right side transition
-            transitionHalfBackground(rightHalf, rightSideImages[currentRightIndex], rightSideImages[nextRightIndex], 'right');
-            
-            // Update current index for next rotation
-            currentRightIndex = nextRightIndex;
-        }, 5000);
-    }
-    
-    // Helper function to handle the transition between images
-    function transitionHalfBackground(container, oldImageSrc, newImageSrc, side) {
-        // Clear any existing background from container itself
-        container.style.backgroundColor = 'transparent';
-        container.style.backgroundImage = 'none';
-        
-        // Create a background container that will hold both images
-        const transitionContainer = document.createElement('div');
-        transitionContainer.style.cssText = `
+
+  // Add to container
+  bgContainer.appendChild(leftHalf);
+  bgContainer.appendChild(rightHalf);
+  document.body.insertBefore(bgContainer, document.body.firstChild);
+
+  // Preload images in custom order: illustration1, illustration3, illustration2
+  const leftSideImages = [
+    "images/split/illustration1-0.png",
+    "images/split/illustration3-0.png",
+    "images/split/illustration2-0.png",
+  ];
+
+  const rightSideImages = [
+    "images/split/illustration1-1.png",
+    "images/split/illustration3-1.png",
+    "images/split/illustration2-1.png",
+  ];
+
+  // Preload images
+  function preloadImages(imageArray) {
+    imageArray.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }
+
+  preloadImages(leftSideImages);
+  preloadImages(rightSideImages);
+
+  // Set up rotation
+  let currentLeftIndex = 0; // Starting with illustration1 (index 0)
+  let currentRightIndex = 0; // Starting with illustration1 (index 0)
+
+  function rotateBackground() {
+    // Determine the next index for both halves
+    const nextLeftIndex = (currentLeftIndex + 1) % leftSideImages.length;
+    const nextRightIndex = (currentRightIndex + 1) % rightSideImages.length;
+
+    // Left side transition
+    transitionHalfBackground(
+      leftHalf,
+      leftSideImages[currentLeftIndex],
+      leftSideImages[nextLeftIndex],
+      "left"
+    );
+
+    // Update current index for next rotation
+    currentLeftIndex = nextLeftIndex;
+
+    // Change right side after 5 seconds
+    setTimeout(() => {
+      // Right side transition
+      transitionHalfBackground(
+        rightHalf,
+        rightSideImages[currentRightIndex],
+        rightSideImages[nextRightIndex],
+        "right"
+      );
+
+      // Update current index for next rotation
+      currentRightIndex = nextRightIndex;
+    }, 5000);
+  }
+
+  // Helper function to handle the transition between images
+  function transitionHalfBackground(container, oldImageSrc, newImageSrc, side) {
+    // Clear any existing background from container itself
+    container.style.backgroundColor = "transparent";
+    container.style.backgroundImage = "none";
+
+    // Create a background container that will hold both images
+    const transitionContainer = document.createElement("div");
+    transitionContainer.style.cssText = `
             position: absolute;
             top: 0;
-            ${side === 'left' ? 'left: 0;' : 'right: 0;'}
+            ${side === "left" ? "left: 0;" : "right: 0;"}
             width: 50%;
             height: 100%;
             overflow: hidden;
         `;
-        
-        // Create solid background color layer (prevents any background from showing through)
-        const backgroundLayer = document.createElement('div');
-        backgroundLayer.style.cssText = `
+
+    // Create solid background color layer (prevents any background from showing through)
+    const backgroundLayer = document.createElement("div");
+    backgroundLayer.style.cssText = `
             position: absolute;
             top: 0;
             left: 0;
@@ -145,10 +156,10 @@ function setupRotatingBackground() {
             background-color: #F6F4F0;
             z-index: 0;
         `;
-        
-        // Create overlay with current (old) image
-        const oldImageOverlay = document.createElement('div');
-        oldImageOverlay.style.cssText = `
+
+    // Create overlay with current (old) image
+    const oldImageOverlay = document.createElement("div");
+    oldImageOverlay.style.cssText = `
             position: absolute;
             top: 0;
             left: 0;
@@ -156,15 +167,15 @@ function setupRotatingBackground() {
             height: 100%;
             background-image: url('${oldImageSrc}');
             background-size: cover;
-            background-position: ${side === 'left' ? 'right' : 'left'} center;
+            background-position: ${side === "left" ? "right" : "left"} center;
             opacity: 1;
             transition: opacity 3s ease;
             z-index: 1;
         `;
-        
-        // Create overlay with new image
-        const newImageOverlay = document.createElement('div');
-        newImageOverlay.style.cssText = `
+
+    // Create overlay with new image
+    const newImageOverlay = document.createElement("div");
+    newImageOverlay.style.cssText = `
             position: absolute;
             top: 0;
             left: 0;
@@ -172,43 +183,45 @@ function setupRotatingBackground() {
             height: 100%;
             background-image: url('${newImageSrc}');
             background-size: cover;
-            background-position: ${side === 'left' ? 'right' : 'left'} center;
+            background-position: ${side === "left" ? "right" : "left"} center;
             opacity: 0;
             transition: opacity 3s ease;
             z-index: 2;
         `;
-        
-        // Build the transition container
-        transitionContainer.appendChild(backgroundLayer);
-        transitionContainer.appendChild(oldImageOverlay);
-        transitionContainer.appendChild(newImageOverlay);
-        
-        // Add transition container to main container
-        container.innerHTML = ''; // Clear any previous content
-        container.appendChild(transitionContainer);
-        
-        // Trigger fade in/out after a short delay to ensure DOM is updated
-        setTimeout(() => {
-            newImageOverlay.style.opacity = '1';
-            oldImageOverlay.style.opacity = '0';
-        }, 50);
-        
-        // Clean up after transition completes (increased timeout to match longer transition)
-        setTimeout(() => {
-            // Set the container's background to the new image
-            container.style.backgroundImage = `url('${newImageSrc}')`;
-            container.style.backgroundSize = 'cover';
-            container.style.backgroundPosition = `${side === 'left' ? 'right' : 'left'} center`;
-            // Remove the transition container
-            container.removeChild(transitionContainer);
-        }, 3150);
-    }
-    
-    // Store interval in global variable so we can stop it when game starts
-    backgroundInterval = setInterval(rotateBackground, 10000);
-    
-    // Return the function so it can be called directly
-    return rotateBackground;
+
+    // Build the transition container
+    transitionContainer.appendChild(backgroundLayer);
+    transitionContainer.appendChild(oldImageOverlay);
+    transitionContainer.appendChild(newImageOverlay);
+
+    // Add transition container to main container
+    container.innerHTML = ""; // Clear any previous content
+    container.appendChild(transitionContainer);
+
+    // Trigger fade in/out after a short delay to ensure DOM is updated
+    setTimeout(() => {
+      newImageOverlay.style.opacity = "1";
+      oldImageOverlay.style.opacity = "0";
+    }, 50);
+
+    // Clean up after transition completes (increased timeout to match longer transition)
+    setTimeout(() => {
+      // Set the container's background to the new image
+      container.style.backgroundImage = `url('${newImageSrc}')`;
+      container.style.backgroundSize = "cover";
+      container.style.backgroundPosition = `${
+        side === "left" ? "right" : "left"
+      } center`;
+      // Remove the transition container
+      container.removeChild(transitionContainer);
+    }, 3150);
+  }
+
+  // Store interval in global variable so we can stop it when game starts
+  backgroundInterval = setInterval(rotateBackground, 10000);
+
+  // Return the function so it can be called directly
+  return rotateBackground;
 }
 
 // Function to change language
@@ -263,18 +276,18 @@ function startGame() {
   if (backgroundInterval) {
     clearInterval(backgroundInterval);
     backgroundInterval = null;
-    
+
     // Remove rotating background if it exists
-    const rotatingBg = document.getElementById('rotating-background');
+    const rotatingBg = document.getElementById("rotating-background");
     if (rotatingBg) {
       document.body.removeChild(rotatingBg);
     }
   }
-  
+
   // Hide home page and show loading screen
   document.getElementById("homeContainer").style.display = "none";
   document.getElementById("loadingScreen").style.display = "flex";
-  
+
   // Hide the About and Share buttons in the header when game starts
   document.getElementById("headerOptions").style.display = "none";
 
@@ -334,18 +347,21 @@ function displayCurrentSection() {
   const variables = {
     score: profitScore + legitimacyScore,
     profit: profitScore,
-    reputation: legitimacyScore
+    reputation: legitimacyScore,
   };
-  
+
   // Add debug logging
   console.log("Variables for replacement:", variables);
   console.log("Original text:", section.text);
 
-  const processedText = section.text.replace(/{{(\w+)}}/g, (match, variable) => {
-    // Add debug logging
-    console.log(`Replacing ${match} with ${variables[variable]}`);
-    return variables[variable] !== undefined ? variables[variable] : match;
-  });
+  const processedText = section.text.replace(
+    /{{(\w+)}}/g,
+    (match, variable) => {
+      // Add debug logging
+      console.log(`Replacing ${match} with ${variables[variable]}`);
+      return variables[variable] !== undefined ? variables[variable] : match;
+    }
+  );
 
   // Add debug logging
   console.log("Processed text:", processedText);
@@ -490,9 +506,10 @@ function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
 
     // Error handling for invalid/missing next IDs
     if (!targetSection) {
-      const errorMessage = currentLanguage === "en"
-        ? "Error: Next section not found. Returning to start."
-        : "Error: Sección siguiente no encontrada. Volviendo al inicio.";
+      const errorMessage =
+        currentLanguage === "en"
+          ? "Error: Next section not found. Returning to start."
+          : "Error: Sección siguiente no encontrada. Volviendo al inicio.";
 
       const errorContainer = document.createElement("div");
       errorContainer.className = "systemResponse error";
@@ -526,22 +543,26 @@ function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
 }
 
 function displayIntermediatePage(section) {
-  const conversationContainer = document.getElementById("conversationContainer");
+  const conversationContainer = document.getElementById(
+    "conversationContainer"
+  );
   conversationContainer.innerHTML = "";
 
   // Add class for intermediate page styles
   conversationContainer.classList.add("intermediate-page");
-  document.getElementById("gameContainer").classList.add("intermediate-game-container");
+  document
+    .getElementById("gameContainer")
+    .classList.add("intermediate-game-container");
   document.getElementById("scores").classList.add("hide-on-mobile-desktop");
 
   // Process template variables
   const variables = {
     score: profitScore + legitimacyScore,
     profit: profitScore,
-    reputation: legitimacyScore
+    reputation: legitimacyScore,
   };
-  
-  const processedText = section.text.replace(/{{(\w+)}}/g, (match, variable) => 
+
+  const processedText = section.text.replace(/{{(\w+)}}/g, (match, variable) =>
     variables[variable] !== undefined ? variables[variable] : match
   );
 
@@ -560,13 +581,13 @@ function displayIntermediatePage(section) {
   buttonsContainer.style.marginTop = "20px";
 
   // Create buttons for each choice
-  section.choices.forEach(choice => {
+  section.choices.forEach((choice) => {
     const button = document.createElement("button");
     button.className = "proceed-button";
     button.innerText = choice.text;
     button.onclick = () => {
       // Handle next section
-      const nextSection = gameData.find(item => item.id === choice.next);
+      const nextSection = gameData.find((item) => item.id === choice.next);
 
       if (choice.next === "share") {
         document.getElementById("sharePage").style.display = "flex";
@@ -588,11 +609,16 @@ function displayIntermediatePage(section) {
         // Reset conversation container for normal sections
         conversationContainer.innerHTML = "";
         conversationContainer.classList.remove("intermediate-page");
-        document.getElementById("gameContainer").classList.remove("intermediate-game-container");
-        document.getElementById("scores").classList.remove("hide-on-mobile-desktop");
+        document
+          .getElementById("gameContainer")
+          .classList.remove("intermediate-game-container");
+        document
+          .getElementById("scores")
+          .classList.remove("hide-on-mobile-desktop");
 
         if (window.matchMedia("(max-width: 768px").matches) {
-          document.getElementById("gameContainer").style.backgroundImage = "none";
+          document.getElementById("gameContainer").style.backgroundImage =
+            "none";
         }
 
         currentSection = choice.next;
@@ -672,12 +698,15 @@ function displayGameOver() {
     document.getElementById("homeContainer").style.display = "block";
     document.getElementById("languageSelector").style.display = "block";
     document.getElementById("scores").style.display = "none";
-    
+
     // Show the About and Share buttons in the header when returning to landing page
     document.getElementById("headerOptions").style.display = "block";
 
     // Re-initialize the rotating background for the landing page
-    if (!window.matchMedia("(max-width: 768px)").matches && !backgroundInterval) {
+    if (
+      !window.matchMedia("(max-width: 768px)").matches &&
+      !backgroundInterval
+    ) {
       const rotateFunction = setupRotatingBackground();
       setTimeout(rotateFunction, 500);
     }
@@ -823,9 +852,10 @@ function updateInitialMessage() {
     document.getElementById("homeContainer").style.backgroundColor = "";
   } else {
     // On desktop, set to transparent
-    document.getElementById("homeContainer").style.backgroundColor = "transparent";
+    document.getElementById("homeContainer").style.backgroundColor =
+      "transparent";
   }
-  
+
   if (currentLanguage === "en") {
     document.getElementById("initialMessage").innerHTML = `
           <p class="welcome-text-div">
@@ -881,12 +911,14 @@ function updateLanguageButtonText() {
 
 function updateAboutContent() {
   const aboutContentDiv = document.getElementById("aboutContent");
-  fetch('about-content.html')
-    .then(response => response.text())
-    .then(html => {
+  fetch("about-content.html")
+    .then((response) => response.text())
+    .then((html) => {
       const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const content = doc.querySelector(`.about-content[data-lang="${currentLanguage}"]`);
+      const doc = parser.parseFromString(html, "text/html");
+      const content = doc.querySelector(
+        `.about-content[data-lang="${currentLanguage}"]`
+      );
       if (content) {
         aboutContentDiv.innerHTML = content.innerHTML;
         aboutContentDiv.className = "about-text";
@@ -894,9 +926,10 @@ function updateAboutContent() {
         console.error(`No content found for language: ${currentLanguage}`);
       }
     })
-    .catch(error => {
-      console.error('Error loading about content:', error);
-      aboutContentDiv.innerHTML = '<p>Error loading content. Please try again later.</p>';
+    .catch((error) => {
+      console.error("Error loading about content:", error);
+      aboutContentDiv.innerHTML =
+        "<p>Error loading content. Please try again later.</p>";
     });
 }
 
@@ -977,18 +1010,18 @@ document.getElementById("languageDropdownButton").onclick = () => {
 };
 
 // Initialize background rotation on load and start transitions after 2 seconds (desktop only)
-window.addEventListener('load', function() {
-    // Make sure headerOptions are visible on landing page
-    document.getElementById("headerOptions").style.display = "block";
-    
-    // setupRotatingBackground already checks for mobile and returns appropriate function
-    const rotateFunction = setupRotatingBackground();
-    
-    // Only start transitions if we're not on mobile
-    if (!window.matchMedia("(max-width: 768px)").matches) {
-        // Start the first transition after 2 seconds
-        setTimeout(rotateFunction, 2000);
-    }
+window.addEventListener("load", function () {
+  // Make sure headerOptions are visible on landing page
+  document.getElementById("headerOptions").style.display = "block";
+
+  // setupRotatingBackground already checks for mobile and returns appropriate function
+  const rotateFunction = setupRotatingBackground();
+
+  // Only start transitions if we're not on mobile
+  if (!window.matchMedia("(max-width: 768px)").matches) {
+    // Start the first transition after 2 seconds
+    setTimeout(rotateFunction, 2000);
+  }
 });
 
 updateInitialMessage();
@@ -996,26 +1029,26 @@ updateScoresText();
 updateLanguageButtonText();
 
 // Adding event listeners for About and Share buttons
-document.getElementById("aboutButton").onclick = function() {
+document.getElementById("aboutButton").onclick = function () {
   document.getElementById("aboutPage").style.display = "flex";
   document.getElementById("headerOptions").style.display = "none";
   updateAboutContent();
 };
 
-document.getElementById("shareButton").onclick = function() {
+document.getElementById("shareButton").onclick = function () {
   document.getElementById("sharePage").style.display = "flex";
   document.getElementById("headerOptions").style.display = "none";
   updateShareContent();
 };
 
 // Adding event listeners for header About and Share buttons
-document.getElementById("aboutButtonHeader").onclick = function() {
+document.getElementById("aboutButtonHeader").onclick = function () {
   document.getElementById("aboutPage").style.display = "flex";
   document.getElementById("headerOptions").style.display = "none";
   updateAboutContent();
 };
 
-document.getElementById("shareButtonHeader").onclick = function() {
+document.getElementById("shareButtonHeader").onclick = function () {
   document.getElementById("sharePage").style.display = "flex";
   document.getElementById("headerOptions").style.display = "none";
   updateShareContent();

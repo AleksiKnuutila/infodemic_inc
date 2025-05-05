@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   background-size: cover;
   background-position: center;
-  background-color: #F6F4F0;
+  background-color: #f6f4f0;
   height: 100vh;
   width: auto;
   margin: 0;
@@ -19,7 +19,7 @@ body {
   top: 33%;
   left: 54%;
   transform: translate(-50%, -50%);
-/*
+  /*
   background-color: #F6F4F0;
   border-radius: 12px;
   border: 2px solid #88aeff;
@@ -392,7 +392,7 @@ button {
   right: 0;
   padding: 5px 16px;
   background-color: white;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #headerOptions {
@@ -400,7 +400,7 @@ button {
   gap: 15px;
 }
 
-#aboutButtonHeader, 
+#aboutButtonHeader,
 #shareButtonHeader {
   background: none;
   border: none;
@@ -944,13 +944,13 @@ button {
     gap: 15px;
     z-index: 1000;
   }
-  
-  #aboutButtonHeader, 
+
+  #aboutButtonHeader,
   #shareButtonHeader {
     font-size: 18px;
     margin-right: 23px;
   }
-  
+
   body {
     flex-direction: column;
     align-items: stretch;
@@ -984,7 +984,7 @@ button {
     top: 41%;
     left: 50%;
     padding: 15px;
-    background-color: #F6F4F0;
+    background-color: #f6f4f0;
     border-radius: 12px;
     border: 2px solid #88aeff;
     box-shadow: 0px 4px 10.7px 0px #00000040;
@@ -1087,8 +1087,8 @@ button {
     border-radius: 12px;
   }
   .chat-icon {
-    margin-left: -8px !important;
-    margin-right: -8px !important;
+    margin-left: -5px !important;
+    margin-right: -5px !important;
   }
   .session-end-message {
     margin: 40px 20px; /* Reduce margin for smaller screens */
@@ -1188,7 +1188,7 @@ button {
   }
 
   #conversationContainer {
-    padding-bottom: 30px !important;
+    /* padding-bottom: 30px !important; */
     margin-top: 100px;
     height: auto;
     flex-grow: 1;
@@ -1218,6 +1218,10 @@ button {
   .crisis-text-spanish {
     font-size: 25px;
     line-height: 28px;
+  }
+  #profitContainer,
+  #legitimacyContainer {
+    padding: 10px !important;
   }
 }
 
