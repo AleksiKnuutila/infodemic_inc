@@ -2,14 +2,6 @@ import re
 import json
 import sys
 
-prompt = "You are a helpful assistant trained to categorize content."
-prompt += f"Categories:{criteria}"
-prompt += "Examples:"
-for ex in examples:
-  prompt += f"Input: {ex['input']}, Category: {ex['category']}\n"
-prompt += f"Now categorize the following:\nInput: {item}\nCategory:"
-
-
 def clean_text(text):
     # Remove HTML comments
     text = re.sub(r'<!--.*?-->', '', text, flags=re.DOTALL)
