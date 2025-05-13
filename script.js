@@ -1,6 +1,27 @@
 let currentLanguage = "en"; // Default language is English
-const gameLink = "https://example.com/socialmediagame"; // This will be the Game Link
+const gameLink = "https://infodemic.gg"; // This will be the Game Link
 let backgroundInterval = null; // To store the background rotation interval
+
+// Animation timing parameters (milliseconds) - Adjust for faster/slower gameplay
+const GAME_SPEED = {
+  FAST: {
+    firstChoiceDelay: 50,
+    secondChoiceDelay: 100,
+    typingIndicatorDelay: 200,
+    errorMessageDelay: 300,
+    loadingIncrement: 5
+  },
+  NORMAL: {
+    firstChoiceDelay: 500,
+    secondChoiceDelay: 1000,
+    typingIndicatorDelay: 1500,
+    errorMessageDelay: 3000,
+    loadingIncrement: 2
+  }
+};
+
+// Set speed mode - change to GAME_SPEED.FAST for testing or GAME_SPEED.NORMAL for regular play
+let currentSpeed = GAME_SPEED.FAST;
 const aboutText = {
   en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et sodales sapien, sit amet pulvinar lectus. Sed pulvinar nulla nulla. Nulla vel lacus ac massa pellentesque tristique. Donec euismod nibh ante, nec porta felis pellentesque a. Quisque sed ex sagittis, tincidunt tortor nec, mattis magna. Nunc euismod libero ex, vitae elementum dolor ornare id. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse porttitor dui cursus laoreet lacinia. \n\nNunc sagittis sapien sit amet ipsum vehicula euismod eget eu ipsum. Vestibulum tempus velit et ante cursus, quis blandit mi lobortis. Morbi faucibus nunc eget risus ultricies feugiat. Praesent laoreet felis eu nulla sagittis venenatis. Cras malesuada lorem quis dolor lobortis convallis ut in dui.\n\nNunc sagittis sapien sit amet ipsum vehicula euismod eget eu ipsum. Vestibulum tempus velit et ante cursus, quis blandit mi lobortis. Morbi faucibus nunc eget risus ultricies feugiat. Praesent laoreet felis eu nulla sagittis venenatis. Cras malesuada lorem quis dolor lobortis convallis ut in dui.",
   es: "Este juego simula los desafíos de la gestión de redes sociales y la desinformación.  Tus decisiones impactan las ganancias y la legitimidad. ¿Puedes tener éxito?",
@@ -294,7 +315,7 @@ function startGame() {
   let progress = 0;
   const loadingPercent = document.getElementById("loadingPercent");
   const interval = setInterval(() => {
-    progress += 2;
+    progress += currentSpeed.loadingIncrement;
     loadingPercent.innerText = `${progress}%`;
     if (progress >= 100) {
       clearInterval(interval);
@@ -343,11 +364,41 @@ function displayCurrentSection() {
     return;
   }
 
+  // Function to determine status message based on profit and legitimacy
+  function getStatusMessage(profit, legitimacy) {
+    // Check if current section is the end node
+    if (currentSection === "end") {
+      if (profit < 0) {
+        return "Game Over! Since company profit plummeted, you ended up downgraded to Manager of Meme Containment.";
+      } else if (legitimacy < 0) {
+        return "Game Over! Since company reputation plummeted, you ended up downgraded to Manager of Meme Containment.";
+      } else if (profit >= 100) {
+        return "Congratulations! The game ended with you promoted to Chief Veracity Officer.";
+      } else if (legitimacy >= 100) {
+        return "Congratulations! The game ended with you promoted to Chief Veracity Officer.";
+      } else {
+        return "Game Over! You weren't promoted but managed to avoid crisis in the company.";
+      }
+    } else if (profit < 0) {
+      return "Profit is below zero! You have been downgraded to Manager of Meme Containment.. Try to get those numbers back up!";
+    } else if (legitimacy < 0) {
+      return "Legitimacy is below zero! You have been downgraded to Manager of Meme Containment.. Try to get those numbers back up!";
+    } else if (profit >= 100) {
+      return "You have raised Profit over 100. So you're promoted to Chief Veracity Officer! See if you can do better still..";
+    } else if (legitimacy >= 100) {
+      return "You have raised Reputation over 100. So you're promoted to Chief Veracity Officer! See if you can do better still..";
+    } else {
+      return "You are doing well! Try to get profit or reputation to 100, without either going to zero..";
+    }
+  }
+
   // Process template variables
+  const statusMessage = getStatusMessage(profitScore, legitimacyScore);
   const variables = {
     score: profitScore + legitimacyScore,
     profit: profitScore,
     reputation: legitimacyScore,
+    status: statusMessage
   };
 
   // Add debug logging
@@ -373,6 +424,7 @@ function displayCurrentSection() {
   // Create message content
   const textCard = document.createElement("div");
   textCard.className = "systemResponse";
+  // Using direct innerHTML assignment to allow HTML in the text
   textCard.innerHTML = `<p>${processedText}</p>`;
   messageContainer.appendChild(textCard);
 
@@ -420,7 +472,7 @@ function displayCurrentSection() {
     // Animate first choice
     setTimeout(() => {
       choice1Button.style.opacity = "1";
-    }, 500);
+    }, currentSpeed.firstChoiceDelay);
 
     // Second choice
     if (section.choices.length > 1) {
@@ -437,7 +489,7 @@ function displayCurrentSection() {
       // Animate second choice with delay
       setTimeout(() => {
         choice2Button.style.opacity = "1";
-      }, 1000);
+      }, currentSpeed.secondChoiceDelay);
     } else {
       choice2Container.style.display = "none";
     }
@@ -518,7 +570,7 @@ function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
 
       setTimeout(() => {
         displayGameOver();
-      }, 3000);
+      }, currentSpeed.errorMessageDelay);
       return;
     }
 
@@ -534,7 +586,7 @@ function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
 
     // Final scroll after new content is added
     conversationContainer.scrollTop = conversationContainer.scrollHeight;
-  }, 1500);
+  }, currentSpeed.typingIndicatorDelay);
   // Auto-scroll to bottom when new message appears
   const conversation = document.getElementById("conversationContainer");
   requestAnimationFrame(() => {
@@ -543,6 +595,9 @@ function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
 }
 
 function displayIntermediatePage(section) {
+  // Set current section to the section ID
+  currentSection = section.id;
+  
   const conversationContainer = document.getElementById(
     "conversationContainer"
   );
@@ -555,11 +610,41 @@ function displayIntermediatePage(section) {
     .classList.add("intermediate-game-container");
   document.getElementById("scores").classList.add("hide-on-mobile-desktop");
 
+  // Function to determine status message based on profit and legitimacy
+  function getStatusMessage(profit, legitimacy) {
+    // Check if current section is the end node
+    if (currentSection === "end") {
+      if (profit < 0) {
+        return "Game Over! Since company profit plummeted, you ended up downgraded to Senior Manager of Meme Containment.";
+      } else if (legitimacy < 0) {
+        return "Game Over! Since company reputation plummeted, you ended up downgraded to Senior Manager of Meme Containment.";
+      } else if (profit >= 100) {
+        return "Congratulations! The game ended with you promoted to Chief Veracity Officer.";
+      } else if (legitimacy >= 100) {
+        return "Congratulations! The game ended with you promoted to Chief Veracity Officer.";
+      } else {
+        return "Game Over! You weren't promoted but managed to avoid crisis in the company.";
+      }
+    } else if (profit < 0) {
+      return "Profit is below zero! You have been downgraded to Senior Manager of Meme Containment.. Try to get those numbers back up!";
+    } else if (legitimacy < 0) {
+      return "Legitimacy is below zero! You have been downgraded to Senior Manager of Meme Containment.. Try to get those numbers back up!";
+    } else if (profit >= 100) {
+      return "You have raised Profit over 100. So you're promoted to Chief Veracity Officer. See if you can do better still..";
+    } else if (legitimacy >= 100) {
+      return "You have raised Legitimacy over 100. So you're promoted to Chief Veracity Officer. See if you can do better still..";
+    } else {
+      return "You are doing well! Try to get profit or reputation to 100, without either going to zero..";
+    }
+  }
+
   // Process template variables
+  const statusMessage = getStatusMessage(profitScore, legitimacyScore);
   const variables = {
     score: profitScore + legitimacyScore,
     profit: profitScore,
     reputation: legitimacyScore,
+    status: statusMessage
   };
 
   const processedText = section.text.replace(/{{(\w+)}}/g, (match, variable) =>
@@ -568,8 +653,9 @@ function displayIntermediatePage(section) {
 
   const sessionEndMessage = document.createElement("div");
   sessionEndMessage.className = "session-end-message";
-  const messageElement = document.createElement("p");
-  messageElement.innerText = processedText;
+  const messageElement = document.createElement("div");
+  // Allow direct HTML content without wrapping in paragraph tags
+  messageElement.innerHTML = processedText;
   sessionEndMessage.appendChild(messageElement);
 
   // Create buttons container
