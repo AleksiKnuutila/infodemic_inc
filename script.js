@@ -366,6 +366,16 @@ function displayCurrentSection() {
 
   // Function to determine status message based on profit and legitimacy
   function getStatusMessage(profit, legitimacy) {
+    // Helper function to wrap promotion messages with badge
+    function wrapPromotionMessage(message) {
+      return `<div class="promotion-container">
+        <div class="promotion-message">${message}</div>
+        <div class="promotion-badge">
+          <img src="images/promotion_badge.png" alt="Promotion Badge" class="badge-image">
+        </div>
+      </div>`;
+    }
+    
     // Check if current section is the end node
     if (currentSection === "end") {
       if (profit < 0) {
@@ -373,9 +383,9 @@ function displayCurrentSection() {
       } else if (legitimacy < 0) {
         return "Game Over! Since company reputation plummeted, you ended up downgraded to Manager of Meme Containment.";
       } else if (profit >= 100) {
-        return "Congratulations! The game ended with you promoted to Chief Veracity Officer.";
+        return wrapPromotionMessage("Congratulations! The game ended with you promoted to Chief Veracity Officer.");
       } else if (legitimacy >= 100) {
-        return "Congratulations! The game ended with you promoted to Chief Veracity Officer.";
+        return wrapPromotionMessage("Congratulations! The game ended with you promoted to Chief Veracity Officer.");
       } else {
         return "Game Over! You weren't promoted but managed to avoid crisis in the company.";
       }
@@ -384,9 +394,9 @@ function displayCurrentSection() {
     } else if (legitimacy < 0) {
       return "Legitimacy is below zero! You have been downgraded to Manager of Meme Containment.. Try to get those numbers back up!";
     } else if (profit >= 100) {
-      return "You have raised Profit over 100. So you're promoted to Chief Veracity Officer! See if you can do better still..";
+      return wrapPromotionMessage("You have raised Profit over 100. So you're promoted to Chief Veracity Officer! See if you can do better still..");
     } else if (legitimacy >= 100) {
-      return "You have raised Reputation over 100. So you're promoted to Chief Veracity Officer! See if you can do better still..";
+      return wrapPromotionMessage("You have raised Reputation over 100. So you're promoted to Chief Veracity Officer! See if you can do better still..");
     } else {
       return "You are doing well! Try to get profit or reputation to 100, without either going to zero..";
     }
@@ -609,9 +619,25 @@ function displayIntermediatePage(section) {
     .getElementById("gameContainer")
     .classList.add("intermediate-game-container");
   document.getElementById("scores").classList.add("hide-on-mobile-desktop");
+  
+  // Prevent scrolling on mobile devices
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    // Add no-scroll class to body and html
+    document.documentElement.classList.add("intermediate-page-active");
+  }
 
   // Function to determine status message based on profit and legitimacy
   function getStatusMessage(profit, legitimacy) {
+    // Helper function to wrap promotion messages with badge
+    function wrapPromotionMessage(message) {
+      return `<div class="promotion-container">
+        <div class="promotion-message">${message}</div>
+        <div class="promotion-badge">
+          <img src="images/promotion_badge.png" alt="Promotion Badge" class="badge-image">
+        </div>
+      </div>`;
+    }
+    
     // Check if current section is the end node
     if (currentSection === "end") {
       if (profit < 0) {
@@ -619,20 +645,20 @@ function displayIntermediatePage(section) {
       } else if (legitimacy < 0) {
         return "Game Over! Since company reputation plummeted, you ended up downgraded to Senior Manager of Meme Containment.";
       } else if (profit >= 100) {
-        return "Congratulations! The game ended with you promoted to Chief Veracity Officer.";
+        return wrapPromotionMessage("Congratulations! The game ended with you promoted to Chief Veracity Officer.");
       } else if (legitimacy >= 100) {
-        return "Congratulations! The game ended with you promoted to Chief Veracity Officer.";
+        return wrapPromotionMessage("Congratulations! The game ended with you promoted to Chief Veracity Officer.");
       } else {
-        return "Game Over! You weren't promoted but managed to avoid crisis in the company.";
+        return wrapPromotionMessage("Game Over! You weren't promoted but managed to avoid crisis in the company. Congratulations!");
       }
     } else if (profit < 0) {
       return "Profit is below zero! You have been downgraded to Senior Manager of Meme Containment.. Try to get those numbers back up!";
     } else if (legitimacy < 0) {
       return "Legitimacy is below zero! You have been downgraded to Senior Manager of Meme Containment.. Try to get those numbers back up!";
     } else if (profit >= 100) {
-      return "You have raised Profit over 100. So you're promoted to Chief Veracity Officer. See if you can do better still..";
+      return wrapPromotionMessage("You have raised Profit over 100. So you're promoted to Chief Veracity Officer. See if you can do better still..");
     } else if (legitimacy >= 100) {
-      return "You have raised Legitimacy over 100. So you're promoted to Chief Veracity Officer. See if you can do better still..";
+      return wrapPromotionMessage("You have raised Legitimacy over 100. So you're promoted to Chief Veracity Officer. See if you can do better still..");
     } else {
       return "You are doing well! Try to get profit or reputation to 100, without either going to zero..";
     }
@@ -702,10 +728,20 @@ function displayIntermediatePage(section) {
           .getElementById("scores")
           .classList.remove("hide-on-mobile-desktop");
 
+        // Clean up all background images properly
         if (window.matchMedia("(max-width: 768px").matches) {
-          document.getElementById("gameContainer").style.backgroundImage =
-            "none";
+          document.getElementById("gameContainer").style.backgroundImage = "none";
+          document.body.style.backgroundImage = "url('images/info-lead-illustration1-mob-v1.png')";
+        } else {
+          document.getElementById("gameContainer").style.backgroundImage = "none";
+          document.body.style.backgroundImage = "url('images/info-lead-illustration3-web-v1.png')";
         }
+        
+        // Remove background class from body
+        document.body.classList.remove("background-image-class");
+        
+        // Re-enable scrolling on mobile devices
+        document.documentElement.classList.remove("intermediate-page-active");
 
         currentSection = choice.next;
         displayCurrentSection();
@@ -723,26 +759,25 @@ function displayIntermediatePage(section) {
     imageSrc = section.desktopImage;
   }
 
-  // Set background image to body
-  document.body.style.backgroundImage = `url('${imageSrc}')`;
-  document.body.classList.add("background-image-class");
-
-  // Set background image to game container for mobile
+  // Set background image differently based on device
   if (window.matchMedia("(max-width: 768px").matches) {
+    // For mobile: set background only on game container, not on body
+    document.body.style.backgroundImage = "none";
     document.getElementById(
       "gameContainer"
     ).style.backgroundImage = `url('${section.mobileImage}')`;
     document.getElementById("gameContainer").style.backgroundSize = "cover";
-    document.getElementById("gameContainer").style.backgroundPosition =
-      "initial";
+    document.getElementById("gameContainer").style.backgroundPosition = "initial";
+  } else {
+    // For desktop: set background only on body, not on game container
+    document.body.style.backgroundImage = `url('${imageSrc}')`;
+    document.body.classList.add("background-image-class");
+    document.getElementById("gameContainer").style.backgroundImage = "none";
   }
 
   document
     .getElementById("conversationContainer")
     .appendChild(sessionEndMessage);
-
-  // Scroll to the button
-  conversationContainer.scrollTop = conversationContainer.scrollHeight;
 
   // Hide choices container
   document.getElementById("choicesContainer").style.display = "none";
