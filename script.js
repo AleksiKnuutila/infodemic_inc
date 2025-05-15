@@ -366,12 +366,12 @@ function displayCurrentSection() {
 
   // Function to determine status message based on profit and legitimacy
   function getStatusMessage(profit, legitimacy) {
-    // Helper function to wrap promotion messages with badge
-    function wrapPromotionMessage(message) {
+    // Helper function to wrap messages with badge
+    function wrapMessageWithBadge(message, badgeImage, altText) {
       return `<div class="promotion-container">
         <div class="promotion-message">${message}</div>
         <div class="promotion-badge">
-          <img src="images/promotion_badge.png" alt="Promotion Badge" class="badge-image">
+          <img src="images/${badgeImage}" alt="${altText}" class="badge-image">
         </div>
       </div>`;
     }
@@ -379,26 +379,26 @@ function displayCurrentSection() {
     // Check if current section is the end node
     if (currentSection === "end") {
       if (profit < 0) {
-        return "Game Over! Since company profit plummeted, you ended up downgraded to Manager of Meme Containment.";
+        return wrapMessageWithBadge("Game Over! Since company profit plummeted, you ended up downgraded to Manager of Meme Containment.", "badge_failure.png", "Failure Badge");
       } else if (legitimacy < 0) {
-        return "Game Over! Since company reputation plummeted, you ended up downgraded to Manager of Meme Containment.";
+        return wrapMessageWithBadge("Game Over! Since company reputation plummeted, you ended up downgraded to Manager of Meme Containment.", "badge_failure.png", "Failure Badge");
       } else if (profit >= 100) {
-        return wrapPromotionMessage("Congratulations! The game ended with you promoted to Chief Veracity Officer.");
+        return wrapMessageWithBadge("Congratulations! The game ended with you promoted to Chief Veracity Officer.", "promotion_badge.png", "Promotion Badge");
       } else if (legitimacy >= 100) {
-        return wrapPromotionMessage("Congratulations! The game ended with you promoted to Chief Veracity Officer.");
+        return wrapMessageWithBadge("Congratulations! The game ended with you promoted to Chief Veracity Officer.", "promotion_badge.png", "Promotion Badge");
       } else {
-        return "Game Over! You weren't promoted but managed to avoid crisis in the company.";
+        return wrapMessageWithBadge("Game Over! You weren't promoted but managed to avoid crisis in the company.", "badge_thumbs.png", "Thumbs Badge");
       }
     } else if (profit < 0) {
-      return "Profit is below zero! You have been downgraded to Manager of Meme Containment.. Try to get those numbers back up!";
+      return wrapMessageWithBadge("Profit is below zero! You have been downgraded to Manager of Meme Containment.. Try to get those numbers back up!", "badge_failure.png", "Failure Badge");
     } else if (legitimacy < 0) {
-      return "Legitimacy is below zero! You have been downgraded to Manager of Meme Containment.. Try to get those numbers back up!";
+      return wrapMessageWithBadge("Legitimacy is below zero! You have been downgraded to Manager of Meme Containment.. Try to get those numbers back up!", "badge_failure.png", "Failure Badge");
     } else if (profit >= 100) {
-      return wrapPromotionMessage("You have raised Profit over 100. So you're promoted to Chief Veracity Officer! See if you can do better still..");
+      return wrapMessageWithBadge("You have raised Profit over 100. So you're promoted to Chief Veracity Officer! See if you can do better still..", "promotion_badge.png", "Promotion Badge");
     } else if (legitimacy >= 100) {
-      return wrapPromotionMessage("You have raised Reputation over 100. So you're promoted to Chief Veracity Officer! See if you can do better still..");
+      return wrapMessageWithBadge("You have raised Reputation over 100. So you're promoted to Chief Veracity Officer! See if you can do better still..", "promotion_badge.png", "Promotion Badge");
     } else {
-      return "You are doing well! Try to get profit or reputation to 100, without either going to zero..";
+      return wrapMessageWithBadge("You are doing well! Try to get profit or reputation to 100, without either going to zero..", "badge_thumbs.png", "Thumbs Badge");
     }
   }
 
@@ -628,12 +628,12 @@ function displayIntermediatePage(section) {
 
   // Function to determine status message based on profit and legitimacy
   function getStatusMessage(profit, legitimacy) {
-    // Helper function to wrap promotion messages with badge
-    function wrapPromotionMessage(message) {
+    // Helper function to wrap messages with badge
+    function wrapMessageWithBadge(message, badgeImage, altText) {
       return `<div class="promotion-container">
         <div class="promotion-message">${message}</div>
         <div class="promotion-badge">
-          <img src="images/promotion_badge.png" alt="Promotion Badge" class="badge-image">
+          <img src="images/${badgeImage}" alt="${altText}" class="badge-image">
         </div>
       </div>`;
     }
@@ -641,26 +641,26 @@ function displayIntermediatePage(section) {
     // Check if current section is the end node
     if (currentSection === "end") {
       if (profit < 0) {
-        return "Game Over! Since company profit plummeted, you ended up downgraded to Senior Manager of Meme Containment.";
+        return wrapMessageWithBadge("Game Over! Since company profit plummeted, you ended up downgraded to Senior Manager of Meme Containment.", "badge_failure.png", "Failure Badge");
       } else if (legitimacy < 0) {
-        return "Game Over! Since company reputation plummeted, you ended up downgraded to Senior Manager of Meme Containment.";
+        return wrapMessageWithBadge("Game Over! Since company reputation plummeted, you ended up downgraded to Senior Manager of Meme Containment.", "badge_failure.png", "Failure Badge");
       } else if (profit >= 100) {
-        return wrapPromotionMessage("Congratulations! The game ended with you promoted to Chief Veracity Officer.");
+        return wrapMessageWithBadge("Congratulations! The game ended with you promoted to Chief Veracity Officer.", "promotion_badge.png", "Promotion Badge");
       } else if (legitimacy >= 100) {
-        return wrapPromotionMessage("Congratulations! The game ended with you promoted to Chief Veracity Officer.");
+        return wrapMessageWithBadge("Congratulations! The game ended with you promoted to Chief Veracity Officer.", "promotion_badge.png", "Promotion Badge");
       } else {
-        return wrapPromotionMessage("Game Over! You weren't promoted but managed to avoid crisis in the company. Congratulations!");
+        return wrapMessageWithBadge("Game Over! You weren't promoted but managed to avoid crisis in the company. Congratulations!", "badge_thumbs.png", "Thumbs Badge");
       }
     } else if (profit < 0) {
-      return "Profit is below zero! You have been downgraded to Senior Manager of Meme Containment.. Try to get those numbers back up!";
+      return wrapMessageWithBadge("Profit is below zero! You have been downgraded to Senior Manager of Meme Containment.. Try to get those numbers back up!", "badge_failure.png", "Failure Badge");
     } else if (legitimacy < 0) {
-      return "Legitimacy is below zero! You have been downgraded to Senior Manager of Meme Containment.. Try to get those numbers back up!";
+      return wrapMessageWithBadge("Legitimacy is below zero! You have been downgraded to Senior Manager of Meme Containment.. Try to get those numbers back up!", "badge_failure.png", "Failure Badge");
     } else if (profit >= 100) {
-      return wrapPromotionMessage("You have raised Profit over 100. So you're promoted to Chief Veracity Officer. See if you can do better still..");
+      return wrapMessageWithBadge("You have raised Profit over 100. So you're promoted to Chief Veracity Officer. See if you can do better still..", "promotion_badge.png", "Promotion Badge");
     } else if (legitimacy >= 100) {
-      return wrapPromotionMessage("You have raised Legitimacy over 100. So you're promoted to Chief Veracity Officer. See if you can do better still..");
+      return wrapMessageWithBadge("You have raised Legitimacy over 100. So you're promoted to Chief Veracity Officer. See if you can do better still..", "promotion_badge.png", "Promotion Badge");
     } else {
-      return "You are doing well! Try to get profit or reputation to 100, without either going to zero..";
+      return wrapMessageWithBadge("You are doing well! Try to get profit or reputation to 100, without either going to zero..", "badge_thumbs.png", "Thumbs Badge");
     }
   }
 

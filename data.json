@@ -299,7 +299,7 @@
             {
                 "text": "Let's see how this plays out",
                 "next": "30g",
-                "profitChange": -5,
+                "profitChange": -10,
                 "legitimacyChange": 20
             }
         ]
@@ -313,7 +313,7 @@
                 "text": "Let's see how this plays out",
                 "next": "30h",
                 "profitChange": 10,
-                "legitimacyChange": -5
+                "legitimacyChange": -10
             }
         ]
     },
@@ -429,7 +429,7 @@
     {
         "id": "end",
         "type": "intermediate",
-        "text": "{{status}}<br><br>Your score is: {{score}}. Can your friend do better? Challenge them!",
+        "text": "{{status}}\n\nYour score is {{score}} points!  Can your friend do better? Challenge them!",
         "choices": [
             {
                 "text": "Start again",
@@ -443,12 +443,14 @@
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
-        ]
+        ],
+        "mobileImage": "/images/info-lead-illustration4-mob-v1.png",
+        "desktopImage": "/images/info-lead-illustration4-web-v1.png"
     },
     {
         "id": "section2",
         "type": "intermediate",
-        "text": "{{status}}<br><br>You have completed the section on content moderation! Social media platforms have to come up with rules on what kind of messages are allowed. This is called \"content moderation\". Sometimes its up to interpretation what breaks the rules and what doesn't. Third parties, such as Meta's Oversight Board, can help handle disputes.",
+        "text": "{{status}}\nYou have completed the section on content moderation! Social media platforms have to come up with rules on what kind of messages are allowed. This is called \"content moderation\". Sometimes its up to interpretation what breaks the rules and what doesn't. Third parties, such as Meta's Oversight Board, can help handle disputes.",
         "choices": [
             {
                 "text": "Let's continue!",
@@ -794,7 +796,7 @@
     {
         "id": "section3",
         "type": "intermediate",
-        "text": "{{status}}<br><br>You have completed the section on generative AI! AI-generated images and videos are becoming increasingly common on social media. Many worry that such media may be used to deceive or impersonate others. Yet frequently AI-generated images are also created for humour or entertainment, which is generally not forbidden.",
+        "text": "{{status}}\n\nYou have completed the section on generative AI! AI-generated images and videos are becoming increasingly common on social media. Many worry that such media may be used to deceive or impersonate others. Yet frequently AI-generated images are also created for humour or entertainment, which is generally not forbidden.",
         "choices": [
             {
                 "text": "Let's continue!",
@@ -1039,7 +1041,7 @@
     {
         "id": "section4",
         "type": "intermediate",
-        "text": "{{status}}<br><br>You have completed the section on addiction! Whatever path we take — this won’t be the last time we face it. Addiction is becoming the next battleground in platform policy. Especially with teens.",
+        "text": "{{status}}\n\nYou have completed the section on addiction! Whatever path we take — this won’t be the last time we face it. Addiction is becoming the next battleground in platform policy. Especially with teens.",
         "choices": [
             {
                 "text": "Let's continue",
