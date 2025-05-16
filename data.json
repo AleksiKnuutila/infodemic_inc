@@ -376,13 +376,13 @@
         "choices": [
             {
                 "text": "Oh great",
-                "next": "20",
+                "next": "taskdef",
                 "profitChange": 0,
                 "legitimacyChange": 0
             },
             {
                 "text": "Oh no",
-                "next": "20",
+                "next": "taskdef",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -391,17 +391,17 @@
     {
         "id": "5",
         "type": "choice",
-        "text": "We kept the AI as is. The platform's squeaky clean now, but our travel sector numbers? Yikes. It's like we've become the fun police of tourism. Content quality's up, but we have a lot of angry people accusing us of using biased automated system. Our legitimacy took a hit. Please remember, your job is to keep both legitimacy and profit afloat..",
+        "text": "We kept the AI as is. The platform's squeaky clean now, but our travel sector numbers? Yikes. It's like we've become the fun police of tourism. Content quality's up, but we have a lot of angry people accusing us of using biased automated system. Our legitimacy took a hit.",
         "choices": [
             {
                 "text": "Oh great",
-                "next": "20",
+                "next": "taskdef",
                 "profitChange": 0,
                 "legitimacyChange": 0
             },
             {
                 "text": "Oh no",
-                "next": "20",
+                "next": "taskdef",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -427,9 +427,80 @@
         ]
     },
     {
+        "id": "detect_crank",
+        "type": "choice",
+        "text": "Let's assign a few more engineers to this. We can supercharge our filters, treating repeated phrases as a stronger signal for inauthentic behaviour.",
+        "choices": [
+            {
+                "text": "Let's see how this goes",
+                "next": "detect_crank2",
+                "profitChange": -10,
+                "legitimacyChange": 10
+            }
+        ]
+    },
+    {
+        "id": "detect_crank2",
+        "type": "choice",
+        "text": "The results are out. This seems to have curbed suspicious conversation threads, though some users suspect we’re covering something up. Activists are posting side-by-side comparisons of hidden and visible threads.",
+        "choices": [
+            {
+                "text": "That wasn't too bad",
+                "next": "section4_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "detect_menu",
+        "type": "choice",
+        "text": "We could push our bot detection to its limits. However, there’s a risk of \"false positives,\" removing real people who appear to be bots. How aggressive should we be?",
+        "choices": [
+            {
+                "text": "Max it out",
+                "next": "detect_crank",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Loosen our grip",
+                "next": "detect_relax",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "detect_relax",
+        "type": "choice",
+        "text": "Alright, I'll ask our engineering team to set higher thresholds for the bot hunt. We'll prioritise removing accounts flagged by users instead of relying solely on automation.",
+        "choices": [
+            {
+                "text": "Let's see how this goes",
+                "next": "detect_relax2",
+                "profitChange": 20,
+                "legitimacyChange": -10
+            }
+        ]
+    },
+    {
+        "id": "detect_relax2",
+        "type": "choice",
+        "text": "Our revenue spikes due to increased ad sales, they're reaching more users. However, the engineering team warns that nearly 40% of these views might be automated sock-puppet accounts. Repetitive posts targeting activists are also escalating..",
+        "choices": [
+            {
+                "text": "That wasn't too bad",
+                "next": "section4_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
         "id": "end",
         "type": "intermediate",
-        "text": "{{status}}\n\nYour score is {{score}} points!  Can your friend do better? Challenge them!",
+        "text": "{{status}}\n\n<br>\nYour score is {{score}} points!  Can your friend do better? Challenge them!",
         "choices": [
             {
                 "text": "Start again",
@@ -448,9 +519,240 @@
         "desktopImage": "/images/info-lead-illustration4-web-v1.png"
     },
     {
+        "id": "profit_menu",
+        "type": "choice",
+        "text": "What did you have in mind?",
+        "choices": [
+            {
+                "text": "What about elderly people? Let's get them hooked",
+                "next": "profit_silver",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Could we target ads at compulsive users?",
+                "next": "profit_night",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "profit_night",
+        "type": "choice",
+        "text": "OK, how about this: At 1am, our feed inserts an unskippable 30-sec “story break” (“Take a quick mental pause!”). This is (surprise!) a sponsored slideshow. Users must watch to keep scrolling, driving 100% view-through for premium advertisers.",
+        "choices": [
+            {
+                "text": "That sounds like a plan!",
+                "next": "profit_night2",
+                "profitChange": 20,
+                "legitimacyChange": -10
+            },
+            {
+                "text": "Let's see what happens",
+                "next": "profit_night2",
+                "profitChange": 20,
+                "legitimacyChange": -10
+            }
+        ]
+    },
+    {
+        "id": "profit_night2",
+        "type": "choice",
+        "text": "OK, the results are in.. It seems like the break is just long enough for users to drift off. Half the audience falls asleep with phones in their hands. Our financial officers are angry about the change. Mattress brands are eager to offer sponsorship though!",
+        "choices": [
+            {
+                "text": "Phew, that wasn't too bad",
+                "next": "section4",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "profit_silver",
+        "type": "choice",
+        "text": "OK! Maybe we can call it \"Operation Silver Scrolls..\" We could pivot the most aggressive infinite-scroll feed toward retirees. Give more visibility to grandkid pics and ads for cruises.",
+        "choices": [
+            {
+                "text": "They need something to do anyway",
+                "next": "profit_silver2",
+                "profitChange": 20,
+                "legitimacyChange": -10
+            }
+        ]
+    },
+    {
+        "id": "profit_silver2",
+        "type": "choice",
+        "text": "OK, now Operation Silver Scrolls is live. Grandparents swipe through grandkid pics forever, the pharmaceutical industry is delighted about opportunities for marketing. However, the retirees' association drafts some spicy opinion pieces..",
+        "choices": [
+            {
+                "text": "Phew, that wasn't too bad",
+                "next": "section4",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "rep_family",
+        "type": "choice",
+        "text": "OK, let's see how the dashboard is received.. Within hours, parents discover 3 a.m. meme binges and start pulling chargers at bedtime. Breakfast TV hails us as champions of digital wellness. Advertisers, however, notice the lost impressions.",
+        "choices": [
+            {
+                "text": "Phew, that wasn't too bad",
+                "next": "section4",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "rep_menu",
+        "type": "choice",
+        "text": "If we want good press, I see two crowd-pleasers. One is a strict 60-minute daily limit for users under 18 that locks the app unless they enter a passcode. The other hands parents a live panel—usage charts, quiet-hour switches, even a panic mute. Which sounds better?",
+        "choices": [
+            {
+                "text": "Hit the time cap.",
+                "next": "rep_timecaps",
+                "profitChange": -10,
+                "legitimacyChange": 20
+            },
+            {
+                "text": "Give parents the panel.",
+                "next": "rep_family",
+                "profitChange": -10,
+                "legitimacyChange": 20
+            }
+        ]
+    },
+    {
+        "id": "rep_timecaps",
+        "type": "choice",
+        "text": "OK, let's see how the time caps are received.. Bedtime locks go live tonight. Teen feeds go dark at the 60-minute mark. Parents cheer, night-owl ad revenue slips a little. The morning papers call us “surprisingly responsible.”",
+        "choices": [
+            {
+                "text": "Phew, that wasn't too bad",
+                "next": "section4",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "sec3_consequence_intro",
+        "type": "choice",
+        "text": "In the US, the average person spends about two hours daily on social media. Teenagers take it to another level: One survey found they spend an average of 4.8 hours per day!",
+        "choices": [
+            {
+                "text": "Can't they just stop?",
+                "next": "sec3_variable_addiction",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "They must love it then..",
+                "next": "sec3_variable_health",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "sec3_notifications",
+        "type": "choice",
+        "text": "We have thought a lot about notifications, the messages people get on their phones about what is happening on the platform. We send them out during lunch breaks or late evenings when people’s self-control is weaker. The visual design makes a difference too: red signals urgency, and people are more likely to click.",
+        "choices": [
+            {
+                "text": "But surely these are just minor tweaks..",
+                "next": "sec3_consequence_intro",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "It's nice to get a \"like\", isn't it?",
+                "next": "sec3_variable",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "sec3_scroll_explain",
+        "type": "choice",
+        "text": "Well, according to research the infinite scroll features extends user sessions by roughly a third. One thing that makes it so effective is \"variable rewards\": you just keep scrolling, looking for the next good post.",
+        "choices": [
+            {
+                "text": "The variable.. what?",
+                "next": "sec3_variable",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Alright, what else have we built in?",
+                "next": "sec3_notifications",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "sec3_variable",
+        "type": "choice",
+        "text": "On social media, rewards arrive unpredictably. One post fizzles; the next goes viral. That uneven pattern - sometimes jackpot, sometimes nothing - makes scrolling feel like a low-stakes betting.",
+        "choices": [
+            {
+                "text": "Unpredictability really does that?",
+                "next": "sec3_variable_explain",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "sec3_variable_addiction",
+        "type": "choice",
+        "text": "In the same survey, over a third of teenagers said they feel they spend too much time on social media. More than half said they would struggle to quit social media...",
+        "choices": [
+            {
+                "text": "OK, so let's do something about this",
+                "next": "section3_solutions",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "sec3_variable_explain",
+        "type": "choice",
+        "text": "Psychologists call this \"variable rewards\". Studies show these kinds of rewards make the behavior particularly hard to quit. Slot machines work the same way.",
+        "choices": [
+            {
+                "text": "Enough about design, what are the effects?",
+                "next": "sec3_consequence_intro",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "sec3_variable_health",
+        "type": "choice",
+        "text": "Research on the effects of social media use is a bit grim. Teenagers who spend more than 3 hours daily on social media apps have roughly double the risk of experiencing symptoms of depression and anxiety.",
+        "choices": [
+            {
+                "text": "OK, so let's do something about this",
+                "next": "section3_solutions",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
         "id": "section2",
         "type": "intermediate",
-        "text": "{{status}}\nYou have completed the section on content moderation! Social media platforms have to come up with rules on what kind of messages are allowed. This is called \"content moderation\". Sometimes its up to interpretation what breaks the rules and what doesn't. Third parties, such as Meta's Oversight Board, can help handle disputes.",
+        "text": "{{status}}\n\nYou have completed the section on content moderation! Social media platforms make rules on what messages are allowed. This “content moderation” is often open to interpretation, so third parties like Meta’s Oversight Board can help settle disputes.",
         "choices": [
             {
                 "text": "Let's continue!",
@@ -796,7 +1098,7 @@
     {
         "id": "section3",
         "type": "intermediate",
-        "text": "{{status}}\n\nYou have completed the section on generative AI! AI-generated images and videos are becoming increasingly common on social media. Many worry that such media may be used to deceive or impersonate others. Yet frequently AI-generated images are also created for humour or entertainment, which is generally not forbidden.",
+        "text": "{{status}}\n\nYou have completed the section on generative AI! AI-generated images and videos are now common on social media. Many worry they could deceive or impersonate, but they’re also often used for harmless humour or entertainment.",
         "choices": [
             {
                 "text": "Let's continue!",
@@ -809,127 +1111,12 @@
         "desktopImage": "/images/info-lead-illustration3-web-v1.png"
     },
     {
-        "id": "section3_choice_nothing",
-        "type": "choice",
-        "text": "We do nothing. Engagement continues to climb. So does ad revenue.\n\nTwo weeks later, an internal chart leaks. There's a day of headlines — then it fades.",
-        "choices": [
-            {
-                "text": "Let’s just keep going.",
-                "next": "section4",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            },
-            {
-                "text": "Next",
-                "next": "section4",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
-    },
-    {
-        "id": "section3_choice_rollback",
-        "type": "choice",
-        "text": "We de-prioritize autoplay and dampen the reward loops. Engagement drops. Revenue too.\n\nInternally, it sparks debate about “mission vs. metrics.”",
-        "choices": [
-            {
-                "text": "Alright, onto the next thing.",
-                "next": "section4",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
-    },
-    {
-        "id": "section3_choice_wellness",
-        "type": "choice",
-        "text": "We add break reminders, push a wellness dashboard, and publish a blog post.\n\nIt’s received as vague and cosmetic. Critics aren’t impressed.",
-        "choices": [
-            {
-                "text": "Hmm, okay. Let’s move on.",
-                "next": "section4",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
-    },
-    {
-        "id": "section3_choices_1",
-        "type": "choice",
-        "text": "We could launch a Digital Wellness initiative. Talk publicly about time well spent. Keep all the features, just frame them better.\n\nThe risk is that it looks like spin.",
-        "choices": [
-            {
-                "text": "Hmm… what else could we try?",
-                "next": "section3_choices_2",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            },
-            {
-                "text": "That actually sounds okay.",
-                "next": "section3_choice_wellness",
-                "profitChange": 20,
-                "legitimacyChange": -10
-            }
-        ]
-    },
-    {
-        "id": "section3_choices_2",
-        "type": "choice",
-        "text": "Or we roll back some of the most addictive features. Quietly. No big announcement.\n\nThat would mean a hit to growth — but a win for credibility.",
-        "choices": [
-            {
-                "text": "What’s the third option?",
-                "next": "section3_choices_3",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            },
-            {
-                "text": "Yeah, that feels more responsible.",
-                "next": "section3_choice_rollback",
-                "profitChange": -10,
-                "legitimacyChange": 20
-            }
-        ]
-    },
-    {
-        "id": "section3_choices_3",
-        "type": "choice",
-        "text": "Or… we do nothing. Ride the numbers. Wait and see if this blows over.\n\nHigh risk, high return.",
-        "choices": [
-            {
-                "text": "I guess we could try that...",
-                "next": "section3_choice_nothing",
-                "profitChange": 20,
-                "legitimacyChange": -10
-            },
-            {
-                "text": "Actually, go back to the first one.",
-                "next": "section3_choices_1",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
-    },
-    {
-        "id": "section3_choices_intro",
-        "type": "choice",
-        "text": "So, what do we do?\n\nThere are three directions we could go. I’ll walk you through them.",
-        "choices": [
-            {
-                "text": "Okay, what’s the first one?",
-                "next": "section3_choices_1",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
-    },
-    {
         "id": "section3_data",
         "type": "choice",
-        "text": "Time-on-platform for teens has doubled in eight weeks. A fifth of them tried to quit. Most came back within 48 hours.\n\nInternally, some people are uneasy. A few are comparing it to past scandals.",
+        "text": "Time-on-platform for teens has doubled in the past six months. According to our internal research, a fifth of them tried to quit. Most came back within 48 hours.\n\nInternally, some team members are uneasy. This could escalate into a reputational crisis if negative press emerges.",
         "choices": [
             {
-                "text": "What are they saying?",
+                "text": "Do we know why this is happening?",
                 "next": "section3_pmemail",
                 "profitChange": 0,
                 "legitimacyChange": 0
@@ -939,17 +1126,17 @@
     {
         "id": "section3_distress",
         "type": "choice",
-        "text": "Dwell Time Distress tracks signs of compulsive use: late-night sessions, uninstall/reinstall loops, poor sleep signals.\n\nWe're seeing a steep rise.",
+        "text": "The Dwell Time Distress metric tracks signs of compulsive use: late-night sessions, uninstall/reinstall loops, poor sleep signals.\n\nWe're seeing a steep rise in this metric.",
         "choices": [
             {
-                "text": "Do we have numbers?",
+                "text": "What is behind this rise?",
                 "next": "section3_data",
                 "profitChange": 0,
                 "legitimacyChange": 0
             },
             {
-                "text": "Internal reaction?",
-                "next": "section3_pmemail",
+                "text": "I thought everybody does that",
+                "next": "section3_data",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -958,29 +1145,16 @@
     {
         "id": "section3_dwelltime",
         "type": "choice",
-        "text": "We’ve been testing new features: autoplay loops, micro-rewards, streaks.\n\nThey’re working. Especially on teen users. But so is something else — a metric called Dwell Time Distress.",
+        "text": "We've been testing new platform features: sending users more notifications to draw them into the app, and autoplaying videos to keep them engaged.\n\nThe new features are working. Especially on the younger users. But so is something else — a metric called Dwell Time Distress.",
         "choices": [
             {
-                "text": "What is that?",
+                "text": "What does that mean?",
                 "next": "section3_distress",
                 "profitChange": 0,
                 "legitimacyChange": 0
             },
             {
-                "text": "Who’s worried?",
-                "next": "section3_legal",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
-    },
-    {
-        "id": "section3_legal",
-        "type": "choice",
-        "text": "Legal is already circling. There’s a leaked internal email where someone joked about “monetizing teen sleep cycles.”\n\nIf that goes public, it won’t look good.",
-        "choices": [
-            {
-                "text": "Any other reactions?",
+                "text": "Isn't this a good thing for us?",
                 "next": "section3_pmemail",
                 "profitChange": 0,
                 "legitimacyChange": 0
@@ -988,13 +1162,19 @@
         ]
     },
     {
-        "id": "section3_molly",
+        "id": "section3_how",
         "type": "choice",
-        "text": "She was a UK teenager who died by suicide. A coroner said Instagram content contributed. The story made international headlines.\n\nIt triggered real changes to regulation in the UK.",
+        "text": "Well, one thing is quite obvious: The endless feed of posts you see on the app. As you scroll toward the bottom, new posts automatically load, and videos transition seamlessly without pause buttons. It feels seamless, so most people lose track of time.  ",
         "choices": [
             {
-                "text": "What are our options?",
-                "next": "section3_choices_intro",
+                "text": "Is that really a problem?",
+                "next": "sec3_scroll_explain",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "What other designs do we have?",
+                "next": "sec3_notifications",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -1003,17 +1183,36 @@
     {
         "id": "section3_pmemail",
         "type": "choice",
-        "text": "Some people are comparing this to the Molly Russell case. There's anxiety that this could spiral — fast.",
+        "text": "To be honest, our platform has largely been built to keep people glued to it. There's an obvious business incentive to keep our app engaging, and even to build a habit of continuous use. People's attention, after all, is the product we can sell to advertisers.",
         "choices": [
             {
-                "text": "Molly Russell?",
-                "next": "section3_molly",
+                "text": "Wait, how do we achieve this?",
+                "next": "section3_how",
                 "profitChange": 0,
                 "legitimacyChange": 0
             },
             {
-                "text": "What are our options?",
-                "next": "section3_choices_intro",
+                "text": "But does it really have an impact?",
+                "next": "sec3_consequence_intro",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section3_solutions",
+        "type": "choice",
+        "text": "OK great! Connectopia has a dedicated design team for healthy engagement that has developed strategies to reduce addictive use..",
+        "choices": [
+            {
+                "text": "Let's hear them out",
+                "next": "rep_menu",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "No no, I want to maximize engagement",
+                "next": "profit_menu",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -1041,7 +1240,7 @@
     {
         "id": "section4",
         "type": "intermediate",
-        "text": "{{status}}\n\nYou have completed the section on addiction! Whatever path we take — this won’t be the last time we face it. Addiction is becoming the next battleground in platform policy. Especially with teens.",
+        "text": "{{status}}\n\nYou have completed the section on addiction! Whatever path we take — this won’t be the last time we face it. Addiction is becoming a major battleground in platform policy, especially when it comes to teens.",
         "choices": [
             {
                 "text": "Let's continue",
@@ -1059,6 +1258,12 @@
         "text": "They’re furious.\n\nSome are calling for a boycott. Others are telling people to post everything on “real platforms only.”\n\nThey say we’re enabling astroturfing and chilling democratic speech.",
         "choices": [
             {
+                "text": "How common are bots really?",
+                "next": "section4_botscommon",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
                 "text": "What are our options here?",
                 "next": "section4_choices_intro",
                 "profitChange": 0,
@@ -1072,6 +1277,12 @@
         "text": "We can’t prove coordinated inauthentic behaviour. But the pattern is… weird.\n\nIf we remove these comments, we look biased. If we don’t, we look negligent.",
         "choices": [
             {
+                "text": "Are bots really a problem?",
+                "next": "section4_problem",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
                 "text": "Not ideal. What are our options?",
                 "next": "section4_choices_intro",
                 "profitChange": 0,
@@ -1080,9 +1291,28 @@
         ]
     },
     {
-        "id": "section4_break",
+        "id": "section4_botscommon",
         "type": "choice",
-        "text": "Whether it’s boomers or bots, it’s getting harder to tell the difference.\n\nAnd the activists won’t forget this one any time soon.",
+        "text": "Well, we believe we catch most attempts to create large numbers of fake accounts early on, though some inevitably slip through. For comparison, Facebook estimates around 5% of their accounts are fake. Seemingly a small proportion, but still hundreds of millions of accounts.",
+        "choices": [
+            {
+                "text": "Are bots really a problem?",
+                "next": "section4_problem",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "What solutions are there?",
+                "next": "section4_solutions",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_break",
+        "type": "intermediate",
+        "text": "You've completed the section on social media manipulation! This was the game's final section.\n\nSome social media accounts aren't linked to real people. They might be programmed to post frequently, either to influence public conversations or scam people out of money. Even advanced detection technologies can’t catch every instance.",
         "choices": [
             {
                 "text": "Continue",
@@ -1090,112 +1320,24 @@
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
-        ]
-    },
-    {
-        "id": "section4_choice_derank",
-        "type": "choice",
-        "text": "We implement soft suppression for repeated phrases. It helps a bit — though users still feel like we’re covering something up.\n\nActivists post side-by-side comparisons of hidden and visible threads.",
-        "choices": [
-            {
-                "text": "Let’s move on.",
-                "next": "section4_break",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
-    },
-    {
-        "id": "section4_choice_nothing",
-        "type": "choice",
-        "text": "We put out a short statement. No action.\n\nCritics frame it as cowardice. And now *real* bots are jumping into the mess just to stir things up.",
-        "choices": [
-            {
-                "text": "Let’s move on.",
-                "next": "section4_break",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
-    },
-    {
-        "id": "section4_choice_transparency",
-        "type": "choice",
-        "text": "The “Credibility Lens” beta launches. Users love the idea. Policy teams panic — we weren’t ready for this level of scrutiny.\n\nStill, it gets good press.",
-        "choices": [
-            {
-                "text": "Let’s move on.",
-                "next": "section4_break",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
-    },
-    {
-        "id": "section4_choices_1",
-        "type": "choice",
-        "text": "Option one: Hide near-identical comments. Quietly de-rank mass replies that match each other too closely.\n\nWe don’t say anything publicly. Just tune the visibility.",
-        "choices": [
-            {
-                "text": "What else is on the table?",
-                "next": "section4_choices_2",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            },
-            {
-                "text": "Let’s do that.",
-                "next": "section4_choice_derank",
-                "profitChange": 20,
-                "legitimacyChange": -10
-            }
-        ]
-    },
-    {
-        "id": "section4_choices_2",
-        "type": "choice",
-        "text": "Option two: Launch a transparency panel. Let users view account credibility scores and see who’s amplifying what.\n\nMakes us look proactive — but exposes how little we actually catch.",
-        "choices": [
-            {
-                "text": "And the third?",
-                "next": "section4_choices_3",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            },
-            {
-                "text": "Let’s try that.",
-                "next": "section4_choice_transparency",
-                "profitChange": -10,
-                "legitimacyChange": 20
-            }
-        ]
-    },
-    {
-        "id": "section4_choices_3",
-        "type": "choice",
-        "text": "Option three: Do nothing for now. Say we’re “monitoring the situation” and encourage both sides to report suspicious activity.\n\nFastest, safest — also most likely to backfire.",
-        "choices": [
-            {
-                "text": "Fine. Let’s just wait it out.",
-                "next": "section4_choice_nothing",
-                "profitChange": 20,
-                "legitimacyChange": -20
-            },
-            {
-                "text": "Actually, go back to the first one.",
-                "next": "section4_choices_1",
-                "profitChange": 0,
-                "legitimacyChange": 0
-            }
-        ]
+        ],
+        "mobileImage": "/images/info-lead-illustration4-mob-v1.png",
+        "desktopImage": "/images/info-lead-illustration4-web-v1.png"
     },
     {
         "id": "section4_choices_intro",
         "type": "choice",
-        "text": "Alright, three directions we could take. Each with its own risks.\n\nWant to hear them?",
+        "text": "So, I could call our \"authenticity infrastructure\" team to fine-tune our bot detection methods. Alternatively, we could require more from our users in terms of verifying their identities.",
         "choices": [
             {
-                "text": "Yeah, let’s go.",
-                "next": "section4_choices_1",
+                "text": "Let's check our bot filters",
+                "next": "detect_menu",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "Let's tighten up user verification",
+                "next": "verify_menu",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -1204,17 +1346,30 @@
     {
         "id": "section4_detection",
         "type": "choice",
-        "text": "We checked. Signal's weak.\n\nSome accounts are old, some are new. Some use weird stock-photo avatars. But most are just… boring. They post chain emails and recipes.\n\nOne engineer said: “It’s boomers, not bots.”",
+        "text": "We investigated, and the results are a bit confusing.\n\nSome accounts are old, some new. Some use strange stock-photo avatars. But most are just… boring, posting things like chain emails and recipes.\n\nOne engineer joked, \"It's boomers, not bots.\"",
         "choices": [
+            {
+                "text": "How common are bots really?",
+                "next": "section4_botscommon",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
             {
                 "text": "Okay, but what's our official position?",
                 "next": "section4_ambiguous",
                 "profitChange": 0,
                 "legitimacyChange": 0
-            },
+            }
+        ]
+    },
+    {
+        "id": "section4_detectionmethods",
+        "type": "choice",
+        "text": "Think of it this way: platforms collect every possible clue - from profile details and writing style to posting rhythms, repeated activities, and even device fingerprints - and combine them into a single \"bot score.\" Accounts with high scores get quietly flagged, throttled, or blocked before users even notice them.",
+        "choices": [
             {
-                "text": "What do the activists think?",
-                "next": "section4_activists",
+                "text": "OK, let's improve our policies against bots",
+                "next": "section4_choices_intro",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -1234,6 +1389,38 @@
             {
                 "text": "What do the activists think?",
                 "next": "section4_activists",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_problem",
+        "type": "choice",
+        "text": "Bots can definitely be present during heated political moments. They can distort people's perceptions of widely held beliefs or steer online conversations. However, measuring their true impact is challenging because it's often difficult to reliably distinguish bots from genuine users.",
+        "choices": [
+            {
+                "text": "How could we fix this",
+                "next": "section4_solutions",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "What methods we use to detect bot?",
+                "next": "section4_detectionmethods",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "section4_solutions",
+        "type": "choice",
+        "text": "Platforms use AI to detect bots by analyzing profile details, posting patterns, and device fingerprints. Another strategy involves verification: for example, requiring suspicious accounts to provide photo IDs. Platforms also collaborate by sharing information with each other and with law enforcement agencies to counter large-scale bot attacks.",
+        "choices": [
+            {
+                "text": "OK, let's improve our policies against bots",
+                "next": "section4_choices_intro",
                 "profitChange": 0,
                 "legitimacyChange": 0
             }
@@ -1263,5 +1450,95 @@
         "type": "intermediate",
         "text": "",
         "choices": []
+    },
+    {
+        "id": "taskdef",
+        "type": "choice",
+        "text": "Please remember, your job is to keep both legitimacy and profit afloat.. In fact, if you get either to 100 in our metrics, you're going to earn a promotion. But if either goes to zero, that will be a crisis.",
+        "choices": [
+            {
+                "text": "OK!",
+                "next": "20",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "No pressure, right?",
+                "next": "20",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "verify_id",
+        "type": "choice",
+        "text": "Our new policy will require both new and existing users to upload a photo of their ID to confirm they're real. Profiles will remain locked until verified. Let’s see how users react..",
+        "choices": [
+            {
+                "text": "Let's see what happens",
+                "next": "verify_id2",
+                "profitChange": -20,
+                "legitimacyChange": 10
+            }
+        ]
+    },
+    {
+        "id": "verify_id2",
+        "type": "choice",
+        "text": "The outcome seems… mixed. Within two days, prominent activists deactivate their accounts and switch platforms, resulting in a 17% drop in daily active users. But on the bright side, morning shows praise us as \"the Fort Knox of social media,\" and parent‐teacher associations are sending thank-you notes!",
+        "choices": [
+            {
+                "text": "That wasn't too bad",
+                "next": "section4_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "verify_menu",
+        "type": "choice",
+        "text": "Connectopia currently doesn't verify user identities at all. Fake names are allowed. However, we do have the technology ready to check photo IDs..",
+        "choices": [
+            {
+                "text": "Let's require ID checks",
+                "next": "verify_id",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            },
+            {
+                "text": "No, they should pay for a \"verified\" badge",
+                "next": "verify_paid",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
+    },
+    {
+        "id": "verify_paid",
+        "type": "choice",
+        "text": "Hey, that's an idea! We could offer blue badges next to users' profile names - but only if they pay. Verified users could also get more visibility, helping drown out bots.",
+        "choices": [
+            {
+                "text": "What a clever idea from me",
+                "next": "verify_paid2",
+                "profitChange": 20,
+                "legitimacyChange": -10
+            }
+        ]
+    },
+    {
+        "id": "verify_paid2",
+        "type": "choice",
+        "text": "Alright, let's see how the \"verified\" badge works… Turns out every fake guru, spam-coin promoter, and meme cartel happily pays a monthly fee for \"priority authenticity.\" Activists, however, proudly avoid the badge. It boosts our bottom line but damages our reputation.",
+        "choices": [
+            {
+                "text": "That wasn't too bad",
+                "next": "section4_break",
+                "profitChange": 0,
+                "legitimacyChange": 0
+            }
+        ]
     }
 ]
