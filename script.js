@@ -21,7 +21,7 @@ const GAME_SPEED = {
 };
 
 // Set speed mode - change to GAME_SPEED.FAST for testing or GAME_SPEED.NORMAL for regular play
-let currentSpeed = GAME_SPEED.NORMAL;
+let currentSpeed = GAME_SPEED.FAST;
 const aboutText = {
   en: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et sodales sapien, sit amet pulvinar lectus. Sed pulvinar nulla nulla. Nulla vel lacus ac massa pellentesque tristique. Donec euismod nibh ante, nec porta felis pellentesque a. Quisque sed ex sagittis, tincidunt tortor nec, mattis magna. Nunc euismod libero ex, vitae elementum dolor ornare id. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse porttitor dui cursus laoreet lacinia. \n\nNunc sagittis sapien sit amet ipsum vehicula euismod eget eu ipsum. Vestibulum tempus velit et ante cursus, quis blandit mi lobortis. Morbi faucibus nunc eget risus ultricies feugiat. Praesent laoreet felis eu nulla sagittis venenatis. Cras malesuada lorem quis dolor lobortis convallis ut in dui.\n\nNunc sagittis sapien sit amet ipsum vehicula euismod eget eu ipsum. Vestibulum tempus velit et ante cursus, quis blandit mi lobortis. Morbi faucibus nunc eget risus ultricies feugiat. Praesent laoreet felis eu nulla sagittis venenatis. Cras malesuada lorem quis dolor lobortis convallis ut in dui.",
   es: "Este juego simula los desafíos de la gestión de redes sociales y la desinformación.  Tus decisiones impactan las ganancias y la legitimidad. ¿Puedes tener éxito?",
@@ -291,6 +291,12 @@ let currentSection;
 let profitScore;
 let legitimacyScore;
 
+// Track the current background image
+let currentBackgroundImage = {
+  mobile: "images/info-lead-illustration1-mob-v1.png",
+  desktop: "images/info-lead-illustration3-web-v1.png"
+};
+
 // Add loading screen functionality
 function startGame() {
   // Stop background rotation when game starts
@@ -332,8 +338,7 @@ function startGame() {
       if (window.matchMedia("(max-width: 768px)").matches) {
         document.getElementById("gameContainer").style.backgroundImage = "none";
       } else {
-        document.body.style.backgroundImage =
-          "url('images/info-lead-illustration3-web-v1.png')";
+        document.body.style.backgroundImage = `url('${currentBackgroundImage.desktop}')`;
       }
 
       currentSection = "beginning"; // Start from the beginning
@@ -728,13 +733,13 @@ function displayIntermediatePage(section) {
           .getElementById("scores")
           .classList.remove("hide-on-mobile-desktop");
 
-        // Clean up all background images properly
+        // Apply the current background image (persisting from intermediate pages)
         if (window.matchMedia("(max-width: 768px").matches) {
           document.getElementById("gameContainer").style.backgroundImage = "none";
-          document.body.style.backgroundImage = "url('images/info-lead-illustration1-mob-v1.png')";
+          document.body.style.backgroundImage = `url('${currentBackgroundImage.mobile}')`;
         } else {
           document.getElementById("gameContainer").style.backgroundImage = "none";
-          document.body.style.backgroundImage = "url('images/info-lead-illustration3-web-v1.png')";
+          document.body.style.backgroundImage = `url('${currentBackgroundImage.desktop}')`;
         }
         
         // Remove background class from body
@@ -752,11 +757,15 @@ function displayIntermediatePage(section) {
 
   sessionEndMessage.appendChild(buttonsContainer);
 
-  let imageSrc;
-  if (window.matchMedia("(max-width: 768px").matches) {
-    imageSrc = section.mobileImage;
-  } else {
-    imageSrc = section.desktopImage;
+  // Check if this section has background images defined
+  if (section.mobileImage || section.desktopImage) {
+    // Update current background image if the section provides one
+    if (section.mobileImage) {
+      currentBackgroundImage.mobile = section.mobileImage;
+    }
+    if (section.desktopImage) {
+      currentBackgroundImage.desktop = section.desktopImage;
+    }
   }
 
   // Set background image differently based on device
@@ -765,12 +774,12 @@ function displayIntermediatePage(section) {
     document.body.style.backgroundImage = "none";
     document.getElementById(
       "gameContainer"
-    ).style.backgroundImage = `url('${section.mobileImage}')`;
+    ).style.backgroundImage = `url('${currentBackgroundImage.mobile}')`;
     document.getElementById("gameContainer").style.backgroundSize = "cover";
     document.getElementById("gameContainer").style.backgroundPosition = "initial";
   } else {
     // For desktop: set background only on body, not on game container
-    document.body.style.backgroundImage = `url('${imageSrc}')`;
+    document.body.style.backgroundImage = `url('${currentBackgroundImage.desktop}')`;
     document.body.classList.add("background-image-class");
     document.getElementById("gameContainer").style.backgroundImage = "none";
   }
