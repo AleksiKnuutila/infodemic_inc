@@ -6,6 +6,7 @@
   gap: 5px;
   justify-content: space-between;
   margin: 0;
+  margin-bottom: 12px;
   padding: 0;
   background-color: transparent;
 }
@@ -520,7 +521,7 @@ button {
   background-color: #f9f9f9;
   display: none;
   flex-direction: column;
-  z-index: 10;
+  z-index: 20000; /* Increased z-index to be higher than intermediate-page (9999) */
 }
 
 #aboutHeader,
