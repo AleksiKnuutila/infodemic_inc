@@ -1107,8 +1107,8 @@
                 "legitimacyChange": 0
             }
         ],
-        "mobileImage": "/images/info-lead-illustration3-mob-v1.png",
-        "desktopImage": "/images/info-lead-illustration3-web-v1.png"
+        "mobileImage": "/images/info-lead-illustration5-vertical.png",
+        "desktopImage": "/images/info-lead-illustration5-horizontal.png"
     },
     {
         "id": "section3_data",
@@ -1249,8 +1249,8 @@
                 "legitimacyChange": 0
             }
         ],
-        "mobileImage": "/images/info-lead-illustration3-mob-v1.png",
-        "desktopImage": "/images/info-lead-illustration3-web-v1.png"
+        "mobileImage": "/images/info-lead-illustration6-vertical.png",
+        "desktopImage": "/images/info-lead-illustration6-horizontal.png"
     },
     {
         "id": "section4_activists",
@@ -1312,7 +1312,7 @@
     {
         "id": "section4_break",
         "type": "intermediate",
-        "text": "You've completed the section on social media manipulation! This was the game's final section.\n\nSome social media accounts aren't linked to real people. They might be programmed to post frequently, either to influence public conversations or scam people out of money. Even advanced detection technologies can’t catch every instance.",
+        "text": "You've completed the section on social media manipulation! This was the game's final section.\n\n<br><br>\n\nSome social media accounts aren't linked to real people. They might be programmed to post frequently, either to influence public conversations or scam people out of money. Even advanced detection technologies can’t catch every instance.",
         "choices": [
             {
                 "text": "Continue",
@@ -1400,7 +1400,7 @@
         "text": "Bots can definitely be present during heated political moments. They can distort people's perceptions of widely held beliefs or steer online conversations. However, measuring their true impact is challenging because it's often difficult to reliably distinguish bots from genuine users.",
         "choices": [
             {
-                "text": "How could we fix this",
+                "text": "How could we fix this?",
                 "next": "section4_solutions",
                 "profitChange": 0,
                 "legitimacyChange": 0
