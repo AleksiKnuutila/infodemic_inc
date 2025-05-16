@@ -91,7 +91,7 @@
     {
         "id": "23",
         "type": "choice",
-        "text": "ur content policy is pretty clear that hate speech isn't allowed. But it gets tricky when we have to determine which words are actually derogatory about groups and which aren't. It's a delicate balance between free expression and preventing harm.",
+        "text": "Our content policy is pretty clear that hate speech isn't allowed. But it gets tricky when we have to determine which words are actually derogatory about groups and which aren't. It's a delicate balance between free expression and preventing harm.",
         "choices": [
             {
                 "text": "What happened with this particular post?",
@@ -299,7 +299,7 @@
             {
                 "text": "Let's see how this plays out",
                 "next": "30g",
-                "profitChange": -10,
+                "profitChange": -5,
                 "legitimacyChange": 20
             }
         ]
@@ -435,7 +435,7 @@
                 "text": "Let's see how this goes",
                 "next": "detect_crank2",
                 "profitChange": -10,
-                "legitimacyChange": 10
+                "legitimacyChange": 30
             }
         ]
     },
@@ -479,7 +479,7 @@
             {
                 "text": "Let's see how this goes",
                 "next": "detect_relax2",
-                "profitChange": 20,
+                "profitChange": 30,
                 "legitimacyChange": -10
             }
         ]
@@ -545,13 +545,13 @@
             {
                 "text": "That sounds like a plan!",
                 "next": "profit_night2",
-                "profitChange": 20,
+                "profitChange": 30,
                 "legitimacyChange": -10
             },
             {
                 "text": "Let's see what happens",
                 "next": "profit_night2",
-                "profitChange": 20,
+                "profitChange": 30,
                 "legitimacyChange": -10
             }
         ]
@@ -577,7 +577,7 @@
             {
                 "text": "They need something to do anyway",
                 "next": "profit_silver2",
-                "profitChange": 20,
+                "profitChange": 30,
                 "legitimacyChange": -10
             }
         ]
@@ -617,13 +617,13 @@
                 "text": "Hit the time cap.",
                 "next": "rep_timecaps",
                 "profitChange": -10,
-                "legitimacyChange": 20
+                "legitimacyChange": 30
             },
             {
                 "text": "Give parents the panel.",
                 "next": "rep_family",
                 "profitChange": -10,
-                "legitimacyChange": 20
+                "legitimacyChange": 30
             }
         ]
     },
@@ -823,13 +823,13 @@
             {
                 "text": "Great! That should solve it.",
                 "next": "section2auto2",
-                "profitChange": 10,
+                "profitChange": 20,
                 "legitimacyChange": -10
             },
             {
                 "text": "I hope this works...",
                 "next": "section2auto2",
-                "profitChange": 10,
+                "profitChange": 20,
                 "legitimacyChange": -10
             }
         ]
@@ -880,7 +880,7 @@
             {
                 "text": "Well that should do it!",
                 "next": "section2bancampaign2",
-                "profitChange": 0,
+                "profitChange": 10,
                 "legitimacyChange": -10
             }
         ]
@@ -913,13 +913,13 @@
                 "text": "OK that should solve it!",
                 "next": "section2bandeepfake2",
                 "profitChange": -10,
-                "legitimacyChange": 10
+                "legitimacyChange": 20
             },
             {
                 "text": "I hope we're not overreacting...",
                 "next": "section2bandeepfake2",
                 "profitChange": -10,
-                "legitimacyChange": 10
+                "legitimacyChange": 20
             }
         ]
     },
@@ -950,7 +950,7 @@
             {
                 "text": "Glad I managed to solve that!",
                 "next": "section2biggerflags2",
-                "profitChange": -10,
+                "profitChange": -5,
                 "legitimacyChange": 20
             }
         ]
@@ -1478,8 +1478,8 @@
             {
                 "text": "Let's see what happens",
                 "next": "verify_id2",
-                "profitChange": -20,
-                "legitimacyChange": 10
+                "profitChange": -10,
+                "legitimacyChange": 30
             }
         ]
     },
@@ -1523,7 +1523,7 @@
             {
                 "text": "What a clever idea from me",
                 "next": "verify_paid2",
-                "profitChange": 20,
+                "profitChange": 30,
                 "legitimacyChange": -10
             }
         ]
