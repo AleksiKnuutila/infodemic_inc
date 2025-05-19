@@ -4,6 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Infodemic Inc. - play the free game!</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2EJW76ZJE8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      // Configure GA4 with cookieless tracking
+      gtag('config', 'G-2EJW76ZJE8', {
+        'anonymize_ip': true,
+        'allow_google_signals': false,
+        'allow_ad_personalization_signals': false,
+        'cookie_flags': 'SameSite=None;Secure',
+        'cookie_domain': 'auto',
+        'cookie_expires': 0,
+        'send_page_view': true,
+        'client_storage': 'none' // Disable client storage (cookies)
+      });
+    </script>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -134,6 +153,19 @@
       <div id="shareContent"></div>
     </div>
 
+    <!-- Analytics Consent Banner -->
+    <div id="consentBanner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #f6f4f0; padding: 1rem; text-align: center; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000;">
+      <p>We use analytics to improve our game. Would you like to help us by allowing anonymous usage data collection?</p>
+      <button onclick="setAnalyticsConsent(true); document.getElementById('consentBanner').style.display='none';">Accept</button>
+      <button onclick="setAnalyticsConsent(false); document.getElementById('consentBanner').style.display='none';">Decline</button>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+      // Show consent banner after a short delay
+      setTimeout(() => {
+        document.getElementById('consentBanner').style.display = 'block';
+      }, 1000);
+    </script>
   </body>
 </html>

@@ -297,8 +297,22 @@ let currentBackgroundImage = {
   desktop: "images/info-lead-illustration3-web-v1.png"
 };
 
+// Function to track events without cookies
+function trackEvent(eventName, eventParams = {}) {
+  gtag('event', eventName, {
+    ...eventParams,
+    'non_interaction': false
+  });
+}
+
 // Add loading screen functionality
 function startGame() {
+  // Track game start event
+  trackEvent('start_game', {
+    'event_category': 'game_actions',
+    'event_label': 'game_started'
+  });
+
   // Stop background rotation when game starts
   if (backgroundInterval) {
     clearInterval(backgroundInterval);
