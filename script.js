@@ -299,9 +299,14 @@ let currentBackgroundImage = {
 
 // Function to track events without cookies
 function trackEvent(eventName, eventParams = {}) {
+  // Log to console for debugging
+  console.log('Tracking event:', eventName, eventParams);
+  
+  // Send the event
   gtag('event', eventName, {
     ...eventParams,
-    'non_interaction': false
+    'non_interaction': false,
+    'debug_mode': true
   });
 }
 
@@ -310,7 +315,8 @@ function startGame() {
   // Track game start event
   trackEvent('start_game', {
     'event_category': 'game_actions',
-    'event_label': 'game_started'
+    'event_label': 'game_started',
+    'value': 1
   });
 
   // Stop background rotation when game starts
