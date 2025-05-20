@@ -126,6 +126,191 @@ body {
   margin: 32px 20px;
 }
 
+/* Timer Display */
+#timerDisplay {
+  position: relative;
+  margin: 20px auto 0;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  padding: 16px;
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  overflow: hidden; /* Prevent content from spilling out */
+}
+
+/* Time left text - this is what turns red */
+#timerDisplay .time-text {
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  transition: color 0.3s ease;
+}
+
+#timerDisplay.timer-critical .time-text {
+  color: #e8505b;
+  animation: pulse 1s infinite;
+}
+
+/* Timer expired styling */
+.timer-expired {
+  padding: 5px;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.timer-options {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.timer-option-button {
+  font-size: 15px;
+  padding: 10px 15px;
+  background-color: #b1c9ff;
+  color: #000000;
+  font-family: "DM Sans", sans-serif;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  max-width: 180px;
+  white-space: nowrap;
+}
+
+.timer-option-button:hover {
+  background-color: #00879e;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Desktop layout when timer is active */
+@media (min-width: 769px) {
+  #conversationContainer.with-timer-active {
+    padding-bottom: 100px; /* Add space for the timer */
+  }
+  #choicesContainer.with-timer.desktop {
+    position: fixed !important;
+    bottom: 90px !important;
+    left: 0;
+    right: 0;
+    margin: 0 auto !important;
+    width: 90%;
+    max-width: 600px;
+    z-index: 100;
+    border-radius: 10px;
+    transform: translateY(0);
+    transition: transform 0.3s ease, bottom 0.3s ease;
+  }
+  #timerDisplay.desktop-active {
+    position: fixed !important;
+    bottom: 30px !important;
+    left: 0;
+    right: 0;
+    margin: 0 auto !important;
+    width: 90%;
+    max-width: 580px;
+    z-index: 101;
+    transition: bottom 0.3s ease;
+  }
+}
+
+/* Mobile Layout Fixes */
+@media (max-width: 768px) {
+  #gameContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #gameContent {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
+    padding-bottom: 180px; /* Space for choices container */
+  }
+
+  /* Change to column layout for mobile */
+  #choicesContainer {
+    flex-direction: column !important;
+    position: fixed !important;
+    bottom: 10px !important;
+    left: 0;
+    right: 0;
+    margin: 10px !important;
+    border-radius: 10px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px 10px !important;
+    flex-shrink: 0;
+    z-index: 100;
+    transition: bottom 0.3s ease;
+  }
+
+  /* Modified positioning when timer is active */
+  #choicesContainer.with-timer {
+    bottom: 100px !important; /* Position higher to make room for timer */
+  }
+
+  /* Force correct order of elements */
+  #conversationContainer {
+    order: 1;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+  }
+
+  #timerDisplay {
+    order: 3;
+    position: fixed !important;
+    bottom: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: auto; /* Let it size to available space */
+    max-width: calc(100% - 20px); /* Account for left/right margins */
+    border-radius: 10px;
+    z-index: 99;
+    font-size: 1rem; /* Smaller text on mobile */
+  }
+
+  /* Ensure timer isn't pulled into scores area */
+  #scores {
+    position: relative;
+    z-index: 5;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  /* Additional spacing to ensure the last message is fully visible */
+  .message-container:last-child {
+    margin-bottom: 100px;
+  }
+}
+
+@media (max-width: 1235px) and (min-width: 896px) {
+  #timerDisplay.desktop-active {
+    max-width: 400px;
+  }
+}
+@media (max-width: 895px) and (min-width: 769px) {
+  #timerDisplay.desktop-active {
+    max-width: 350px;
+  }
+}
+
 #startButton {
   width: 230px;
   font-family: "DM Sans", sans-serif;
@@ -405,8 +590,12 @@ button {
 }
 
 #timerDisplay {
-  font-size: 24px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  line-height: 18px;
   margin-bottom: 20px;
+  background-color: #ffb600;
+  border-radius: 12px;
 }
 
 .background-image-class {

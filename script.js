@@ -324,6 +324,8 @@ function startGame() {
     clearInterval(backgroundInterval);
     backgroundInterval = null;
 
+    clearTimer();
+
     // Remove rotating background if it exists
     const rotatingBg = document.getElementById("rotating-background");
     if (rotatingBg) {
@@ -368,6 +370,7 @@ function startGame() {
 }
 
 // Function to display current text and choices
+// Function to display current text and choices
 function displayCurrentSection() {
   const conversationContainer = document.getElementById(
     "conversationContainer"
@@ -377,12 +380,55 @@ function displayCurrentSection() {
   const choice1Container = document.getElementById("choice1Container");
   const choice2Container = document.getElementById("choice2Container");
   const choicesContainer = document.getElementById("choicesContainer");
+  const timerDisplay = document.getElementById("timerDisplay");
 
   const section = gameData.find((item) => item.id === currentSection);
 
   // Add debug logging
   console.log("Current section:", section);
   console.log("Current scores:", { profitScore, legitimacyScore });
+
+  // Reset timer-related classes when changing sections
+  clearTimer();
+
+  if (section.timer !== undefined) {
+    if (section.timer > 0) {
+      // Start a new timer with the provided duration
+      startTimer(section.timer, section.timerExpireNext);
+      timerDisplay.style.display = "block";
+      timerDisplay.classList.remove("timer-critical");
+
+      // Adjust layout for timer mode based on device
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        choicesContainer.classList.add("with-timer");
+      } else {
+        choicesContainer.classList.add("with-timer");
+        choicesContainer.classList.add("desktop");
+        timerDisplay.classList.add("desktop-active");
+        conversationContainer.classList.add("with-timer-active");
+      }
+
+      // Show choices container
+      choicesContainer.style.display = "flex";
+    } else {
+      // If timer is 0, stop any existing timer and hide the display
+      clearTimer();
+      timerDisplay.style.display = "none";
+
+      // Reset layout
+      choicesContainer.classList.remove("with-timer");
+      choicesContainer.classList.remove("desktop");
+      conversationContainer.classList.remove("with-timer-active");
+    }
+  } else {
+    clearTimer();
+    timerDisplay.style.display = "none";
+
+    // Reset layout
+    choicesContainer.classList.remove("with-timer");
+    choicesContainer.classList.remove("desktop");
+    conversationContainer.classList.remove("with-timer-active");
+  }
 
   if (!section) {
     console.error("Section with ID", currentSection, "not found");
@@ -436,20 +482,17 @@ function displayCurrentSection() {
     status: statusMessage
   };
 
-  // Add debug logging
   console.log("Variables for replacement:", variables);
   console.log("Original text:", section.text);
 
   const processedText = section.text.replace(
     /{{(\w+)}}/g,
     (match, variable) => {
-      // Add debug logging
       console.log(`Replacing ${match} with ${variables[variable]}`);
       return variables[variable] !== undefined ? variables[variable] : match;
     }
   );
 
-  // Add debug logging
   console.log("Processed text:", processedText);
 
   // Create message container
@@ -491,6 +534,7 @@ function displayCurrentSection() {
     choice1Button.style.opacity = "0";
     choice2Button.style.opacity = "0";
 
+    // Always show choices container
     choicesContainer.style.display = "flex";
 
     // First choice
@@ -532,14 +576,19 @@ function displayCurrentSection() {
     choicesContainer.style.display = "none";
   }
 
-  conversationContainer.scrollTop = conversationContainer.scrollHeight;
+  // Scroll to the bottom of the conversation
+  setTimeout(() => {
+    conversationContainer.scrollTop = conversationContainer.scrollHeight;
+  }, 100);
 }
 
+// Function to handle user choice
 // Function to handle user choice
 function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
   // Immediately hide choices container
   document.getElementById("choicesContainer").style.display = "none";
-  // After three choices, fix the position of the choices container
+  // Reset the choices container to its normal position
+  document.getElementById("choicesContainer").classList.remove("with-timer");
 
   profitScore += profitChange;
   legitimacyScore += legitimacyChange;
@@ -628,7 +677,6 @@ function handleChoice(nextId, profitChange, legitimacyChange, userChoice) {
     conversation.scrollTop = conversation.scrollHeight;
   });
 }
-
 function displayIntermediatePage(section) {
   // Set current section to the section ID
   currentSection = section.id;
@@ -1133,22 +1181,148 @@ function findPreviousId(currentId) {
   return null; // This code works when anything is not found, and then we return null
 }
 
-// Timer functionality
-function startTimer(duration) {
-  let timer = duration;
-  const timerInterval = setInterval(() => {
-    timer--;
-    document.getElementById(
-      "timerDisplay"
-    ).innerText = `Time left: ${timer} seconds`;
-    if (timer === 0) {
+// Modified timer functionality
+let timerInterval = null;
+
+function clearTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+  document.getElementById("timerDisplay").classList.remove("timer-critical");
+  document.getElementById("timerDisplay").classList.remove("desktop-active");
+
+  // Reset the choices container to its normal position
+  document.getElementById("choicesContainer").classList.remove("with-timer");
+  document.getElementById("choicesContainer").classList.remove("desktop");
+
+  // Reset conversation container
+  document
+    .getElementById("conversationContainer")
+    .classList.remove("with-timer-active");
+
+  // If we're on desktop, revert to normal layout
+  if (!window.matchMedia("(max-width: 768px)").matches) {
+    document.getElementById("choicesContainer").style.position = "";
+    document.getElementById("choicesContainer").style.bottom = "";
+    document.getElementById("choicesContainer").style.left = "";
+    document.getElementById("choicesContainer").style.right = "";
+    document.getElementById("timerDisplay").style.position = "";
+    document.getElementById("timerDisplay").style.bottom = "";
+  }
+}
+
+function startTimer(duration, nextSectionId) {
+  clearTimer();
+  const timerDisplay = document.getElementById("timerDisplay");
+  const gameContent = document.getElementById("gameContent");
+  const choicesContainer = document.getElementById("choicesContainer");
+  const conversationContainer = document.getElementById(
+    "conversationContainer"
+  );
+  let timeLeft = duration;
+
+  // Ensure timer is in the right container
+  if (timerDisplay.parentElement !== gameContent) {
+    gameContent.appendChild(timerDisplay);
+  }
+
+  timerDisplay.style.display = "block";
+
+  timerDisplay.innerHTML = `<span class="time-text">Time left: ${timeLeft} seconds</span>`;
+
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    // Mobile layout
+    choicesContainer.classList.add("with-timer");
+  } else {
+    choicesContainer.classList.add("with-timer");
+    choicesContainer.classList.add("desktop");
+    timerDisplay.classList.add("desktop-active");
+    conversationContainer.classList.add("with-timer-active");
+
+    setTimeout(() => {
+      conversationContainer.scrollTop = conversationContainer.scrollHeight;
+    }, 100);
+  }
+
+  timerInterval = setInterval(() => {
+    timeLeft -= 1;
+    // Update the timer text within the span
+    timerDisplay.querySelector(
+      ".time-text"
+    ).innerText = `Time left: ${timeLeft} seconds`;
+
+    if (timeLeft <= 5) {
+      timerDisplay.classList.add("timer-critical");
+    }
+
+    if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      // Proceed to next section or end the game
-      alert("Time's up!");
+      timerInterval = null;
+      handleTimerExpiration(nextSectionId);
     }
   }, 1000);
 }
 
+function handleTimerExpiration(nextSectionId) {
+  const timerDisplay = document.getElementById("timerDisplay");
+  const choicesContainer = document.getElementById("choicesContainer");
+  const conversationContainer = document.getElementById(
+    "conversationContainer"
+  );
+
+  choicesContainer.style.display = "none";
+
+  timerDisplay.classList.add("timer-critical");
+
+  timerDisplay.innerHTML = `
+    <div class="timer-expired">
+      <p>Time expired! You didn't make a choice.</p>
+      <p>Would you like to:</p>
+      <div class="timer-options">
+        <button id="retrySection" class="timer-option-button">Retry section</button>
+        <button id="nextSection" class="timer-option-button">Continue anyway</button>
+      </div>
+    </div>
+  `;
+
+  if (!window.matchMedia("(max-width: 768px)").matches) {
+    timerDisplay.classList.add("desktop-active");
+    conversationContainer.classList.add("with-timer-active");
+
+    setTimeout(() => {
+      conversationContainer.scrollTop = conversationContainer.scrollHeight;
+    }, 100);
+  }
+
+  document.getElementById("retrySection").addEventListener("click", () => {
+    const section = gameData.find((item) => item.id === currentSection);
+    choicesContainer.style.display = "flex";
+
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      choicesContainer.classList.add("with-timer");
+    } else {
+      choicesContainer.classList.add("with-timer");
+      choicesContainer.classList.add("desktop");
+    }
+
+    if (section?.timer) startTimer(section.timer, section.timerExpireNext);
+  });
+
+  document.getElementById("nextSection").addEventListener("click", () => {
+    clearTimer();
+    if (nextSectionId) {
+      currentSection = nextSectionId;
+      displayCurrentSection();
+    }
+  });
+}
+
+function formatTimerText(seconds) {
+  return currentLanguage === "en"
+    ? `Time left: ${seconds} seconds`
+    : `Tiempo restante: ${seconds} segundos`;
+}
 // Call loadGameData() instead of fetch() directly
 loadGameData();
 
